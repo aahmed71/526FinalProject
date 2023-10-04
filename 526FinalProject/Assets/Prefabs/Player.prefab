@@ -99,7 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd67d01c8a7ae45248dc68e468c1d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpButton: 0
+  possessButton: 0
   speed: 10
+  maxHealth: 100
+  damageRate: 10
 --- !u!50 &1374206743423836663
 Rigidbody2D:
   serializedVersion: 4
