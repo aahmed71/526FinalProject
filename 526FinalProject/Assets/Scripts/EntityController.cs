@@ -18,11 +18,11 @@ public class EntityController : MonoBehaviour
     //function for when the player first initially possesses entity
     public virtual void OnPossess(PlayerController player)
     {
-        Debug.Log("Possessed entity!");
+
     }
 
     //function that's called by player if they possess the player, can be overridden
-    public virtual void Move(float horizontal, float vertical, bool jumpPressed)
+    public virtual void Move(float horizontal, float vertical)
     {
         //movement
         Vector2 movement = new Vector2(horizontal, 0.0f);
@@ -34,12 +34,11 @@ public class EntityController : MonoBehaviour
         }
         
         //move rigidbody
-        rb.velocity = movement * speed;
-        
-        //jump
-        if (jumpPressed)
-        {
-            rb.AddForce(new Vector2(0.0f, jumpForce));
-        }
+        rb.position += movement * speed * Time.deltaTime;
+    }
+
+    public virtual void Jump()
+    {
+        rb.AddForce(new Vector2(0.0f, jumpForce));
     }
 }

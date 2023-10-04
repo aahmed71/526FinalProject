@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     //inputs
     private float horizontalInput;
     private float verticalInput;
-    private bool jumpInput;
+    private bool jumpInputPrevious = false;
+
     //buttons in case we want to change them
     [SerializeField] private KeyCode jumpButton;
     [SerializeField] private KeyCode possessButton;
@@ -37,14 +38,24 @@ public class PlayerController : MonoBehaviour
         //movement inputs
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        jumpInput = Input.GetKeyDown(jumpButton);
-        
+
         //entity possession check
         CheckForEntities();
         //move position to entity if we're possessing one
         if (currentEntity)
         {
             transform.position = currentEntity.transform.position;
+            
+            //jump
+            if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
+            {
+                currentEntity.Jump();
+                jumpInputPrevious = true;
+            }
+            else
+            {
+                jumpInputPrevious = false;
+            }
         }
     }
 
@@ -53,7 +64,7 @@ public class PlayerController : MonoBehaviour
         //move current entity
         if (currentEntity)
         {
-            currentEntity.Move(horizontalInput,verticalInput,jumpInput);
+            currentEntity.Move(horizontalInput,verticalInput);
         }
         //normal movement
         else
