@@ -98,16 +98,13 @@ public class PlayerController : MonoBehaviour
         //if we're already possessing something, unpossess
         if (currentEntity)
         {
-            //player sprite visible
-            //collider enabled
-            //current entity cleared
-            sr.enabled = true;
-            currentEntity = null;
-            col.enabled = true;
+            UnPossess();
         }
         //possess
         else
         {
+            if (!entity.canBePossessed)
+                return;
             //player sprite invisible
             //collider disabled
             //current entity set
@@ -116,5 +113,15 @@ public class PlayerController : MonoBehaviour
             sr.enabled = false;
             col.enabled = false;
         }
+    }
+
+    public void UnPossess()
+    {
+        //player sprite visible
+        //collider enabled
+        //current entity cleared
+        sr.enabled = true;
+        currentEntity = null;
+        col.enabled = true;
     }
 }
