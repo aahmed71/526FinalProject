@@ -9,6 +9,7 @@ TagManager:
   - health
   - Enemy
   - Bullet
+  - FinishLine
   layers:
   - Default
   - TransparentFX

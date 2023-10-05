@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -199,5 +200,27 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D brb = bullet.GetComponent<Rigidbody2D>();
         brb.velocity = fireDirection * bulletSpeed;
         Destroy(bullet, bulletDistance / bulletSpeed);
+    }
+
+    //End Goal Logic
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("FinishLine"))
+        {
+            
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            Invoke("RestartGame", 2f);
+
+
+   
+        }
+    }
+
+    void RestartGame()
+    {
+        // Reload the current scene (you can specify the scene name or index)
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }
