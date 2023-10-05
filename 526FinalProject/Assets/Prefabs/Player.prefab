@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3362873545255750685}
   - component: {fileID: 1374206743423836663}
   - component: {fileID: 5622933172169257176}
+  - component: {fileID: 2122219040319911370}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -99,11 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd67d01c8a7ae45248dc68e468c1d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpButton: 0
-  possessButton: 0
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 10
+  bulletDistance: 100
+  fireKey: 106
+  jumpButton: 32
+  possessButton: 101
   speed: 10
-  maxHealth: 100
-  damageRate: 10
+  winText: {fileID: 0}
 --- !u!50 &1374206743423836663
 Rigidbody2D:
   serializedVersion: 4
@@ -166,3 +170,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2122219040319911370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029823634082324051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3986245d6567e40b6a004a24c212da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  healthCounter: {fileID: 0}
+  deathDelay: 0
