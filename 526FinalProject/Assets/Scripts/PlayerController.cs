@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     
     // ui
     private TextMeshProUGUI healthCounter;
+    public TextMeshProUGUI winText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -210,6 +212,10 @@ public class PlayerController : MonoBehaviour
             
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
+             if (winText != null)
+            {
+                winText.gameObject.SetActive(true);
+            }
             Invoke("RestartGame", 2f);
 
 
@@ -219,6 +225,10 @@ public class PlayerController : MonoBehaviour
 
     void RestartGame()
     {
+        if (winText != null)
+        {
+            winText.gameObject.SetActive(false);
+        }
         // Reload the current scene (you can specify the scene name or index)
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
