@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    //bullet firing logic
+    public GameObject bulletPrefab;
+    public float bulletSpeed = 10f;
+    public float bulletDistance = 100f;
+    public KeyCode fireKey = KeyCode.J;
+    
     //inputs
     private float horizontalInput;
     private float verticalInput;
@@ -80,6 +87,12 @@ public class PlayerController : MonoBehaviour
             // }
             // healthCounter.text = currentHealth.ToString("0.00");
 
+        }
+
+        //bullet firing logic
+        if (Input.GetKeyDown(fireKey))
+        {
+            FireBullet();
         }
 
     }
@@ -167,5 +180,15 @@ public class PlayerController : MonoBehaviour
         GetComponent<SpriteRenderer>().color = tempColor;
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
+    }
+
+    //bullet firing logic
+    void FireBullet()
+    {
+        
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(bulletSpeed, 0);
+        Destroy(bullet, bulletDistance / bulletSpeed);
     }
 }
