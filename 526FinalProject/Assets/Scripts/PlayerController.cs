@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 10f;
     public float bulletDistance = 100f;
     public KeyCode fireKey = KeyCode.J;
+    private Vector2 fireDirection = Vector2.right;
     
     //inputs
     private float horizontalInput;
@@ -89,10 +90,18 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        //bullet firing logic
+        float horizontalVelocity = rb.velocity.x;
         if (Input.GetKeyDown(fireKey))
         {
             FireBullet();
+        }
+        if (horizontalVelocity < 0)
+        {
+            fireDirection = Vector2.left; // Set direction to left
+        }
+        else if(horizontalVelocity > 0)
+        {
+            fireDirection = Vector2.right; // Set direction to right
         }
 
     }
@@ -187,8 +196,8 @@ public class PlayerController : MonoBehaviour
     {
         
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(bulletSpeed, 0);
+        Rigidbody2D brb = bullet.GetComponent<Rigidbody2D>();
+        brb.velocity = fireDirection * bulletSpeed;
         Destroy(bullet, bulletDistance / bulletSpeed);
     }
 }
