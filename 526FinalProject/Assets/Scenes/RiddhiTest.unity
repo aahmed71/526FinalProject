@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 54589793}
   - component: {fileID: 54589792}
   - component: {fileID: 54589795}
+  - component: {fileID: 54589796}
   m_Layer: 0
   m_Name: FinishWall
   m_TagString: FinishLine
@@ -439,6 +440,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &54589796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54589791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5011146905a244945a54c5698a0ca16a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &142656790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,6 +1281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1381297410}
+  - component: {fileID: 1381297411}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1290,6 +1304,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1381297411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381297409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e879184cb113cdd48b571565470cb18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseText: {fileID: 0}
+  winText: {fileID: 1134492332}
 --- !u!1 &1632026694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,6 +1808,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1381297410}
   - {fileID: 832978065}
   - {fileID: 8036204774292308080}
   - {fileID: 3213023668591125479}
@@ -1796,4 +1825,3 @@ SceneRoots:
   - {fileID: 512309573}
   - {fileID: 1632026698}
   - {fileID: 673299842}
-  - {fileID: 1381297410}
