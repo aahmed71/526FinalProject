@@ -38,4 +38,12 @@ public class EnemyMotion : MonoBehaviour
 
         GetComponent<Rigidbody2D>().MovePosition(newPosition);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Destroy(gameObject); // Destroy the enemy when hit by a bullet
+        }
+    }
 }
