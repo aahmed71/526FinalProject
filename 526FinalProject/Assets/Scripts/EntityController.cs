@@ -9,14 +9,16 @@ public class EntityController : MonoBehaviour
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private bool allowVerticalMovement = false;
     [NonSerialized] PlayerController playerRef;
-    [SerializeField] private HealthComponent healthComponent;
     public bool canBePossessed = true;
     
+    //components
+    private HealthComponent healthComponent;
     private Rigidbody2D rb;
     void Start()
     {
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
+        healthComponent = GetComponent<HealthComponent>();
         
         //set health
         healthComponent.deathEvent.AddListener(OnDeath);

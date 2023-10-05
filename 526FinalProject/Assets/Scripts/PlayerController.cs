@@ -1,20 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    //bullet firing logic
-    public GameObject bulletPrefab;
-    public float bulletSpeed = 10f;
-    public float bulletDistance = 100f;
-    public KeyCode fireKey = KeyCode.J;
-    private Vector2 fireDirection = Vector2.right;
-    
     //inputs
     private float horizontalInput;
     private float verticalInput;
@@ -33,11 +24,6 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D col;
 
-    // ui
-    private TextMeshProUGUI healthCounter;
-    public TextMeshProUGUI winText;
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +31,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        GameManager.Instance.gameWinEvent.AddListener(GameOver);
     }
 
     // Update is called once per frame
@@ -71,20 +58,6 @@ public class PlayerController : MonoBehaviour
             {
                 jumpInputPrevious = false;
             }
-        }
-
-        float horizontalVelocity = rb.velocity.x;
-        if (Input.GetKeyDown(fireKey))
-        {
-            FireBullet();
-        }
-        if (horizontalVelocity < 0)
-        {
-            fireDirection = Vector2.left; // Set direction to left
-        }
-        else if(horizontalVelocity > 0)
-        {
-            fireDirection = Vector2.right; // Set direction to right
         }
 
     }
@@ -155,43 +128,9 @@ public class PlayerController : MonoBehaviour
         col.enabled = true;
     }
 
-    //bullet firing logic
-    void FireBullet()
+    void GameOver()
     {
-        
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D brb = bullet.GetComponent<Rigidbody2D>();
-        brb.velocity = fireDirection * bulletSpeed;
-        Destroy(bullet, bulletDistance / bulletSpeed);
-    }
-
-    //End Goal Logic
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("FinishLine"))
-        {
-            
-            rb.velocity = Vector2.zero;
-            rb.isKinematic = true;
-             if (winText != null)
-            {
-                winText.gameObject.SetActive(true);
-            }
-            Invoke("RestartGame", 2f);
-
-
-   
-        }
-    }
-
-    void RestartGame()
-    {
-        if (winText != null)
-        {
-            winText.gameObject.SetActive(false);
-        }
-        // Reload the current scene (you can specify the scene name or index)
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
     }
 }
