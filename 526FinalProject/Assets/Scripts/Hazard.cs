@@ -11,7 +11,7 @@ public class Hazard : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Entity"))
         {
-            col.gameObject.GetComponent<EntityController>().TakeDamage(damage);
+            col.gameObject.GetComponent<HealthComponent>().TakeDamage(damage);
         }
     }
 }

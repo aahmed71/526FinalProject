@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,18 +27,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody2D rb;
     private EntityController currentEntity = null;
-    
-    // health
-    [SerializeField] private float maxHealth;
-    private float currentHealth;
-    [SerializeField] private int damageRate;
-    
+
     //renderer and collider
     private SpriteRenderer sr;
     private Collider2D col;
-    
-    // ui
-    private TextMeshProUGUI healthCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +39,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-        //healthCounter = GameObject.FindGameObjectWithTag("health").GetComponent<TextMeshProUGUI>();
-        
-        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -77,18 +65,6 @@ public class PlayerController : MonoBehaviour
             {
                 jumpInputPrevious = false;
             }
-        }
-        else
-        {
-            // currentHealth -= damageRate * Time.deltaTime;
-            // // death
-            // if (currentHealth <= 0)
-            // {
-            //     currentHealth = 0;
-            //     StartCoroutine(Die());
-            // }
-            // healthCounter.text = currentHealth.ToString("0.00");
-
         }
 
         float horizontalVelocity = rb.velocity.x;
@@ -171,25 +147,6 @@ public class PlayerController : MonoBehaviour
         sr.enabled = true;
         currentEntity = null;
         col.enabled = true;
-    }
-    
-    public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            StartCoroutine(Die());
-        }
-    }
-    
-    IEnumerator Die()
-    {
-        Color tempColor = GetComponent<SpriteRenderer>().color;
-        tempColor.a = 0.5f;
-        GetComponent<SpriteRenderer>().color = tempColor;
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject);
     }
 
     //bullet firing logic

@@ -8,9 +8,8 @@ public class EntityController : MonoBehaviour
     [SerializeField] private float jumpForce = 50.0f;
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private bool allowVerticalMovement = false;
-    [SerializeField] private float maxHealth;
     [NonSerialized] PlayerController playerRef;
-    private float currentHealth;
+    [SerializeField] private HealthComponent healthComponent;
     public bool canBePossessed = true;
     
     private Rigidbody2D rb;
@@ -20,7 +19,7 @@ public class EntityController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         
         //set health
-        currentHealth = maxHealth;
+        healthComponent.deathEvent.AddListener(OnDeath);
     }
 
     //function for when the player first initially possesses entity
@@ -50,24 +49,12 @@ public class EntityController : MonoBehaviour
         rb.AddForce(new Vector2(0.0f, jumpForce));
     }
 
-    public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            playerRef.UnPossess();
-            canBePossessed = false;
-            StartCoroutine(Die());
-        }
-    }
-
-    IEnumerator Die()
+    private void OnDeath()
     {
         Color tempColor = GetComponent<SpriteRenderer>().color;
         tempColor.a = 0.5f;
         GetComponent<SpriteRenderer>().color = tempColor;
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject);
+        playerRef.UnPossess();
+        canBePossessed = false;
     }
 }

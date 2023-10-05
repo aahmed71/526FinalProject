@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 1674699032}
   - component: {fileID: 1674699031}
   - component: {fileID: 1674699030}
+  - component: {fileID: 1674699035}
   m_Layer: 0
   m_Name: TestEntity
   m_TagString: Entity
@@ -600,7 +601,7 @@ MonoBehaviour:
   jumpForce: 600
   speed: 10
   allowVerticalMovement: 0
-  maxHealth: 0
+  healthComponent: {fileID: 1674699035}
   canBePossessed: 1
 --- !u!50 &1674699031
 Rigidbody2D:
@@ -741,6 +742,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674699035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674699029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3986245d6567e40b6a004a24c212da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  healthCounter: {fileID: 0}
+  deathDelay: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
