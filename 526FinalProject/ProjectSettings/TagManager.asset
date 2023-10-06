@@ -12,6 +12,8 @@ TagManager:
   - FinishLine
   - Human
   - Light
+  - NoPassWall
+  - Spike
   layers:
   - Default
   - TransparentFX
