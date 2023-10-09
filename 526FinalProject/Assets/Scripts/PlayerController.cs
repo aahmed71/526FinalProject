@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     //inputs
     private float horizontalInput;
-    private float verticalInput;
     private bool jumpInputPrevious = false;
 
     //buttons in case we want to change them
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
     {
         //movement inputs
         horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
 
         //entity possession check
         CheckForEntities();
@@ -67,12 +65,12 @@ public class PlayerController : MonoBehaviour
         //move current entity
         if (currentEntity)
         {
-            currentEntity.Move(horizontalInput,verticalInput);
+            currentEntity.Move(horizontalInput,0);
         }
         //normal movement
         else
         {
-            rb.velocity = new Vector2(horizontalInput, verticalInput) * speed;
+            rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
         }
     }
 
