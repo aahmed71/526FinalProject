@@ -6,14 +6,9 @@ TagManager:
   tags:
   - Entity
   - UI
-  - health
   - Enemy
-  - Bullet
-  - FinishLine
-  - Human
   - Light
   - Spike
-  - water
   layers:
   - Default
   - TransparentFX
@@ -21,8 +16,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - GhostCanPass
-  - NoPass
+  - 
+  - 
   - 
   - 
   - 
