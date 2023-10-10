@@ -22,6 +22,7 @@ public class LadderMechanics : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger entered with: " + other.gameObject.name + other.gameObject.tag);
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -31,6 +32,7 @@ public class LadderMechanics : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Trigger exited with: " + other.gameObject.name + other.gameObject.tag);
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Rigidbody2D>().gravityScale = 10;
