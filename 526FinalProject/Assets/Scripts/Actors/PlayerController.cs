@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         if (entity)
         {
             //check if it has entity tag
-            if (entity.CompareTag("Entity"))
+            if (entity.CompareTag("Entity") || entity.CompareTag("Fired"))
             {
                 //if we detect a possess button press, possess
                 if (Input.GetKeyDown(possessButton))
