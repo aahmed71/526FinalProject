@@ -11,16 +11,6 @@ public class LadderMechanics : EntityController
     public bool isVertical = true;
     private Vector2 initialSize;
 
-    protected override void Start()
-    {
-        base.Start();
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        if (collider)
-        {
-            initialSize = collider.size;
-        }
-    }
-
     public override void Update()
     {
         base.Update();
@@ -50,9 +40,23 @@ public class LadderMechanics : EntityController
         coll.isTrigger = true;
     }
 
+    private Vector3 GetBottomRightCorner()
+    {
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+
+        float offsetX = collider.size.x * 0.5f;
+        float offsetY = collider.size.y * 0.5f;
+
+        Vector3 bottomRightCorner = new Vector3(transform.position.x + offsetX, transform.position.y - offsetY, 0);
+
+        Debug.Log(bottomRightCorner);
+
+        return bottomRightCorner;
+    }
+
     void SetVertical()
     {
-        Vector3 offset = new Vector3(initialSize.x / 2, -initialSize.y / 2, 0);
+        Vector3 offset = GetBottomRightCorner();
 
         // Translate, rotate, then translate back.
         transform.Translate(offset);
@@ -64,8 +68,7 @@ public class LadderMechanics : EntityController
 
     void SetHorizontal()
     {
-        Vector3 offset = new Vector3(initialSize.x / 2, -initialSize.y / 2, 0);
-
+        Vector3 offset = GetBottomRightCorner();
         // Translate, rotate, then translate back.
         transform.Translate(offset);
         transform.Rotate(0, 0, 90);
