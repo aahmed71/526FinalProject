@@ -35,7 +35,7 @@ public class LadderMechanics : EntityController
     {
         base.OnUnPossess(player);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = false;
+        rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = true;
     }
