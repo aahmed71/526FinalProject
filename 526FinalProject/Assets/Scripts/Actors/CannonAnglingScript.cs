@@ -13,7 +13,7 @@ public class CannonAnglingScript : EntityController
         
     }
 
-    public override void Move(float horizontalInput, float verticalInput)
+    public override void Move(float horizontalInput)
     {
         // Cannon's angle is controllable by 'a' and 'd' keys
         float newRotationZComponent = transform.eulerAngles.z + horizontalInput*Time.deltaTime*cannonAnglingSpeed;
