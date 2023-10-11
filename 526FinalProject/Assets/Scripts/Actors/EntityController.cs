@@ -7,7 +7,6 @@ public class EntityController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 50.0f;
     [SerializeField] private float speed = 10.0f;
-    [SerializeField] private bool allowVerticalMovement = false;
     [NonSerialized] PlayerController playerRef;
     public bool canBePossessed = true;
     
@@ -21,7 +20,10 @@ public class EntityController : MonoBehaviour
         healthComponent = GetComponent<HealthComponent>();
         
         //set health
-        healthComponent.deathEvent.AddListener(OnDeath);
+        if (healthComponent)
+        {
+            healthComponent.deathEvent.AddListener(OnDeath);
+        }
     }
 
     //function for when the player first initially possesses entity
@@ -31,19 +33,13 @@ public class EntityController : MonoBehaviour
     }
 
     //function that's called by player if they possess the player, can be overridden
-    public virtual void Move(float horizontal, float vertical)
+    public virtual void Move(float horizontal)
     {
         //movement
         Vector2 movement = new Vector2(horizontal, 0.0f);
-        
-        //use vertical movement if checked
-        if (allowVerticalMovement)
-        {
-            movement.y = vertical;
-        }
-        
+
         //move rigidbody
-        rb.position += movement * speed * Time.deltaTime;
+        rb.position += movement * (speed * Time.deltaTime);
     }
 
     public virtual void Jump()

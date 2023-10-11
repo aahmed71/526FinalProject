@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     //movement
     [SerializeField] private float speed;
+    [SerializeField] private float jumpForce = 50.0f;
     private Rigidbody2D rb;
     private EntityController currentEntity = null;
 
@@ -30,7 +31,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-        GameManager.Instance.gameWinEvent.AddListener(GameOver);
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.gameWinEvent.AddListener(GameOver);
+        }
     }
 
     // Update is called once per frame
@@ -45,51 +49,87 @@ public class PlayerController : MonoBehaviour
         if (currentEntity)
         {
             transform.position = currentEntity.transform.position;
-            
-            //jump
-            if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
+        }
+        
+        //jump
+        if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
+        {
+            if (currentEntity)
             {
                 currentEntity.Jump();
-                jumpInputPrevious = true;
             }
-            else
-            {
-                jumpInputPrevious = false;
-            }
+            jumpInputPrevious = true;
+            Jump();
+        }
+        else
+        {
+            jumpInputPrevious = false;
         }
 
     }
 
     private void FixedUpdate()
     {
+        //movement
+        Vector2 movement = new Vector2(horizontalInput, 0.0f);
+
         //move current entity
         if (currentEntity)
         {
-            currentEntity.Move(horizontalInput,0);
+            currentEntity.Move(horizontalInput);
         }
         //normal movement
         else
         {
-            rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+            //move rigidbody
+            rb.position += movement * (speed * Time.deltaTime);
         }
+    }
+    
+    public virtual void Jump()
+    {
+        rb.AddForce(new Vector2(0.0f, jumpForce));
     }
 
     private void CheckForEntities()
     {
         //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
-        Collider2D entity = Physics2D.OverlapCircle((Vector2)transform.position, 2);
+        Collider2D[] entities = new Collider2D[5];
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        Physics2D.OverlapCircle((Vector2)transform.position, 2.0f, contactFilter.NoFilter(), entities);
 
-        //if we hit something
-        if (entity)
+        Collider2D possessTarget = null;
+        foreach (Collider2D entity in entities)
         {
-            //check if it has entity tag
-            if (entity.CompareTag("Entity") || entity.CompareTag("Fired"))
+            //if we hit something
+            if (entity)
             {
-                //if we detect a possess button press, possess
-                if (Input.GetKeyDown(possessButton))
+                //check if it has entity tag
+                if (entity.CompareTag("Entity") || entity.CompareTag("Fired"))
                 {
-                    Possess(entity.GetComponent<EntityController>());
+                    //checks and gets the closest possessible entity
+                    if (possessTarget)
+                    {
+                        if (Math.Abs(Vector3.Distance(entity.transform.position, transform.position)) <
+                            Math.Abs(Vector3.Distance(possessTarget.transform.position, transform.position)))
+                        {
+                            possessTarget = entity;
+                        }
+                    }
+                    else
+                    {
+                        possessTarget = entity;
+                    }
                 }
+            }
+        }
+        
+        if (possessTarget)
+        {
+            //if we detect a possess button press, possess
+            if (Input.GetKeyDown(possessButton))
+            {
+                Possess(possessTarget.GetComponent<EntityController>());
             }
         }
     }

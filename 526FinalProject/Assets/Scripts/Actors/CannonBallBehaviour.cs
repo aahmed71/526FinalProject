@@ -19,7 +19,7 @@ public class CannonBallBehaviour : EntityController
     }
 
     // Update is called once per frame
-    public override void Move(float horizontalInput, float verticalInput)
+    public override void Move(float horizontalInput)
     {
         // This behavior is not applicable to the cannonball objects that are fired from the cannon. ie. this is meant for cannonballs that do not come from cannon
         if(gameObject.tag!="Fired")
