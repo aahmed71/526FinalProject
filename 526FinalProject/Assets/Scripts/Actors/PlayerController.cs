@@ -129,31 +129,28 @@ public class PlayerController : MonoBehaviour
             //if we detect a possess button press, possess
             if (Input.GetKeyDown(possessButton))
             {
-                Possess(possessTarget.GetComponent<EntityController>());
+                if (currentEntity)
+                {
+                    UnPossess();
+                } else
+                {
+                    Possess(possessTarget.GetComponent<EntityController>());
+                }
             }
         }
     }
 
     private void Possess(EntityController entity)
     {
-        //if we're already possessing something, unpossess
-        if (currentEntity)
-        {
-            UnPossess();
-        }
-        //possess
-        else
-        {
-            if (!entity.canBePossessed)
+        if (!entity.canBePossessed)
                 return;
-            //player sprite invisible
-            //collider disabled
-            //current entity set
-            entity.OnPossess(this);
-            currentEntity = entity;
-            sr.enabled = false;
-            col.enabled = false;
-        }
+        //player sprite invisible
+        //collider disabled
+        //current entity set
+        entity.OnPossess(this);
+        currentEntity = entity;
+        sr.enabled = false;
+        col.enabled = false;
     }
 
     public void UnPossess()
@@ -161,6 +158,7 @@ public class PlayerController : MonoBehaviour
         //player sprite visible
         //collider enabled
         //current entity cleared
+        currentEntity.OnUnPossess(this);
         sr.enabled = true;
         currentEntity = null;
         col.enabled = true;

@@ -35,12 +35,17 @@ public class EntityController : MonoBehaviour
         playerRef = player;
     }
 
+    //function for when the player is unpossesses entity
+    public virtual void OnUnPossess(PlayerController player)
+    {
+           
+    }
+
     //function that's called by player if they possess the player, can be overridden
     public virtual void Move(float horizontal)
     {
         //movement
         Vector2 movement = new Vector2(horizontal, 0.0f);
-
         //move rigidbody
         rb.position += movement * (speed * Time.deltaTime);
     }

@@ -8,24 +8,70 @@ public class LadderMechanics : EntityController
     private bool playerInRange = false;
     private Rigidbody2D playerRB;
     private float originalGravity;
-    public bool standing = true;
+    public bool isVertical = true;
+    private Vector2 initialSize;
+
+    protected override void Start()
+    {
+        base.Start();
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        if (collider)
+        {
+            initialSize = collider.size;
+        }
+    }
 
     public override void Update()
     {
         base.Update();
-        if (playerInRange)
+        if (playerInRange && isVertical && playerRB)
         {
-            if (standing)
-            {
-                float verticalInput = Input.GetAxis("Vertical");
-                if (playerRB)
-                {
-                    playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
-                }
-            }
-
+            float verticalInput = Input.GetAxis("Vertical");
+            playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed * Time.deltaTime);
         }
 
+    }
+
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = false;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+    }
+
+    public override void OnUnPossess(PlayerController player)
+    {
+        base.OnUnPossess(player);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = true;
+    }
+
+    void SetVertical()
+    {
+        Vector3 offset = new Vector3(initialSize.x / 2, -initialSize.y / 2, 0);
+
+        // Translate, rotate, then translate back.
+        transform.Translate(offset);
+        transform.Rotate(0, 0, -90);
+        transform.Translate(-offset);
+
+        isVertical = true;
+    }
+
+    void SetHorizontal()
+    {
+        Vector3 offset = new Vector3(initialSize.x / 2, -initialSize.y / 2, 0);
+
+        // Translate, rotate, then translate back.
+        transform.Translate(offset);
+        transform.Rotate(0, 0, 90);
+        transform.Translate(-offset);
+
+        isVertical = false;
     }
 
     public override void Move(float horizontal)
@@ -33,8 +79,15 @@ public class LadderMechanics : EntityController
         base.Move(horizontal);
         if (Input.GetKeyDown(utilityButton))
         {
-            standing = !standing;
-            transform.Rotate(0, 90, 0);
+            if (isVertical)
+            {
+                SetHorizontal();
+            }
+            else
+            {
+                SetVertical();
+            }
+
         }
     }
 
