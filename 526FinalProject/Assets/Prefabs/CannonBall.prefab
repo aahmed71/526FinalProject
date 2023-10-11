@@ -163,9 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 50
   speed: 10
-  allowVerticalMovement: 0
   canBePossessed: 1
   rollingSpeed: 5
   maxAccelerationForce: 40
   decelerationRate: 45
-  accelerateKey: 32
+  player: {fileID: 2029823634082324051, guid: 1bc106dfdaeff47608d7c72658d84073, type: 3}
