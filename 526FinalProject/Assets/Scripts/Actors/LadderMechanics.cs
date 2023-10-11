@@ -68,20 +68,15 @@ public class LadderMechanics : EntityController
         isVertical = false;
     }
 
-    public override void Move(float horizontal)
+    protected override void Ability()
     {
-        base.Move(horizontal);
-        if (Input.GetKeyDown(utilityButton))
+        if (isVertical)
         {
-            if (isVertical)
-            {
-                SetHorizontal();
-            }
-            else
-            {
-                SetVertical();
-            }
-
+            SetHorizontal();
+        }
+        else
+        {
+            SetVertical();
         }
     }
 
