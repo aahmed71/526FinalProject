@@ -123,19 +123,18 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        
-        if (possessTarget)
+        //if we detect a possess button press, possess
+        if (Input.GetKeyDown(possessButton))
         {
-            //if we detect a possess button press, possess
-            if (Input.GetKeyDown(possessButton))
+            //unpossess if we are already possessing
+            if (currentEntity)
             {
-                if (currentEntity)
-                {
-                    UnPossess();
-                } else
-                {
-                    Possess(possessTarget.GetComponent<EntityController>());
-                }
+                UnPossess();
+            }
+            //possess if we have a target to possess
+            else if (possessTarget)
+            {
+                Possess(possessTarget.GetComponent<EntityController>());
             }
         }
     }
