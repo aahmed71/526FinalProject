@@ -17,7 +17,7 @@ public class LadderMechanics : EntityController
         if (playerInRange && isVertical && playerRB)
         {
             float verticalInput = Input.GetAxis("Vertical");
-            playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed * Time.deltaTime);
+            playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
         }
 
     }
@@ -47,9 +47,10 @@ public class LadderMechanics : EntityController
         float offsetX = collider.size.x * 0.5f;
         float offsetY = collider.size.y * 0.5f;
 
-        Vector3 bottomRightCorner = new Vector3(transform.position.x + offsetX, transform.position.y - offsetY, 0);
+        Debug.Log("offfsetX" + offsetX + "OffY" + offsetY);
+        Debug.Log("posX" + transform.position.x + "posY" + transform.position.y);
 
-        Debug.Log(bottomRightCorner);
+        Vector3 bottomRightCorner = new Vector3(transform.position.x + offsetX, transform.position.y - offsetY, 0);
 
         return bottomRightCorner;
     }
