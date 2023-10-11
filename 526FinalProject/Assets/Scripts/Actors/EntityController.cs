@@ -7,6 +7,7 @@ public class EntityController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 50.0f;
     [SerializeField] private float speed = 10.0f;
+    [SerializeField] protected KeyCode utilityButton = KeyCode.F;
     [NonSerialized] PlayerController playerRef;
     public bool canBePossessed = true;
     
@@ -25,6 +26,8 @@ public class EntityController : MonoBehaviour
             healthComponent.deathEvent.AddListener(OnDeath);
         }
     }
+
+    public virtual void Update() {}
 
     //function for when the player first initially possesses entity
     public virtual void OnPossess(PlayerController player)

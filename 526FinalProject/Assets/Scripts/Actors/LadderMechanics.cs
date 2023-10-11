@@ -2,22 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LadderMechanics : MonoBehaviour
+public class LadderMechanics : EntityController
 {
     private float climbSpeed = 10.0f;
     private bool playerInRange = false;
     private Rigidbody2D playerRB;
     private float originalGravity;
+    public bool standing = true;
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         if (playerInRange)
         {
-            float verticalInput = Input.GetAxis("Vertical");
-            if (playerRB)
+            if (standing)
             {
-                playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
+                float verticalInput = Input.GetAxis("Vertical");
+                if (playerRB)
+                {
+                    playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
+                }
             }
+
+        }
+
+    }
+
+    public override void Move(float horizontal)
+    {
+        base.Move(horizontal);
+        if (Input.GetKeyDown(utilityButton))
+        {
+            standing = !standing;
+            transform.Rotate(0, 90, 0);
         }
     }
 
