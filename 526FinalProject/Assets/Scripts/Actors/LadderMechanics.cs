@@ -4,38 +4,46 @@ using UnityEngine;
 
 public class LadderMechanics : MonoBehaviour
 {
-    public float climbSpeed = 3.0f;
+    private float climbSpeed = 10.0f;
     private bool playerInRange = false;
+    private Rigidbody2D playerRB;
+    private float originalGravity;
 
     private void Update()
     {
         if (playerInRange)
         {
             float verticalInput = Input.GetAxis("Vertical");
-            Rigidbody2D playerRB = FindObjectOfType<PlayerController>().GetComponent<Rigidbody2D>();
-            Debug.Log("This is a log message." + playerRB);
-
-            // Set the player's vertical velocity based on input.
-            playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
+            if (playerRB)
+            {
+                playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger entered with: " + other.gameObject.name + other.gameObject.tag);
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Rigidbody2D>().gravityScale = 0;
+            playerRB = other.GetComponent<Rigidbody2D>();
+            if (playerRB)
+            {
+                originalGravity = playerRB.gravityScale;
+                playerRB.gravityScale = 0;
+            }
             playerInRange = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger exited with: " + other.gameObject.name + other.gameObject.tag);
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Rigidbody2D>().gravityScale = 10;
+            if (playerRB)
+            {
+                playerRB.gravityScale = originalGravity;
+                playerRB = null;
+            }
             playerInRange = false;
         }
     }
