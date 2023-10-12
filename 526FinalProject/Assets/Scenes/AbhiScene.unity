@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5011146905a244945a54c5698a0ca16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &573808028
+--- !u!1001 &755370681
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -304,7 +304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6528597894489993972, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
       propertyPath: m_Name
-      value: Ladder (1)
+      value: Ladder
       objectReference: {fileID: 0}
     - target: {fileID: 6528597894489993972, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
       propertyPath: m_IsActive
@@ -312,11 +312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7669646400724292379, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.01
+      value: -12.417732
       objectReference: {fileID: 0}
     - target: {fileID: 7669646400724292379, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.948456
+      value: 4.544475
       objectReference: {fileID: 0}
     - target: {fileID: 7669646400724292379, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -786,4 +786,4 @@ SceneRoots:
   - {fileID: 1932778370}
   - {fileID: 771812106}
   - {fileID: 54589794}
-  - {fileID: 573808028}
+  - {fileID: 755370681}

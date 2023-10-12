@@ -10,8 +10,7 @@ public class EntityController : MonoBehaviour
     [SerializeField] protected KeyCode utilityButton = KeyCode.F;
     [NonSerialized] PlayerController playerRef;
     public bool canBePossessed = true;
-    private bool isPossessed = false;
-
+    
     //components
     private HealthComponent healthComponent;
     private Rigidbody2D rb;
@@ -28,25 +27,18 @@ public class EntityController : MonoBehaviour
         }
     }
 
-    public virtual void Update()
-    {
-        if (isPossessed && Input.GetKeyDown(utilityButton))
-        {
-            Ability();
-        }
-    }
+    public virtual void Update() {}
 
     //function for when the player first initially possesses entity
     public virtual void OnPossess(PlayerController player)
     {
         playerRef = player;
-        isPossessed = true;
     }
 
     //function for when the player is unpossesses entity
     public virtual void OnUnPossess(PlayerController player)
     {
-        isPossessed = false;
+           
     }
 
     //function that's called by player if they possess the player, can be overridden
@@ -56,11 +48,6 @@ public class EntityController : MonoBehaviour
         Vector2 movement = new Vector2(horizontal, 0.0f);
         //move rigidbody
         rb.position += movement * (speed * Time.deltaTime);
-    }
-
-    protected virtual void Ability()
-    {
-        //ability code would go here
     }
 
     public virtual void Jump()

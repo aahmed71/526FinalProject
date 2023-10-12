@@ -11,10 +11,7 @@ public class CannonBallBehaviour : EntityController
 
     private bool isAccelerating = false;
     private float currentAccelerationForce = 0f;
-
-    public GameObject player;
-    private PlayerController playerRef;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,17 +28,14 @@ public class CannonBallBehaviour : EntityController
             //cannonBallRigidBody.AddTorque(10.0f);
 
             // Check if the horizontal movement keys are pressed
-            if (Input.GetKey("a") || Input.GetKey("d"))
+            if (Input.GetKeyDown("a") || Input.GetKeyDown("d"))
             {
-                Debug.Log("Yes");
                 isAccelerating = true;
             }
 
             // Check if the horizontal movement keys are released
-            //if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
-            else
+            if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
             {
-                Debug.Log("no");
                 isAccelerating = false;
             }
 
@@ -56,7 +50,7 @@ public class CannonBallBehaviour : EntityController
             {
                 // Decelerate gradually
                 currentAccelerationForce -= decelerationRate * Time.deltaTime;
-                currentAccelerationForce = Mathf.Max(currentAccelerationForce, 0.5f);
+                currentAccelerationForce = Mathf.Max(currentAccelerationForce, 0f);
             }
 
             
@@ -78,9 +72,9 @@ public class CannonBallBehaviour : EntityController
         // Don't want the cannonballs that are striking the non-destroyable wall to get collected and clutter in a place.
         // Hence, whenever a fired cannonball comes in contact with a platform object, cannonball gets destroyed. 
         // (Note: not applicable to cannonballs not fired from cannon)
-        
+
         if(gameObject.tag=="Fired" && (collision.gameObject.name=="Platform")){
-            gameObject.tag="Entity";
+            Destroy(gameObject);
         }
     }
 }

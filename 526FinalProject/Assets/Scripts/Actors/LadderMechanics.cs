@@ -40,43 +40,58 @@ public class LadderMechanics : EntityController
         coll.isTrigger = true;
     }
 
-    void SetVertical()
+    private Vector3 GetBottomRightCorner()
     {
-        //Vector3 offset = GetBottomRightCorner();
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
 
         float offsetX = collider.size.x * 0.5f;
         float offsetY = collider.size.y * 0.5f;
-        Vector3 point = new Vector3(0, - offsetX + offsetY, 0);
-        transform.position += point;
+
+        Debug.Log("offfsetX" + offsetX + "OffY" + offsetY);
+        Debug.Log("posX" + transform.position.x + "posY" + transform.position.y);
+
+        Vector3 bottomRightCorner = new Vector3(transform.position.x + offsetX, transform.position.y - offsetY, 0);
+
+        return bottomRightCorner;
+    }
+
+    void SetVertical()
+    {
+        Vector3 offset = GetBottomRightCorner();
+
+        // Translate, rotate, then translate back.
+        transform.Translate(offset);
         transform.Rotate(0, 0, -90);
+        transform.Translate(-offset);
+
         isVertical = true;
     }
 
     void SetHorizontal()
     {
-        //Vector3 offset = GetBottomRightCorner();
-
+        Vector3 offset = GetBottomRightCorner();
+        // Translate, rotate, then translate back.
+        transform.Translate(offset);
         transform.Rotate(0, 0, 90);
-
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        float offsetX = collider.size.x * 0.5f;
-        float offsetY = collider.size.y * 0.5f;
-        Vector3 point = new Vector3(0, offsetX - offsetY, 0);
-        transform.position += point;
+        transform.Translate(-offset);
 
         isVertical = false;
     }
 
-    protected override void Ability()
+    public override void Move(float horizontal)
     {
-        if (isVertical)
+        base.Move(horizontal);
+        if (Input.GetKeyDown(utilityButton))
         {
-            SetHorizontal();
-        }
-        else
-        {
-            SetVertical();
+            if (isVertical)
+            {
+                SetHorizontal();
+            }
+            else
+            {
+                SetVertical();
+            }
+
         }
     }
 
