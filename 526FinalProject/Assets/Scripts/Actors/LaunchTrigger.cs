@@ -5,28 +5,28 @@ using UnityEngine;
 public class LaunchTrigger : EntityController
 {
     
-    private float timeElapsedSinceLastLaunch = 0.0f;
-    public float timeBetweenLaunches = 3.0f;
+    private int isLaunchedFlag = 0;
     public GameObject cannonLauncher;
     public GameObject spawnPoint;
     public GameObject cannonBallPrefab;
     public float cannonBallInitialSpeed = 10.0f;
     private GameObject[] fired_balls;
+    public GameObject player;
+    private PlayerController playerRef;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRef = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // Call the Launch() function after every timeElapsedSinceLastLaunch seconds
-        timeElapsedSinceLastLaunch += Time.deltaTime;
-        if(timeElapsedSinceLastLaunch>=timeBetweenLaunches){
+        if(isLaunchedFlag==0 && Input.GetKey(utilityButton) && playerRef.currentEntity.gameObject.name == "CannonBallLauncher"){
             Launch();
-            timeElapsedSinceLastLaunch = 0.0f;
+            isLaunchedFlag=1;
         }
     }
 
@@ -37,6 +37,10 @@ public class LaunchTrigger : EntityController
 
         // Differentiate this type of cannonball instance from non-fired cannonball instances by adding a new tag - Fired.
         cannonBall.tag = "Fired";
+
+        
+        playerRef.UnPossess();
+        playerRef.Possess(cannonBall.GetComponent<EntityController>());
 
         Rigidbody2D cannonBallRigidBody = cannonBall.GetComponent<Rigidbody2D>();
 
@@ -49,6 +53,7 @@ public class LaunchTrigger : EntityController
 
         // Apply the initial velocity to the Rigidbody
         cannonBallRigidBody.velocity = initialVelocity;
+
     }
 
     
