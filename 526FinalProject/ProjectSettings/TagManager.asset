@@ -12,6 +12,7 @@ TagManager:
   - Fired
   - FinishLine
   - Human
+  - Wall
   layers:
   - Default
   - TransparentFX

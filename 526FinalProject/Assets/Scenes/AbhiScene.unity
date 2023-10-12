@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ladder
       objectReference: {fileID: 0}
+    - target: {fileID: 6528597894489993972, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7669646400724292379, guid: 5c57b69c2cb91e846b87eaff3863d49c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.417732
@@ -362,6 +366,10 @@ PrefabInstance:
     - target: {fileID: 1459098291932631632, guid: c17715edf45824ba3bec34f75ceba190, type: 3}
       propertyPath: m_Name
       value: Platform (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459098291932631632, guid: c17715edf45824ba3bec34f75ceba190, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3094028054436092273, guid: c17715edf45824ba3bec34f75ceba190, type: 3}
       propertyPath: m_LocalScale.x
@@ -611,6 +619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loseText: {fileID: 0}
   winText: {fileID: 0}
+  pausePanel: {fileID: 0}
 --- !u!4 &1909622616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4288124133127948326, guid: 1bc106dfdaeff47608d7c72658d84073, type: 3}
@@ -631,6 +640,10 @@ PrefabInstance:
     - target: {fileID: 2029823634082324051, guid: 1bc106dfdaeff47608d7c72658d84073, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029823634082324051, guid: 1bc106dfdaeff47608d7c72658d84073, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3362873545255750685, guid: 1bc106dfdaeff47608d7c72658d84073, type: 3}
       propertyPath: winText
@@ -753,6 +766,10 @@ PrefabInstance:
     - target: {fileID: 6536383045465875988, guid: a33a4c436740c4924af41aecdaefaf55, type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536383045465875988, guid: a33a4c436740c4924af41aecdaefaf55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
