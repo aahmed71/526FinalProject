@@ -31,6 +31,7 @@ public class Puzzle : MonoBehaviour
         // Puzzle complete
         if (pieces == 0 && locked)
         {
+
             locked = false;
             Debug.Log("You won!");
             if (GameManager.Instance)
@@ -52,6 +53,12 @@ public class Puzzle : MonoBehaviour
                 // Check if its already placed
                 if (!other.gameObject.GetComponent<PuzzleBlock>().CheckedPlaced())
                 {
+                    if (player.GetComponent<PlayerController>().IsPossessing())
+                    {
+                        player.GetComponent<PlayerController>().UnPossess();
+                        // player.GetComponent<Rigidbody2D>().position = other.transform.position + new Vector3(0, 1, 0);
+                        // player.transform.position = other.transform.position + new Vector3(0, 3, 0);
+                    }
                     other.gameObject.GetComponent<PuzzleBlock>().Place();
                     Debug.Log("One more puzzle piece in!");
                     pieces--;

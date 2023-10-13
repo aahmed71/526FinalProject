@@ -169,6 +169,15 @@ public class PlayerController : MonoBehaviour
         col.enabled = true;
     }
 
+    public bool IsPossessing()
+    {
+        if (currentEntity)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void GameOver()
     {
         rb.velocity = Vector2.zero;

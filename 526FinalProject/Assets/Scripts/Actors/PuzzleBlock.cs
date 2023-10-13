@@ -21,6 +21,7 @@ public class PuzzleBlock : MonoBehaviour
     public void Place()
     {
         placed = true;
+        GetComponent<EntityController>().canBePossessed = false;
     }
 
     public bool CheckedPlaced()
