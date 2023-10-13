@@ -16,20 +16,27 @@ public class Puzzle : MonoBehaviour
     private bool locked = true;
 
     [SerializeField] private GameObject wall;
+
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         boxColl = GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Puzzle complete
         if (pieces == 0 && locked)
         {
             locked = false;
-            Debug.Log("Door open!");
-            Destroy(wall);
+            Debug.Log("You won!");
+            if (GameManager.Instance)
+            {
+                GameManager.Instance.GameWin();
+            }
         }
     }
     
