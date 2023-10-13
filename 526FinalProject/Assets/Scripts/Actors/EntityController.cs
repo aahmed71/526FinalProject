@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EntityController : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 50.0f;
-    [SerializeField] private float speed = 10.0f;
+    [SerializeField] protected float jumpForce = 50.0f;
+    [SerializeField] protected float speed = 10.0f;
     [SerializeField] protected KeyCode utilityButton = KeyCode.F;
     [NonSerialized] PlayerController playerRef;
     public bool canBePossessed = true;
