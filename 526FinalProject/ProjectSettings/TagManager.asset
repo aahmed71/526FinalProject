@@ -13,6 +13,7 @@ TagManager:
   - FinishLine
   - Human
   - Wall
+  - PuzzleBlock
   layers:
   - Default
   - TransparentFX

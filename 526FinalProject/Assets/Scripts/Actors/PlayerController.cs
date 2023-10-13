@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
             if (entity)
             {
                 //check if it has entity tag
-                if (entity.CompareTag("Entity") || entity.CompareTag("Fired"))
+                if (entity.CompareTag("Entity") || entity.CompareTag("Fired") || entity.CompareTag("PuzzleBlock"))
                 {
                     //checks and gets the closest possessible entity
                     if (possessTarget)
