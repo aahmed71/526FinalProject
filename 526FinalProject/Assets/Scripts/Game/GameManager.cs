@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
     //event in case we want anything specific to happen on win
     [NonSerialized] public UnityEvent gameWinEvent;
 
+
+    [SerializeField] private GameObject uiElement1;
+    [SerializeField] private GameObject uiElement2;
+    [SerializeField] private GameObject uiElement3;
+
+  
+
     public static GameManager Instance
     {
         get
@@ -45,22 +52,38 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             Debug.Log("Resuming game...");
             isPaused = false;
+            if (pausePanel != null)
+            {
+                pausePanel.SetActive(false); // Hide the pause panel
+            }
+            // Show the needed UI elements
+            if (uiElement1 != null) uiElement1.SetActive(true);
+            if (uiElement2 != null) uiElement2.SetActive(true);
+            if (uiElement3 != null) uiElement3.SetActive(true);
         }
         else
         {
             Time.timeScale = 0;
             Debug.Log("Pausing game...");
             isPaused = true;
+            if (pausePanel != null)
+            {
+                pausePanel.SetActive(true); // Show the pause panel
+            }
+            // Hide the UI elements
+            if (uiElement1 != null) uiElement1.SetActive(false);
+            if (uiElement2 != null) uiElement2.SetActive(false);
+            if (uiElement3 != null) uiElement3.SetActive(false);
         }
     }
 
-    public void ResetGame()
+   public void ResetGame()
     {
         Time.timeScale = 1; // Ensure game is resumed before resetting
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void RestartGame()
+  public void RestartGame()
     {
         if (winText != null)
         {

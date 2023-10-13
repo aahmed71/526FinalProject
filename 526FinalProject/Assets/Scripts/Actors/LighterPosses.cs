@@ -9,7 +9,7 @@ public class LighterMechanics : EntityController
     private float originalGravity;
     private bool isPossessed = false; 
     public float fireRange = 5f;
-    [SerializeField] protected KeyCode blast = KeyCode.F;
+   // [SerializeField] protected KeyCode blast = KeyCode.F;
 
 
 
@@ -17,7 +17,7 @@ public class LighterMechanics : EntityController
     public override void Update()
     {
         base.Update();
-        if (isPossessed && Input.GetKeyDown(blast))
+        if (isPossessed && Input.GetKeyDown(utilityButton))
         {
             BombMechanics[] bombs = FindObjectsOfType<BombMechanics>();
 
@@ -50,6 +50,8 @@ public class LighterMechanics : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
+        Debug.Log("OnUnPossess called for " + gameObject.name); // Add this line
+
         isPossessed = false; 
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();

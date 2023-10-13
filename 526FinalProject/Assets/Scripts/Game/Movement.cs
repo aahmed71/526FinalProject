@@ -34,11 +34,10 @@ public class SquareMovement : MonoBehaviour
         if (transform.position.x < leftBound || transform.position.x > rightBound)
         {
             direction *= -1; // Reverse direction
-            TrackMovement(direction == 1 ? "Right" : "Left");
         }
     }
 
-    private void TrackMovement(string direction)
+   /* private void TrackMovement(string direction)
     {
         Debug.Log("Sending analytics data for direction: " + direction);
 
@@ -48,5 +47,5 @@ public class SquareMovement : MonoBehaviour
             { "x", transform.position.x },
             { "y", transform.position.y }
         });
-    }
+    }*/
 }
