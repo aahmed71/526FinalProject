@@ -17,12 +17,12 @@ public class PlayerController : MonoBehaviour
     //movement
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce = 50.0f;
-    private Rigidbody2D rb;
-    private EntityController currentEntity = null;
+    public Rigidbody2D rb;
+    public EntityController currentEntity = null;
 
     //renderer and collider
-    private SpriteRenderer sr;
-    private Collider2D col;
+    public SpriteRenderer sr;
+    public Collider2D col;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.gameWinEvent.AddListener(GameOver);
         }
+        
     }
 
     // Update is called once per frame
@@ -123,24 +124,28 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        
-        if (possessTarget)
+
+        //if we detect a possess button press, possess
+        if (Input.GetKeyDown(possessButton))
         {
-            //if we detect a possess button press, possess
-            if (Input.GetKeyDown(possessButton))
+            //unpossess if we are already possessing
+            if (currentEntity)
             {
-                if (currentEntity)
+                UnPossess();
+            }
+            //possess if we have a target to possess
+            else if (possessTarget)
+            {
+                if(possessTarget.gameObject.name == "Wheel")
                 {
-                    UnPossess();
-                } else
-                {
-                    Possess(possessTarget.GetComponent<EntityController>());
+                    possessTarget = possessTarget.gameObject.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider2D>();
                 }
+                Possess(possessTarget.GetComponent<EntityController>());
             }
         }
     }
 
-    private void Possess(EntityController entity)
+    public void Possess(EntityController entity)
     {
         if (!entity.canBePossessed)
                 return;
