@@ -13,19 +13,16 @@ public class EntityController : MonoBehaviour
     private bool isPossessed = false;
 
     //components
-    private HealthComponent healthComponent;
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
+
+    public Rigidbody2D GetRB()
+    {
+        return rb;
+    }
     void Start()
     {
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
-        healthComponent = GetComponent<HealthComponent>();
-        
-        //set health
-        if (healthComponent)
-        {
-            healthComponent.deathEvent.AddListener(OnDeath);
-        }
     }
 
     public virtual void Update()

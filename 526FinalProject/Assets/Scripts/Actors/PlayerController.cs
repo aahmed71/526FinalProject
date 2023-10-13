@@ -95,9 +95,9 @@ public class PlayerController : MonoBehaviour
     private void CheckForEntities()
     {
         //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
-        Collider2D[] entities = new Collider2D[5];
+        Collider2D[] entities = new Collider2D[10];
         ContactFilter2D contactFilter = new ContactFilter2D();
-        Physics2D.OverlapCircle((Vector2)transform.position, 2.0f, contactFilter.NoFilter(), entities);
+        Physics2D.OverlapCircle((Vector2)transform.position, 4.0f, contactFilter.NoFilter(), entities);
 
         Collider2D possessTarget = null;
         foreach (Collider2D entity in entities)
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
             if (entity)
             {
                 //check if it has entity tag
-                if (entity.CompareTag("Entity") || entity.CompareTag("Fired") || entity.CompareTag("PuzzleBlock"))
+                if (entity.CompareTag("Entity") || entity.CompareTag("PuzzleBlock"))
                 {
                     //checks and gets the closest possessible entity
                     if (possessTarget)
@@ -136,10 +136,6 @@ public class PlayerController : MonoBehaviour
             //possess if we have a target to possess
             else if (possessTarget)
             {
-                if(possessTarget.gameObject.name == "Wheel")
-                {
-                    possessTarget = possessTarget.gameObject.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider2D>();
-                }
                 Possess(possessTarget.GetComponent<EntityController>());
             }
         }

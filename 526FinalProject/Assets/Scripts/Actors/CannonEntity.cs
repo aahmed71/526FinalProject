@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaunchTrigger : EntityController
+public class CannonEntity : EntityController
 {
     
     //private int isLaunchedFlag = 0;
     public GameObject cannonBarrel;
     
-    
-    public GameObject spawnPoint;
-    public GameObject cannonBallPrefab;
-    public float cannonBallInitialSpeed = 10.0f;
+    [SerializeField] private float firingSpeed = 600.0f;
+    [SerializeField] private CannonBallDetection cannonBallDetection;
     //private GameObject[] fired_balls;
     //public GameObject player;
     //private PlayerController playerRef;
@@ -57,38 +55,27 @@ public class LaunchTrigger : EntityController
         cannonBallRigidBody.velocity = initialVelocity;*/
 
     }
-    
-    public override void OnPossess(PlayerController player)
+
+    protected override void Ability()
     {
-        base.OnPossess(player);
+        cannonBallDetection.Fire(firingSpeed);
     }
-    
+
     public override void Move(float horizontalInput)
     {
-        
+        //Instead of moving the entity, for the cannon it rotates the barrel
         float rotationAmount = -1 * horizontalInput * speed * Time.deltaTime;
-        Debug.Log("Rotation: " + rotationAmount);
         
         if (!(cannonBarrel.transform.rotation.z <= -0.2f && rotationAmount < 0.0f ||
               cannonBarrel.transform.rotation.z >= 0.7f && rotationAmount > 0.0f))
         {
             cannonBarrel.transform.Rotate(0, 0, rotationAmount);
         }
-
-        if(cannonBarrel.transform.rotation.z is > -0.2f and < 0.7f)
-        {
-            
-        }
-        
-        // Cannon's angle is controllable by 'a' and 'd' keys
-        //float newRotationZComponent = transform.eulerAngles.z + horizontalInput*Time.deltaTime*cannonRotateSpeed;
-        //cannonBarrel.transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, newRotationZComponent);
-        //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePosition;
     }
 
     public override void Jump()
     {
-        // nothing
+        // entity cannot jump
     }
 
     
