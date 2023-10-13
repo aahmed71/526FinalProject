@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9079661358486307682, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -231,6 +235,10 @@ PrefabInstance:
     - target: {fileID: 5337442477325451581, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
       propertyPath: m_Name
       value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079661358486307682, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -572,6 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9079661358486307682, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -689,6 +701,9 @@ MonoBehaviour:
   loseText: {fileID: 0}
   winText: {fileID: 0}
   pausePanel: {fileID: 0}
+  uiElement1: {fileID: 0}
+  uiElement2: {fileID: 0}
+  uiElement3: {fileID: 0}
 --- !u!1001 &1617997700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -740,6 +755,10 @@ PrefabInstance:
     - target: {fileID: 5337442477325451581, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
       propertyPath: m_Name
       value: Bomb (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079661358486307682, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
