@@ -29,9 +29,9 @@ Transform:
   m_GameObject: {fileID: 8939910585007153137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46218997, y: 0.26260364, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2722490874823961760
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -161,10 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5030a5f5335db6499fd9f091c8e203e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 50
-  speed: 10
+  jumpForce: 1400
+  speed: 600
+  utilityButton: 102
   canBePossessed: 1
-  rollingSpeed: 5
-  maxAccelerationForce: 40
-  decelerationRate: 45
-  player: {fileID: 2029823634082324051, guid: 1bc106dfdaeff47608d7c72658d84073, type: 3}
+  maxVelocity: 5
+  cannon: {fileID: 0}
