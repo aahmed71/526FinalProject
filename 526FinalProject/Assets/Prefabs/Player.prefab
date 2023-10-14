@@ -104,6 +104,10 @@ MonoBehaviour:
   possessButton: 101
   speed: 10
   jumpForce: 600
+  rb: {fileID: 0}
+  currentEntity: {fileID: 0}
+  sr: {fileID: 0}
+  col: {fileID: 0}
 --- !u!50 &1374206743423836663
 Rigidbody2D:
   serializedVersion: 4
@@ -130,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5622933172169257176
 CircleCollider2D:
   m_ObjectHideFlags: 0

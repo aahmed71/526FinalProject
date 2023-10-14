@@ -159,10 +159,22 @@ public class PlayerController : MonoBehaviour
         //player sprite visible
         //collider enabled
         //current entity cleared
+
         currentEntity.OnUnPossess(this);
         sr.enabled = true;
         currentEntity = null;
         col.enabled = true;
+        
+        //set position after possessing
+        Vector3 pos = transform.position;
+        pos.x -= 1;
+        pos.y += 1;
+        if (Physics2D.OverlapPoint(pos))
+        {
+            pos.x += 2;
+        }
+        transform.position = pos;
+        rb.velocity = Vector2.zero;
     }
 
     public bool IsPossessing()
