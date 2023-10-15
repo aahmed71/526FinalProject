@@ -7,6 +7,7 @@ using UnityEngine;
 public class CannonBallBehaviour : EntityController
 {
     [SerializeField] private float maxVelocity = 15.0f;
+    public bool isFired = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,11 @@ public class CannonBallBehaviour : EntityController
         // Don't want the cannonballs that are striking the non-destroyable wall to get collected and clutter in a place.
         // Hence, whenever a fired cannonball comes in contact with a platform object, cannonball gets destroyed. 
         // (Note: not applicable to cannonballs not fired from cannon)
-        
+
+        if (isFired && collision.gameObject.CompareTag("Wall"))
+        {
+            isFired = false;
+        }
         /*if(gameObject.tag=="Fired" && (collision.gameObject.name=="Platform")){
             gameObject.tag="Entity";
         }*/

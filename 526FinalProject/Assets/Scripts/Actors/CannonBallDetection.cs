@@ -39,6 +39,7 @@ public class CannonBallDetection : MonoBehaviour
         if (cannonball)
         {
             cannonball.GetComponent<Rigidbody2D>().AddForce(transform.right * firingSpeed);
+            cannonball.isFired = true;
             cannonball.canBePossessed = true;
             cannonball = null;
         }
