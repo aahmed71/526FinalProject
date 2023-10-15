@@ -9,9 +9,7 @@ TagManager:
   - Enemy
   - Light
   - Spike
-  - Fired
   - FinishLine
-  - Human
   - Wall
   - PuzzleBlock
   layers:

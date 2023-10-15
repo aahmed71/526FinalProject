@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 804305371}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1029,6 +1029,10 @@ PrefabInstance:
     - target: {fileID: 1179724691803264582, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179724691803264582, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7903612345869216636, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
       propertyPath: m_LocalPosition.x
