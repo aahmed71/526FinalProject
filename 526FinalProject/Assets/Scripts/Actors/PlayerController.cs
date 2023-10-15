@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
     //buttons in case we want to change them
     [SerializeField] private KeyCode jumpButton;
     [SerializeField] private KeyCode possessButton;
+
+    //analytics
+    private int puzzleBlocksCollected = 0;
 
     //movement
     [SerializeField] private float speed;
@@ -121,6 +125,14 @@ public class PlayerController : MonoBehaviour
                     {
                         possessTarget = entity;
                     }
+                }
+                if(entity.CompareTag("PuzzleBlock")){
+                        Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
+                       
+                        AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
+                        {
+                            { "PuzzleBlocksCollected", puzzleBlocksCollected }
+                        });
                 }
             }
         }
