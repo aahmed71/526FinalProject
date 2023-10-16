@@ -111,15 +111,15 @@ public class GameManager : MonoBehaviour
         //analytics
         float totalTime = Time.time - startTime; // Calculate the total time
         // Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
-        Debug.Log("Total Time: " + totalTime);
+        // Debug.Log("Total Time: " + totalTime);
         // AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
         // {
         //     { "PuzzleBlocksCollected", puzzleBlocksCollected }
         // });
-        AnalyticsEvent.Custom("TotalTimeToWin", new Dictionary<string, object>
-        {
-            { "TotalTimeToWin", totalTime }
-        });
+        // AnalyticsEvent.Custom("TotalTimeToWin", new Dictionary<string, object>
+        // {
+        //     { "TotalTimeToWin", totalTime }
+        // });
 
 
         Invoke("RestartGame", 2f);

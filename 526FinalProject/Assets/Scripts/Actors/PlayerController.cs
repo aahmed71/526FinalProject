@@ -126,14 +126,14 @@ public class PlayerController : MonoBehaviour
                         possessTarget = entity;
                     }
                 }
-                if(entity.CompareTag("PuzzleBlock")){
-                        Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
+                // if(entity.CompareTag("PuzzleBlock")){
+                //         Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
                        
-                        AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
-                        {
-                            { "PuzzleBlocksCollected", puzzleBlocksCollected }
-                        });
-                }
+                //         AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
+                //         {
+                //             { "PuzzleBlocksCollected", puzzleBlocksCollected }
+                //         });
+                // }
             }
         }
 
