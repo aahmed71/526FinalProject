@@ -4,40 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TextController : MonoBehaviour
+
 {
-    // Start is called before the first frame update
-    public Text displayText;
-    public float displayDuration = 3.0f;
-    private bool playerNearLadder = false;
-    private float displayTimer = 0.0f;
+   
+    public Text text1;
+    public Text text2;
     void Start()
     {
-        
+        text1.enabled = false;
+        text2.enabled = false;
+
+        StartCoroutine(DisplayText());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerNearLadder)
-        {
-            // Show the text when the player is near the ladder
-            displayText.enabled = true;
-
-            // Count the time
-            displayTimer += Time.deltaTime;
-
-            if (displayTimer >= displayDuration)
-            {
-                // Hide the text after the display duration
-                displayText.enabled = false;
-                playerNearLadder = false;
-            }
-        }
+       
     }
 
-    public void ShowText()
+     IEnumerator DisplayText()
     {
-        playerNearLadder = true;
-        displayTimer = 0.0f;
+
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+
+        // Display the first text
+        text1.enabled = true;
+
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+
+        // Display the second text
+        text2.enabled = true;
+
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+
+        // Hide both texts
+        text1.enabled = false;
+        text2.enabled = false;
     }
 }
