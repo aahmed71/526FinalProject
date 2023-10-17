@@ -23,7 +23,7 @@ public class LadderMechanics : EntityController
     public override void Update()
     {
         base.Update();
-        if (playerInRange && isVertical && playerRB)
+        if (playerInRange && playerRB)
         {
             float verticalInput = Input.GetAxis("Vertical");
             playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
@@ -91,7 +91,7 @@ public class LadderMechanics : EntityController
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Entity"))
         {
             playerRB = other.GetComponent<Rigidbody2D>();
             if (playerRB)
