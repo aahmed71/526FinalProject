@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     //movement
     [SerializeField] private float speed;
-    [SerializeField] private float jumpForce = 50.0f;
+    [SerializeField] private float jumpForce = 500.0f;
     public Rigidbody2D rb;
     public EntityController currentEntity = null;
 
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
     
     public virtual void Jump()
     {
-        rb.AddForce(new Vector2(0.0f, jumpForce));
+        rb.AddForce(new Vector2(3.0f, jumpForce));
     }
 
     private void CheckForEntities()
