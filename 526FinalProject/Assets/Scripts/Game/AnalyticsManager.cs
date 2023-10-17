@@ -25,7 +25,7 @@ public class AnalyticsManager : MonoBehaviour
         };
 
         // Log the test event
-        AnalyticsEvent.Custom("TestAnalytics", eventParams);
+        Analytics.CustomEvent("TestAnalytics", eventParams);
 
         Debug.Log("Test event sent to Unity Analytics with string: " + customString);
     }

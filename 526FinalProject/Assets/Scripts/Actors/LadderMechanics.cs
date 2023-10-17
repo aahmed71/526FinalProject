@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LadderMechanics : EntityController
 {
@@ -10,6 +11,14 @@ public class LadderMechanics : EntityController
     private float originalGravity;
     public bool isVertical = true;
     private Vector2 initialSize;
+
+    //analytics
+    public AnalyticsManager analyticsScript;
+
+    //text mechanics
+    public Text displayText;
+    private TextController textController;
+
 
     public override void Update()
     {
@@ -91,6 +100,19 @@ public class LadderMechanics : EntityController
                 playerRB.gravityScale = 0;
             }
             playerInRange = true;
+
+            //text mechanics
+            if (textController != null)
+            {
+                textController.ShowText();
+            }
+
+            //analytics
+            if (analyticsScript != null)
+            {
+                    analyticsScript.testAnalytics("Calling from spike controller");
+            }
+
         }
     }
 
