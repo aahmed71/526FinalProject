@@ -102,10 +102,10 @@ public class LadderMechanics : EntityController
             playerInRange = true;
 
             //text mechanics
-            if (textController != null)
-            {
-                textController.ShowText();
-            }
+            // if (textController != null)
+            // {
+            //     textController.ShowText();
+            // }
 
             //analytics
             if (analyticsScript != null)
