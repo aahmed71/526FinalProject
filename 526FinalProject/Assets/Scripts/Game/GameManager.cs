@@ -5,7 +5,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using UnityEngine.Analytics;
+// using Unity.Services.Core;
+// using Unity.Services.Core.Environments;
+// using UnityEngine.Analytics;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     //analytics
     // private int puzzleBlocksCollected = 0; 
-    private float startTime;
+    // private float startTime;
 
     //event in case we want anything specific to happen on win
     [NonSerialized] public UnityEvent gameWinEvent;
@@ -46,7 +49,8 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         gameWinEvent = new UnityEvent();
-        startTime = Time.time;
+        //analytics
+        // startTime = Time.time;
     }
 
     public void TogglePauseGame()
@@ -109,7 +113,7 @@ public class GameManager : MonoBehaviour
         gameWinEvent.Invoke();
 
         //analytics
-        float totalTime = Time.time - startTime; // Calculate the total time
+        // float totalTime = Time.time - startTime; // Calculate the total time
         // Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
         // Debug.Log("Total Time: " + totalTime);
         // AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>

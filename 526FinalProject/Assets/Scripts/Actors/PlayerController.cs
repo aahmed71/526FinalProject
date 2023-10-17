@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Analytics;
+// using Unity.Services.Core;
+// using Unity.Services.Core.Environments;
+// using UnityEngine.Analytics;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
                         possessTarget = entity;
                     }
                 }
+                //analytics
                 // if(entity.CompareTag("PuzzleBlock")){
                 //         Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
                        
