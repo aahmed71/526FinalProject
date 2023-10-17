@@ -55,7 +55,7 @@ public class HazardBehavior : MonoBehaviour
         }
     }
      
-    void killPlayer(Collision2D collision)
+    void killPlayer()
     {
         
         player.GetComponent<PlayerController>().Die();
