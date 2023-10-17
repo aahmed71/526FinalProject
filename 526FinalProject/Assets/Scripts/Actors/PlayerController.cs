@@ -190,8 +190,6 @@ public class PlayerController : MonoBehaviour
         {
             pos.x += 2;
         }
-
-        Debug.Log(pos);
         transform.position = pos;
         rb.velocity = Vector2.zero;
     }
