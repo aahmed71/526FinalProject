@@ -9,8 +9,8 @@ public class CannonEntity : EntityController
     public GameObject cannonBarrel;
     
     [SerializeField] private float firingSpeed = 600.0f;
-    [SerializeField] private CannonBallDetection cannonBallDetection;
-    //private GameObject[] fired_balls;
+    [SerializeField] private GameObject cannonBallPrefab;
+    [SerializeField] private Transform firingLocation;
     //public GameObject player;
     //private PlayerController playerRef;
 
@@ -32,20 +32,20 @@ public class CannonEntity : EntityController
 
     void Launch()
     {
-        /*// Create a cannonball prefab instance at the spawn point attached to the cannon launcher rectangle.
-        GameObject cannonBall = Instantiate(cannonBallPrefab,spawnPoint.transform.position,Quaternion.identity);
+        // Create a cannonball prefab instance at the spawn point attached to the cannon launcher rectangle.
+        GameObject cannonBall = Instantiate(cannonBallPrefab,firingLocation.position,Quaternion.identity);
 
-        // Differentiate this type of cannonball instance from non-fired cannonball instances by adding a new tag - Fired.
-        cannonBall.tag = "Fired";
-
+        // Differentiate this type of cannonball instance from non-fired cannonball instances.
+        CannonBallBehaviour cbb = cannonBall.GetComponent<CannonBallBehaviour>();
+        cbb.OnFired(cannonBarrel.transform.right * firingSpeed);
         
         playerRef.UnPossess();
-        playerRef.Possess(cannonBall.GetComponent<EntityController>());
+        playerRef.Possess(cbb);
 
-        Rigidbody2D cannonBallRigidBody = cannonBall.GetComponent<Rigidbody2D>();
+        //Rigidbody2D cannonBallRigidBody = cannonBall.GetComponent<Rigidbody2D>();
 
         // Launch Angle of cannonball is same as that of the cannon ball launcher rectangle
-        float launchAngle = cannonLauncher.transform.eulerAngles.z;
+        /*float launchAngle = cannonLauncher.transform.eulerAngles.z;
 
         // Calculate the initial velocity in x and y components
         float radianAngle = launchAngle * Mathf.Deg2Rad;
@@ -58,7 +58,7 @@ public class CannonEntity : EntityController
 
     protected override void Ability()
     {
-        cannonBallDetection.Fire(firingSpeed);
+        Launch();
     }
 
     public override void Move(float horizontalInput)

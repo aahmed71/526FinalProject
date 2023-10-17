@@ -8,7 +8,7 @@ public class EntityController : MonoBehaviour
     [SerializeField] protected float jumpForce = 50.0f;
     [SerializeField] protected float speed = 10.0f;
     [SerializeField] protected KeyCode utilityButton = KeyCode.F;
-    [NonSerialized] PlayerController playerRef;
+    [NonSerialized] protected PlayerController playerRef;
     public bool canBePossessed = true;
     private bool isPossessed = false;
 
