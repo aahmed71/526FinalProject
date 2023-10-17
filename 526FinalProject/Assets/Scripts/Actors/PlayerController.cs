@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr;
     public Collider2D col;
 
+    public GameObject gameControl;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -207,7 +209,16 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    void GameOver()
+    public void Die()
+    {
+        Time.timeScale = 0.0f;
+        GameOver();
+        gameControl.SetActive(true);
+        GameObject.Find("Pause").SetActive(false);
+
+    }
+
+    public void GameOver()
     {
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;

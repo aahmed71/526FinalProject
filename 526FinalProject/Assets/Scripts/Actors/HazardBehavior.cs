@@ -55,12 +55,19 @@ public class HazardBehavior : MonoBehaviour
         }
     }
      
+    void killPlayer(Collision2D collision)
+    {
+        
+        player.GetComponent<PlayerController>().Die();
+
+
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         // check if the ghost was recently unpossessed by a hazard and because of it, is currently in an invincible period duration.
         if(collision.gameObject.CompareTag("Player") && secondChanceFlag==0)
         {
-            Destroy(collision.gameObject);
+            killPlayer(collision);
         }
 
         //check if the entity that we are colliding with is the same entity that the player is currently possessing.
