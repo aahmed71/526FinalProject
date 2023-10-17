@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3535487958043112646}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903e6fe02299b9f48a1b422590402432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 20
+  jumpForce: 50
+  speed: 10
+  utilityButton: 102
+  canBePossessed: 1
+  explosionRadius: 5
 --- !u!1 &5534172754207141811
 GameObject:
   m_ObjectHideFlags: 0

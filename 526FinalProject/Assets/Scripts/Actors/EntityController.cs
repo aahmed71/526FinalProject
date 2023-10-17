@@ -10,8 +10,8 @@ public class EntityController : MonoBehaviour
     [SerializeField] protected KeyCode utilityButton = KeyCode.F;
     [NonSerialized] protected PlayerController playerRef;
     public bool canBePossessed = true;
-    private bool isPossessed = false;
-    private bool canJump = true;
+    protected bool isPossessed = false;
+    private bool canJump=false;
 
     //components
     protected Rigidbody2D rb;

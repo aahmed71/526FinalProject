@@ -7,12 +7,8 @@ public class LighterMechanics : EntityController
     private bool playerInRange = false;
     private Rigidbody2D playerRB;
     private float originalGravity;
-    private bool isPossessed = false; 
     public float fireRange = 5f;
-   // [SerializeField] protected KeyCode blast = KeyCode.F;
-
-
-
+    //private bool isPossessed = false;
 
     public override void Update()
     {
@@ -21,7 +17,7 @@ public class LighterMechanics : EntityController
         {
             BombMechanics[] bombs = FindObjectsOfType<BombMechanics>();
 
-            
+
             foreach (BombMechanics bomb in bombs)
             {
                 //Check for bomb only within certain distance from the lighter
@@ -31,15 +27,24 @@ public class LighterMechanics : EntityController
                 {
                     bomb.Explode();
                 }
-                
+
             }
         }
-    }
+    
+}
 
+    /* private void UnPossessLighter()
+     {
+         if (playerRef != null)
+         {
+             playerRef.UnPossess();
+         }
+     }
+    */
     public override void OnPossess(PlayerController player)
     {
         base.OnPossess(player);
-        isPossessed = true; 
+        isPossessed = true;
 
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = false;
@@ -50,16 +55,15 @@ public class LighterMechanics : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        Debug.Log("OnUnPossess called for " + gameObject.name); // Add this line
+        Debug.Log("OnUnPossess called for " + gameObject.name);
 
-        isPossessed = false; 
+        isPossessed = false;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = true;
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -88,3 +92,4 @@ public class LighterMechanics : EntityController
         }
     }
 }
+

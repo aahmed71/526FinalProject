@@ -11,7 +11,9 @@ TagManager:
   - Spike
   - FinishLine
   - Wall
+  - Hazard
   - PuzzleBlock
+  - Door
   layers:
   - Default
   - TransparentFX

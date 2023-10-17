@@ -1,10 +1,21 @@
 using UnityEngine;
 using System.Collections;
 
-public class BombMechanics : MonoBehaviour
+public class BombMechanics : EntityController
 {
-    public float explosionRadius = 5.0f; // Radius within which objects will be destroyed
+    private bool playerInRange = false;
 
+    public float explosionRadius = 5.0f; 
+    private Rigidbody2D playerRB;
+    private float originalGravity;
+   /* public override void Update()
+    {
+        //base.Update();
+        if (isPossessed && Input.GetKeyDown(utilityButton))
+        {
+            Explode();
+        }
+    }*/
     public void Explode()
     {
         //detects all colliders within the explosion radius
@@ -12,21 +23,77 @@ public class BombMechanics : MonoBehaviour
 
         foreach (Collider2D col in objectsInRange)
         {
-            if (col.CompareTag("Wall"))
+            if (col.CompareTag("Hazard") || col.CompareTag("Door"))
             {
-                // Destroy the object with the "Wall" tag
                 Destroy(col.gameObject);
             }
         }
 
         //destroy the bomb itself after the explosion
-        StartCoroutine(DestroyBombWithDelay());
+       StartCoroutine(DestroyBombWithDelay());
     }
 
 
     private IEnumerator DestroyBombWithDelay()
     {
-        yield return new WaitForSeconds(0.2f);
-       Destroy(gameObject);
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
+    }
+
+    // Implement the OnPossess and OnUnPossess 
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+
+        Debug.Log("Possed called for"+gameObject.name);
+        isPossessed = true;
+
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = false;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+    }
+
+    public override void OnUnPossess(PlayerController player)
+    {
+        base.OnUnPossess(player);
+        Debug.Log("OnUnPossess called for " + gameObject.name);
+
+        isPossessed = false;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = true;
+
+
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerRB = other.GetComponent<Rigidbody2D>();
+            if (playerRB)
+            {
+                originalGravity = playerRB.gravityScale;
+                playerRB.gravityScale = 0;
+            }
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (playerRB)
+            {
+                playerRB.gravityScale = originalGravity;
+                playerRB = null;
+            }
+            playerInRange = false;
+        }
     }
 }
+
+
