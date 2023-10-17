@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 500.0f;
     public Rigidbody2D rb;
     public EntityController currentEntity = null;
+    private bool canJump = true;
 
     //renderer and collider
     public SpriteRenderer sr;
@@ -93,7 +94,11 @@ public class PlayerController : MonoBehaviour
     
     public virtual void Jump()
     {
-        rb.AddForce(new Vector2(3.0f, jumpForce));
+        if (canJump)
+        {
+            rb.AddForce(new Vector2(0.0f, jumpForce));
+            canJump = false;
+        }
     }
 
     private void CheckForEntities()
@@ -202,5 +207,13 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.transform.position.y < transform.position.y && !canJump)
+        {
+            canJump = true;
+        }
     }
 }

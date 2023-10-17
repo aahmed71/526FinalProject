@@ -45,12 +45,10 @@ public class CannonBallBehaviour : EntityController
         // Hence, whenever a fired cannonball comes in contact with a platform object, cannonball gets destroyed. 
         // (Note: not applicable to cannonballs not fired from cannon)
 
+        CheckJump(collision.transform);
         if (isFired && Mathf.Abs(rb.velocity.magnitude) < 5)
         {
             isFired = false;
         }
-        /*if(gameObject.tag=="Fired" && (collision.gameObject.name=="Platform")){
-            gameObject.tag="Entity";
-        }*/
     }
 }

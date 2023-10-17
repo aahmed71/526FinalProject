@@ -11,14 +11,10 @@ public class EntityController : MonoBehaviour
     [NonSerialized] protected PlayerController playerRef;
     public bool canBePossessed = true;
     private bool isPossessed = false;
+    private bool canJump = true;
 
     //components
     protected Rigidbody2D rb;
-
-    public Rigidbody2D GetRB()
-    {
-        return rb;
-    }
     void Start()
     {
         //initialize rigidbody
@@ -31,6 +27,18 @@ public class EntityController : MonoBehaviour
         {
             Ability();
         }
+    }
+
+    protected void CheckJump(Transform collider)
+    {
+        if (collider.transform.position.y < transform.position.y && !canJump)
+        {
+            canJump = true;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        CheckJump(col.transform);
     }
 
     //function for when the player first initially possesses entity
@@ -62,7 +70,11 @@ public class EntityController : MonoBehaviour
 
     public virtual void Jump()
     {
-        rb.AddForce(new Vector2(0.0f, jumpForce));
+        if (canJump)
+        {
+            rb.AddForce(new Vector2(0.0f, jumpForce));
+            canJump = false;
+        }
     }
 
     private void OnDeath()

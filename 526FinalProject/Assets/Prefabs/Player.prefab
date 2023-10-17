@@ -103,7 +103,7 @@ MonoBehaviour:
   jumpButton: 32
   possessButton: 101
   speed: 10
-  jumpForce: 600
+  jumpForce: 800
   rb: {fileID: 0}
   currentEntity: {fileID: 0}
   sr: {fileID: 0}
