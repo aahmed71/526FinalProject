@@ -185,11 +185,13 @@ public class PlayerController : MonoBehaviour
         //set position after possessing
         Vector3 pos = transform.position;
         pos.x -= 1;
-        pos.y += 1;
+        pos.y += 3;
         if (Physics2D.OverlapPoint(pos))
         {
             pos.x += 2;
         }
+
+        Debug.Log(pos);
         transform.position = pos;
         rb.velocity = Vector2.zero;
     }
