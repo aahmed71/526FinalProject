@@ -24,15 +24,17 @@ public class PlayerController : MonoBehaviour
     //movement
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce = 500.0f;
-    public Rigidbody2D rb;
-    public EntityController currentEntity = null;
+    [NonSerialized] public Rigidbody2D rb;
+    [NonSerialized] public EntityController currentEntity = null;
     private bool canJump = true;
 
     //renderer and collider
-    public SpriteRenderer sr;
-    public Collider2D col;
+    [NonSerialized] public SpriteRenderer sr;
+    [NonSerialized] public Collider2D col;
 
     public GameObject gameControl;
+    [SerializeField] private GameObject possessionMarkerPrefab;
+    private PossessionMarker _possessionMarker;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +47,9 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.gameWinEvent.AddListener(GameOver);
         }
-        
+
+        _possessionMarker = Instantiate(possessionMarkerPrefab).GetComponent<PossessionMarker>();
+        _possessionMarker.Deactivate();
     }
 
     // Update is called once per frame
@@ -136,16 +140,26 @@ public class PlayerController : MonoBehaviour
                         possessTarget = entity;
                     }
                 }
+
                 //analytics
                 // if(entity.CompareTag("PuzzleBlock")){
                 //         Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
-                       
+
                 //         AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
                 //         {
                 //             { "PuzzleBlocksCollected", puzzleBlocksCollected }
                 //         });
                 // }
             }
+        }
+
+        if (possessTarget)
+        {
+            _possessionMarker.Activate(possessTarget.transform.position, possessTarget.transform.localScale.x);
+        }
+        else
+        {
+            _possessionMarker.Deactivate();
         }
 
         //if we detect a possess button press, possess
