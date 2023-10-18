@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //movement
-        Vector2 movement = new Vector2(horizontalInput, 0.0f);
 
         //move current entity
         if (currentEntity)
@@ -98,7 +97,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             //move rigidbody
-            rb.position += movement * (speed * Time.deltaTime);
+            Vector2 vel = rb.velocity;
+            vel.x = horizontalInput * speed;
+            rb.velocity = vel;
         }
     }
     
