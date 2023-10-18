@@ -68,32 +68,7 @@ public class BombMechanics : EntityController
 
 
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerRB = other.GetComponent<Rigidbody2D>();
-            if (playerRB)
-            {
-                originalGravity = playerRB.gravityScale;
-                playerRB.gravityScale = 0;
-            }
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (playerRB)
-            {
-                playerRB.gravityScale = originalGravity;
-                playerRB = null;
-            }
-            playerInRange = false;
-        }
-    }
+  
 }
 
 
