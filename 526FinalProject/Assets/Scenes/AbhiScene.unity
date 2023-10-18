@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 649096348}
   - component: {fileID: 649096347}
   - component: {fileID: 649096346}
+  - component: {fileID: 649096352}
   m_Layer: 2
   m_Name: ghost
   m_TagString: Player
@@ -640,10 +641,8 @@ MonoBehaviour:
   possessButton: 101
   speed: 10
   jumpForce: 600
-  rb: {fileID: 0}
-  currentEntity: {fileID: 0}
-  sr: {fileID: 0}
-  col: {fileID: 0}
+  gameControl: {fileID: 0}
+  possessionMarkerPrefab: {fileID: 0}
 --- !u!212 &649096350
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -711,6 +710,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649096352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649096345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54a55deb157f4c9a826b923b7d1b79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &682288716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,6 +1091,8 @@ MonoBehaviour:
   utilityButton: 102
   canBePossessed: 1
   isVertical: 1
+  analyticsScript: {fileID: 0}
+  textController: {fileID: 0}
 --- !u!50 &1106665698
 Rigidbody2D:
   serializedVersion: 4

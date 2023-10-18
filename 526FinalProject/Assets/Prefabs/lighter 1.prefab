@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7537434766304287641}
   m_Layer: 0
   m_Name: lighter 1
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1917025385373810230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.35, y: -1.61, z: 0}
+  m_LocalPosition: {x: -53.7, y: -6.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -141,7 +141,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917025385373810230}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -205,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 5197270065327805813}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.07365653, w: 0.9972837}
-  m_LocalPosition: {x: -0.17, y: 2.03, z: 0}
+  m_LocalPosition: {x: -0.1, y: 1.6, z: 0}
   m_LocalScale: {x: 0.33901227, y: 0.33901227, z: 0.33901227}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -316,7 +316,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5197270065327805813}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -334,4 +334,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7

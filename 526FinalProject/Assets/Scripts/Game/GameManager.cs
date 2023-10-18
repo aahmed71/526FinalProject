@@ -5,9 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-// using Unity.Services.Core;
-// using Unity.Services.Core.Environments;
-// using UnityEngine.Analytics;
+
 
 
 public class GameManager : MonoBehaviour
@@ -19,11 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private GameObject pausePanel;
 
-    //analytics
-    // private int puzzleBlocksCollected = 0; 
-    // private float startTime;
-
-    //event in case we want anything specific to happen on win
+    
     [NonSerialized] public UnityEvent gameWinEvent;
 
 
@@ -112,18 +106,6 @@ public class GameManager : MonoBehaviour
         }
         gameWinEvent.Invoke();
 
-        //analytics
-        // float totalTime = Time.time - startTime; // Calculate the total time
-        // Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
-        // Debug.Log("Total Time: " + totalTime);
-        // AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
-        // {
-        //     { "PuzzleBlocksCollected", puzzleBlocksCollected }
-        // });
-        // AnalyticsEvent.Custom("TotalTimeToWin", new Dictionary<string, object>
-        // {
-        //     { "TotalTimeToWin", totalTime }
-        // });
 
 
         Invoke("RestartGame", 2f);

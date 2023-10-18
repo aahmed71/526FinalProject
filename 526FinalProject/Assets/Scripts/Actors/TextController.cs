@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class TextController : MonoBehaviour
 
 {
    
-    public Text text1;
-    public Text text2;
+    public TextMeshProUGUI text1;
+    public TextMeshProUGUI text2;
     void Start()
     {
         text1.enabled = false;
@@ -26,12 +28,12 @@ public class TextController : MonoBehaviour
      IEnumerator DisplayText()
     {
 
-        yield return new WaitForSeconds(1f); // Wait for 1 second
+        yield return new WaitForSeconds(2f); // Wait for 1 second
 
         // Display the first text
         text1.enabled = true;
 
-        yield return new WaitForSeconds(1f); // Wait for 1 second
+        yield return new WaitForSeconds(2f); // Wait for 1 second
 
         // Display the second text
         text2.enabled = true;

@@ -6,7 +6,7 @@ public class SpikeController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
-    public AnalyticsManager analyticsScript;
+ 
 
     // time for which the ghost enjoys invincibility after getting unpossessed by the hazard
     public float invincibilityDuration = 1.5f;
@@ -50,10 +50,7 @@ public class SpikeController : MonoBehaviour
             secondChanceFlag=1;
         }
 
-        if (analyticsScript != null)
-        {
-                analyticsScript.testAnalytics("Calling from spike controller");
-        }
+      
 
     }
 }

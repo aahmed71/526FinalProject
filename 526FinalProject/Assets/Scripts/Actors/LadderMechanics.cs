@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class LadderMechanics : EntityController
 {
@@ -13,12 +14,13 @@ public class LadderMechanics : EntityController
     private Vector2 initialSize;
 
     //analytics
-    public AnalyticsManager analyticsScript;
+    private int ladderTouchCount = 0;
+    // public AnalyticsManager analyticsManager;
 
-    //text mechanics
-    public Text displayText;
-    private TextController textController;
-
+    
+    //text controller
+    public TextController textController;
+    public int textDisplayCount = 0;
 
     public override void Update()
     {
@@ -101,17 +103,25 @@ public class LadderMechanics : EntityController
             }
             playerInRange = true;
 
-            //text mechanics
-            // if (textController != null)
-            // {
-            //     textController.ShowText();
-            // }
-
-            //analytics
-            if (analyticsScript != null)
-            {
-                    analyticsScript.testAnalytics("Calling from spike controller");
+            //text controller
+            if(textDisplayCount<2){
+                if (textController != null)
+                {
+                    textController.StartCoroutine("DisplayText");
+                    textDisplayCount++;
+                }
             }
+           
+         
+            //analytics
+            ladderTouchCount++;
+
+            // Send the touch count to Unity Analytics
+            // if (analyticsManager != null)
+            // {
+            //     analyticsManager.SendLadderTouchEvent(ladderTouchCount);
+            // }
+            
 
         }
     }

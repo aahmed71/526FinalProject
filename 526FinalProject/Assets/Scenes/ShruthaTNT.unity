@@ -1246,53 +1246,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 650090021095215318, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1917025385373810230, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
       propertyPath: m_Name
       value: lighter
-      objectReference: {fileID: 0}
-    - target: {fileID: 1917025385373810230, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_TagString
-      value: Entity
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982696673305253671, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982696673305253671, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197270065327805813, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6055250097721099355, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6055250097721099355, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_Constraints
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7537434766304287641, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: fireRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8458836431044938437, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8458836431044938437, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8458836431044938437, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
-      propertyPath: m_Constraints
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8928150746762863587, guid: 738a68a411aa74822bcb82dda1d93f06, type: 3}
       propertyPath: m_LocalPosition.x
