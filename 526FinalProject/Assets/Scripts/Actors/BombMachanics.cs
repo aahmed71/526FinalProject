@@ -25,7 +25,11 @@ public class BombMechanics : EntityController
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D col in objectsInRange)
+
         {
+            
+            //debug
+            Debug.Log(col.tag);
             if (col.CompareTag("Hazard") || col.CompareTag("Door") || col.CompareTag("Barrier"))
             {
                 Destroy(col.gameObject);
