@@ -16,7 +16,6 @@ public class TextController : MonoBehaviour
         text1.enabled = false;
         text2.enabled = false;
 
-        StartCoroutine(DisplayText());
     }
 
     // Update is called once per frame
