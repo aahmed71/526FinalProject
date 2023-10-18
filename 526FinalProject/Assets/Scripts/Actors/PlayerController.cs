@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //movement
-        Vector2 movement = new Vector2(horizontalInput, 0.0f);
 
         //move current entity
         if (currentEntity)
@@ -98,7 +97,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             //move rigidbody
-            rb.position += movement * (speed * Time.deltaTime);
+            Vector2 vel = rb.velocity;
+            vel.x = horizontalInput * speed;
+            rb.velocity = vel;
         }
     }
     
@@ -115,8 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
         Collider2D[] entities = new Collider2D[10];
-        int x = Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
-        Debug.Log(x);
+        Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
         Collider2D possessTarget = null;
         foreach (Collider2D entity in entities)
         {
@@ -228,7 +228,8 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0.0f;
         GameOver();
         gameControl.SetActive(true);
-        GameObject.Find("Pause").SetActive(false);
+        GameManager.Instance.Background.SetActive(true);
+        GameManager.Instance.PauseButton.SetActive(false);
         GameManager.Instance.RestartButton.SetActive(true);
         GameManager.Instance.Lose.SetActive(true);
 
