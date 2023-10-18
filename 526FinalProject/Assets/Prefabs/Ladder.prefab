@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 50
-  speed: 10
+  speed: 30
   utilityButton: 102
   canBePossessed: 1
   markerScale: 5
