@@ -20,7 +20,7 @@ public class BombMechanics : EntityController
     private IEnumerator DestroyBombWithDelay()
     {
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         //detects all colliders within the explosion radius
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
@@ -31,9 +31,15 @@ public class BombMechanics : EntityController
                 Destroy(col.gameObject);
             }
         }
-        playerRef.UnPossess();
+
+        //unpossess player if possessed
+        if (playerRef)
+        {
+            playerRef.UnPossess();
+        }
+        
         canBePossessed = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 
