@@ -12,6 +12,8 @@ public class EntityController : MonoBehaviour
     public bool canBePossessed = true;
     protected bool isPossessed = false;
     private bool canJump=false;
+    //number to control how big the possession marker is
+    public float markerScale = 1;
 
     //components
     protected Rigidbody2D rb;

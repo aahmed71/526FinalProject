@@ -128,7 +128,7 @@ public class LadderMechanics : EntityController
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Entity"))
         {
             if (playerRB)
             {

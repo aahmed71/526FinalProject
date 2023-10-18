@@ -102,8 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpButton: 32
   possessButton: 101
-  speed: 10
-  jumpForce: 800
+  speed: 40
+  jumpForce: 1200
   gameControl: {fileID: 0}
   possessionMarkerPrefab: {fileID: 8425516287799090293, guid: d563dcab98861e144bb8c13bb1666c17, type: 3}
 --- !u!50 &5327661738033486541

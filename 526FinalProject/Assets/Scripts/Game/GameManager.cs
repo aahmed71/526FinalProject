@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI loseText;
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private string nextLevelName = null;
 
     
     [NonSerialized] public UnityEvent gameWinEvent;
@@ -98,6 +99,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
+  public void LoadNextLevel()
+  {
+      if (winText != null)
+      {
+          winText.gameObject.SetActive(false);
+      }
+      // Load the Next Scene
+      if (nextLevelName != null)
+      {
+          SceneManager.LoadScene(nextLevelName);
+      }
+  }
+
     public void GameWin()
     {
         if (winText != null)
@@ -108,6 +122,6 @@ public class GameManager : MonoBehaviour
 
 
 
-        Invoke("RestartGame", 2f);
+        Invoke("LoadNextLevel", 2f);
     }
 }

@@ -46,7 +46,7 @@ public class CannonBallBehaviour : EntityController
         // (Note: not applicable to cannonballs not fired from cannon)
 
         CheckJump(collision.transform);
-        if (isFired && Mathf.Abs(rb.velocity.magnitude) < 5)
+        if (isFired && Mathf.Abs(rb.velocity.magnitude) < 5 && !collision.gameObject.GetComponent<Door>())
         {
             isFired = false;
         }
