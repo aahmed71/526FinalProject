@@ -14,6 +14,7 @@ TagManager:
   - Hazard
   - PuzzleBlock
   - Door
+  - Barrier
   layers:
   - Default
   - TransparentFX
