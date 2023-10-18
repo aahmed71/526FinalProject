@@ -46,7 +46,10 @@ public class BombMechanics : EntityController
         rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = true;
+
+
     }
+  
 }
 
 
