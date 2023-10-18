@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
     [SerializeField] public GameObject Player;
+    [SerializeField] public GameObject PauseButton;
     [SerializeField] public GameObject RestartButton;
 
   
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
             // Show the needed UI elements
             if (Player != null) Player.SetActive(true);
             if (RestartButton != null) RestartButton.SetActive(false);
+            if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Pause";
         }
         else
         {
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
             // Hide the UI elements
             if (Player != null) Player.SetActive(false);
             if (RestartButton != null) RestartButton.SetActive(true);
+            if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";
         }
     }
 
