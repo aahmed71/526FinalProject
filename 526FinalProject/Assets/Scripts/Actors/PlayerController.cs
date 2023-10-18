@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;
     [NonSerialized] public Collider2D col;
-
-    public GameObject gameControl;
+    
     [SerializeField] private GameObject possessionMarkerPrefab;
     private PossessionMarker _possessionMarker;
     [SerializeField] private ContactFilter2D contactFilter;
@@ -227,12 +226,7 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         GameOver();
-        gameControl.SetActive(true);
-        GameManager.Instance.Background.SetActive(true);
-        GameManager.Instance.PauseButton.SetActive(false);
-        GameManager.Instance.RestartButton.SetActive(true);
-        GameManager.Instance.Lose.SetActive(true);
-
+        GameManager.Instance.GameLose();
     }
 
     public void GameOver()

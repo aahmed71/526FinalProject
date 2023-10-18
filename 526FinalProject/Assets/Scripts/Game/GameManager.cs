@@ -12,23 +12,19 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public bool isPaused = false;
-
-    [SerializeField] private TextMeshProUGUI loseText;
-    [SerializeField] private TextMeshProUGUI winText;
+    
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private string nextLevelName = null;
 
     
     [NonSerialized] public UnityEvent gameWinEvent;
 
-    [SerializeField] public GameObject Background;
+    [SerializeField] public GameObject Pause;
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
-    [SerializeField] public GameObject Player;
     [SerializeField] public GameObject PauseButton;
-    [SerializeField] public GameObject RestartButton;
 
-  
+
 
     public static GameManager Instance
     {
@@ -64,9 +60,7 @@ public class GameManager : MonoBehaviour
                 pausePanel.SetActive(false); // Hide the pause panel
             }
             // Show the needed UI elements
-            if (Player != null) Player.SetActive(true);
-            if (Background!=null) Background.SetActive(false);
-            if (RestartButton != null) RestartButton.SetActive(false);
+            if (Pause!=null) Pause.SetActive(false);
             if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Pause";
         }
         else
@@ -79,9 +73,7 @@ public class GameManager : MonoBehaviour
                 pausePanel.SetActive(true); // Show the pause panel
             }
             // Hide the UI elements
-            if (Player != null) Player.SetActive(false);
-            if (Background!=null) Background.SetActive(true);
-            if (RestartButton != null) RestartButton.SetActive(true);
+            if (Pause!=null) Pause.SetActive(true);
             if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";
         }
     }
@@ -94,10 +86,9 @@ public class GameManager : MonoBehaviour
 
   public void RestartGame()
     {
-        if (winText != null)
-        {
-            winText.gameObject.SetActive(false);
-        }
+        Win.SetActive(false);
+        Lose.SetActive(false);
+        Pause.SetActive(false);
         // Reload the current scene
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
@@ -105,10 +96,7 @@ public class GameManager : MonoBehaviour
 
   public void LoadNextLevel()
   {
-      if (winText != null)
-      {
-          winText.gameObject.SetActive(false);
-      }
+      Win.SetActive(false);
       // Load the Next Scene
       if (nextLevelName != null)
       {
@@ -118,14 +106,13 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
-        if (winText != null)
-        {
-            winText.gameObject.SetActive(true);
-        }
+        Win.SetActive(true);
         gameWinEvent.Invoke();
+    }
 
-
-
-        Invoke("LoadNextLevel", 2f);
+    public void GameLose()
+    {
+        PauseButton.SetActive(false);
+        Lose.SetActive(true);
     }
 }
