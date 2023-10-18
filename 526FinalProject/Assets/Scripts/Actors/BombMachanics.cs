@@ -8,16 +8,21 @@ public class BombMechanics : EntityController
     public float explosionRadius = 5.0f; 
     private Rigidbody2D playerRB;
     private float originalGravity;
-   /* public override void Update()
-    {
-        //base.Update();
-        if (isPossessed && Input.GetKeyDown(utilityButton))
-        {
-            Explode();
-        }
-    }*/
+
+    [SerializeField] private Animator _animator;
+
     public void Explode()
     {
+        _animator.SetTrigger("StartExplosion");
+        //start the bomb explosion
+       StartCoroutine(DestroyBombWithDelay());
+    }
+
+
+    private IEnumerator DestroyBombWithDelay()
+    {
+        
+        yield return new WaitForSeconds(5f);
         //detects all colliders within the explosion radius
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
@@ -28,15 +33,7 @@ public class BombMechanics : EntityController
                 Destroy(col.gameObject);
             }
         }
-
-        //destroy the bomb itself after the explosion
-       StartCoroutine(DestroyBombWithDelay());
-    }
-
-
-    private IEnumerator DestroyBombWithDelay()
-    {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
