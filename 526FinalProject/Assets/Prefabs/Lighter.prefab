@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1269403166128253940}
   - component: {fileID: 4243182555576547557}
   m_Layer: 0
-  m_Name: lighter
+  m_Name: Lighter
   m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,9 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 50
-  speed: 10
+  speed: 35
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 3
   fireRange: 5
 --- !u!1 &8196371186283238114
 GameObject:

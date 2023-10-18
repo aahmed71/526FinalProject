@@ -175,9 +175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 50
-  speed: 10
+  speed: 30
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 1.5
   explosionRadius: 5
   _animator: {fileID: 1202920716805779807}
 --- !u!95 &1202920716805779807

@@ -145,9 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 600
-  speed: 10
+  speed: 30
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 1.5
 --- !u!50 &5914712041047736679
 Rigidbody2D:
   serializedVersion: 4

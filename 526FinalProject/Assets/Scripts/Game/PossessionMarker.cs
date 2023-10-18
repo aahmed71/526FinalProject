@@ -32,16 +32,26 @@ public class PossessionMarker : MonoBehaviour
         }
 
         transform.localScale = new Vector3(end, end, 1.0f);
+        
         RestartScale(start, end);
     }
 
     void RestartScale(float start, float end)
     {
-        StartCoroutine(LerpScale(end, start));
+        if (start == startScale)
+        {
+            StartCoroutine(LerpScale(endScale, startScale));
+        }
+        else
+        {
+            StartCoroutine(LerpScale(startScale, endScale));
+        }
+        
     }
 
     public void Activate(Vector3 pos, float scale)
     {
+        AdjustScale(scale);
         sprite.enabled = true;
         transform.position = pos;
     }

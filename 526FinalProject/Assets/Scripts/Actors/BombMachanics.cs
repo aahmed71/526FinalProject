@@ -31,6 +31,8 @@ public class BombMechanics : EntityController
                 Destroy(col.gameObject);
             }
         }
+        playerRef.UnPossess();
+        canBePossessed = false;
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }

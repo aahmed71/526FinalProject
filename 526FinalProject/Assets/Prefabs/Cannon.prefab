@@ -173,11 +173,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 50
-  speed: 20
+  speed: 60
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 3
   cannonBarrel: {fileID: 4295964560083972025}
-  firingSpeed: 5000
+  firingSpeed: 10000
   cannonBallPrefab: {fileID: 8939910585007153137, guid: f03e8864207ccec45bf1c3743817d810, type: 3}
   firingLocation: {fileID: 3885543281198562399}
   particles: {fileID: 534147152009989540}

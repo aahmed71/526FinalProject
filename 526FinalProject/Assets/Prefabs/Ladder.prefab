@@ -175,6 +175,7 @@ MonoBehaviour:
   speed: 10
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 5
   isVertical: 1
   analyticsScript: {fileID: 0}
   displayText: {fileID: 0}
