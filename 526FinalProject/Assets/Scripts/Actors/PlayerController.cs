@@ -228,7 +228,8 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0.0f;
         GameOver();
         gameControl.SetActive(true);
-        GameObject.Find("Pause").SetActive(false);
+        GameManager.Instance.Background.SetActive(true);
+        GameManager.Instance.PauseButton.SetActive(false);
         GameManager.Instance.RestartButton.SetActive(true);
         GameManager.Instance.Lose.SetActive(true);
 
