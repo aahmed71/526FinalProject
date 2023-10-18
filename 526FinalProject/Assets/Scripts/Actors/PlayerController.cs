@@ -116,8 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
         Collider2D[] entities = new Collider2D[10];
-        int x = Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
-        Debug.Log(x);
+        Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
         Collider2D possessTarget = null;
         foreach (Collider2D entity in entities)
         {
