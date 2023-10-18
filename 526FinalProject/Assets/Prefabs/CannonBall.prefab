@@ -166,5 +166,5 @@ MonoBehaviour:
   utilityButton: 102
   canBePossessed: 1
   markerScale: 1
-  maxVelocity: 5
+  maxVelocity: 30
   isFired: 0

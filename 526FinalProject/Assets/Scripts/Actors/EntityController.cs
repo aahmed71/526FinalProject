@@ -59,10 +59,10 @@ public class EntityController : MonoBehaviour
     //function that's called by player if they possess the player, can be overridden
     public virtual void Move(float horizontal)
     {
-        //movement
-        Vector2 movement = new Vector2(horizontal, 0.0f);
         //move rigidbody
-        rb.position += movement * (speed * Time.deltaTime);
+        Vector2 vel = rb.velocity;
+        vel.x = horizontal * speed;
+        rb.velocity = vel;
     }
 
     protected virtual void Ability()
