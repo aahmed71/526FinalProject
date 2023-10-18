@@ -11,7 +11,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     [SerializeField] private TextMeshProUGUI loseText;
     [SerializeField] private TextMeshProUGUI winText;
@@ -22,9 +22,10 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public UnityEvent gameWinEvent;
 
 
-    [SerializeField] private GameObject uiElement1;
-    [SerializeField] private GameObject uiElement2;
-    [SerializeField] private GameObject uiElement3;
+    [SerializeField] public GameObject Win;
+    [SerializeField] public GameObject Lose;
+    [SerializeField] public GameObject Player;
+    [SerializeField] public GameObject RestartButton;
 
   
 
@@ -62,9 +63,8 @@ public class GameManager : MonoBehaviour
                 pausePanel.SetActive(false); // Hide the pause panel
             }
             // Show the needed UI elements
-            if (uiElement1 != null) uiElement1.SetActive(true);
-            if (uiElement2 != null) uiElement2.SetActive(true);
-            if (uiElement3 != null) uiElement3.SetActive(true);
+            if (Player != null) Player.SetActive(true);
+            if (RestartButton != null) RestartButton.SetActive(false);
         }
         else
         {
@@ -76,9 +76,8 @@ public class GameManager : MonoBehaviour
                 pausePanel.SetActive(true); // Show the pause panel
             }
             // Hide the UI elements
-            if (uiElement1 != null) uiElement1.SetActive(false);
-            if (uiElement2 != null) uiElement2.SetActive(false);
-            if (uiElement3 != null) uiElement3.SetActive(false);
+            if (Player != null) Player.SetActive(false);
+            if (RestartButton != null) RestartButton.SetActive(true);
         }
     }
 

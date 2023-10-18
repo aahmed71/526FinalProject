@@ -229,6 +229,8 @@ public class PlayerController : MonoBehaviour
         GameOver();
         gameControl.SetActive(true);
         GameObject.Find("Pause").SetActive(false);
+        GameManager.Instance.RestartButton.SetActive(true);
+        GameManager.Instance.Lose.SetActive(true);
 
     }
 
