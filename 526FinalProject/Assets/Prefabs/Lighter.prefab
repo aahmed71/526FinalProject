@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5474434906319398731}
   - component: {fileID: 1269403166128253940}
   - component: {fileID: 4243182555576547557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lighter
   m_TagString: Entity
   m_Icon: {fileID: 0}

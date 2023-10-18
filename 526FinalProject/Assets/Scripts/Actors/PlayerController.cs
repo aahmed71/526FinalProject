@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gameControl;
     [SerializeField] private GameObject possessionMarkerPrefab;
     private PossessionMarker _possessionMarker;
+    [SerializeField] private ContactFilter2D contactFilter;
 
     // Start is called before the first frame update
     void Start()
@@ -114,9 +115,8 @@ public class PlayerController : MonoBehaviour
     {
         //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
         Collider2D[] entities = new Collider2D[10];
-        ContactFilter2D contactFilter = new ContactFilter2D();
-        Physics2D.OverlapCircle((Vector2)transform.position, 4.0f, contactFilter.NoFilter(), entities);
-
+        int x = Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
+        Debug.Log(x);
         Collider2D possessTarget = null;
         foreach (Collider2D entity in entities)
         {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2817122772052553317}
   - component: {fileID: 2722490874823961760}
   - component: {fileID: 840966682922985594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CannonBall
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -165,5 +165,6 @@ MonoBehaviour:
   speed: 600
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 1
   maxVelocity: 5
-  cannon: {fileID: 0}
+  isFired: 0

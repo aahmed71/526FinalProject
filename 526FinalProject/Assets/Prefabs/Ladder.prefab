@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6473394086936514713}
   - component: {fileID: 2790919927697583177}
   - component: {fileID: 5704644473502516552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ladder
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -177,5 +177,5 @@ MonoBehaviour:
   canBePossessed: 1
   markerScale: 5
   isVertical: 1
-  analyticsScript: {fileID: 0}
-  displayText: {fileID: 0}
+  textController: {fileID: 0}
+  textDisplayCount: 0

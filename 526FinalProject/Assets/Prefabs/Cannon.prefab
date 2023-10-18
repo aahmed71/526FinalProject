@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2564620114375179300}
   - component: {fileID: 1392283584071206545}
   - component: {fileID: 5593660627342590140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheel
   m_TagString: Entity
   m_Icon: {fileID: 0}
