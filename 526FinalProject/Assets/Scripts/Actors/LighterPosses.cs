@@ -28,22 +28,22 @@ public class LighterMechanics : EntityController
     }
 
 
-    //public override void OnPossess(PlayerController player)
-    //{
-    //    base.OnPossess(player);
-    //    Collider2D coll = GetComponent<Collider2D>();
-    //    coll.isTrigger = false;
-    //    Rigidbody2D rb = GetComponent<Rigidbody2D>();
-    //    rb.isKinematic = false;
-    //}
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = false;
+    }
 
-    //public override void OnUnPossess(PlayerController player)
-    //{
-    //    base.OnUnPossess(player);
-    //    Rigidbody2D rb = GetComponent<Rigidbody2D>();
-    //    rb.isKinematic = true;
-    //    Collider2D coll = GetComponent<Collider2D>();
-    //    coll.isTrigger = true;
-    //}
+    public override void OnUnPossess(PlayerController player)
+    {
+        base.OnUnPossess(player);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = true;
+    }
 }
 

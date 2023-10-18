@@ -3,19 +3,9 @@ using System.Collections;
 
 public class BombMechanics : EntityController
 {
-    private bool playerInRange = false;
+    public float explosionRadius = 5.0f;
 
-    public float explosionRadius = 5.0f; 
-    private Rigidbody2D playerRB;
-    private float originalGravity;
-   /* public override void Update()
-    {
-        //base.Update();
-        if (isPossessed && Input.GetKeyDown(utilityButton))
-        {
-            Explode();
-        }
-    }*/
+
     public void Explode()
     {
         //detects all colliders within the explosion radius
@@ -40,59 +30,22 @@ public class BombMechanics : EntityController
         Destroy(gameObject);
     }
 
-    // Implement the OnPossess and OnUnPossess 
     public override void OnPossess(PlayerController player)
     {
         base.OnPossess(player);
-
-        Debug.Log("Possed called for"+gameObject.name);
-        isPossessed = true;
-
-        Collider2D coll = GetComponent<Collider2D>();
-        coll.isTrigger = false;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = false;
+        Collider2D coll = GetComponent<Collider2D>();
+        coll.isTrigger = false;
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        Debug.Log("OnUnPossess called for " + gameObject.name);
-
-        isPossessed = false;
-
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = true;
-
-
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerRB = other.GetComponent<Rigidbody2D>();
-            if (playerRB)
-            {
-                originalGravity = playerRB.gravityScale;
-                playerRB.gravityScale = 0;
-            }
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (playerRB)
-            {
-                playerRB.gravityScale = originalGravity;
-                playerRB = null;
-            }
-            playerInRange = false;
-        }
     }
 }
 
