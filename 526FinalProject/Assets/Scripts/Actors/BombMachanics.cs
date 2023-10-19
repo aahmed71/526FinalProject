@@ -27,9 +27,6 @@ public class BombMechanics : EntityController
         foreach (Collider2D col in objectsInRange)
 
         {
-            
-            //debug
-            Debug.Log(col.tag);
             if (col.CompareTag("Hazard") || col.CompareTag("Door") || col.CompareTag("Barrier"))
             {
                 Destroy(col.gameObject);
