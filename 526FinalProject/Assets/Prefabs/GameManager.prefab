@@ -44,5 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e879184cb113cdd48b571565470cb18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseText: {fileID: 0}
-  winText: {fileID: 0}
+  isPaused: 0
+  pausePanel: {fileID: 0}
+  nextLevelName: 
+  Pause: {fileID: 0}
+  Win: {fileID: 0}
+  Lose: {fileID: 0}
+  PauseButton: {fileID: 0}
+  SaveData: {fileID: 11400000, guid: a0a579ebff9c25b4c83d6bc6f8f40f65, type: 2}

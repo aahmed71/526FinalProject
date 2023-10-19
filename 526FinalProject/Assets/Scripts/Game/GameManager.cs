@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
     [SerializeField] public GameObject PauseButton;
+    [SerializeField] public SaveScriptableObject SaveData;
 
 
 
@@ -49,8 +50,13 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         gameWinEvent = new UnityEvent();
-       
         //analytics
+        if (SaveData.SessionID == "")
+        {
+            Debug.Log("CREATE NEW SESSION");
+            SaveData.SessionID = "newSession";
+        }
+
         string currentLevelName = SceneManager.GetActiveScene().name;
         FindObjectOfType<GoogleAnalytics>().CreateSession();
         if (currentLevelName == "RiddhiTest")
@@ -166,7 +172,5 @@ public class GameManager : MonoBehaviour
             }
             
         }
-       
-        
     }
 }
