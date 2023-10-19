@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     //analytics
     private bool playerLose = false;
+    private float pTime;
+    private float upTime;
 
     //end of analytics
     
@@ -116,6 +118,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
+    public void BlockPossessTime(float posessTime){
+        Debug.Log("In block possess time");
+        pTime = posessTime;
+    }
+
+    public void BlockUnPossessTime(float unpossessTime){
+        Debug.Log("In Block unpossess time");
+        upTime = unpossessTime - pTime;
+        Debug.Log(upTime);
+        FindObjectOfType<GoogleAnalytics>().BlockMechanics(upTime);
+
+    }
+
   public void LoadNextLevel()
   {
       Win.SetActive(false);
@@ -133,6 +148,7 @@ public class GameManager : MonoBehaviour
         gameWinEvent.Invoke();
        
     }
+
 
     public void GameLose(string s)
     {

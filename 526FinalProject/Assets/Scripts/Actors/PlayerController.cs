@@ -171,7 +171,17 @@ public class PlayerController : MonoBehaviour
             }
             //possess if we have a target to possess
             else if (possessTarget)
-            {
+            {   
+                if (possessTarget.CompareTag("PuzzleBlock"))
+                {
+                    float puzzleTime = Time.time; // Capture the time
+                    
+                    Debug.Log("PuzzleBlock possessed at time: " + puzzleTime);
+                    if (GameManager.Instance)
+                    {
+                        GameManager.Instance.BlockPossessTime(puzzleTime);
+                    }
+                }
                 Possess(possessTarget.GetComponent<EntityController>());
             }
         }

@@ -12,6 +12,8 @@ public class Puzzle : MonoBehaviour
     
     //# of puzzle pieces needed
     [SerializeField] private int pieces;
+    [SerializeField] private GameObject keyPrefab;
+
 
     private bool locked = true;
 
@@ -33,11 +35,12 @@ public class Puzzle : MonoBehaviour
         {
 
             locked = false;
-            Debug.Log("You won!");
-            if (GameManager.Instance)
-            {
-                GameManager.Instance.GameWin();
-            }
+            // Debug.Log("You won!");
+            // if (GameManager.Instance)
+            // {
+            //     GameManager.Instance.GameWin();
+            // }
+            keyPrefab.SetActive(true);
         }
     }
     
@@ -58,6 +61,8 @@ public class Puzzle : MonoBehaviour
                         player.GetComponent<PlayerController>().UnPossess();
                         // player.GetComponent<Rigidbody2D>().position = other.transform.position + new Vector3(0, 1, 0);
                         // player.transform.position = other.transform.position + new Vector3(0, 3, 0);
+                        float finishTime = Time.time;
+                        GameManager.Instance.BlockUnPossessTime(finishTime);
                     }
                     other.gameObject.GetComponent<PuzzleBlock>().Place();
                     Debug.Log("One more puzzle piece in!");

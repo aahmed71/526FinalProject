@@ -15,6 +15,8 @@ public class GoogleAnalytics : MonoBehaviour
     private int _hazardKill;
     private int _spikeKill;
     private int _noLevels = 0;
+
+    private float _btime;
     
     void Start()
     {
@@ -47,23 +49,26 @@ public class GoogleAnalytics : MonoBehaviour
 
     //     Send();
     // }
-
+    public void BlockMechanics(float blockTime){
+        Debug.Log("in block mechanics");
+        _btime = blockTime;
+    }
     public void Send(int h, int s){
         Debug.Log("In Send");
         _hazardKill = h;
         _spikeKill = s;
         _playTime = Time.time - _playTime;
-        StartCoroutine(Post(_sessionID.ToString(),_levelNo.ToString(),_playTime.ToString(),_hazardKill.ToString(),_spikeKill.ToString()));
+        StartCoroutine(Post(_sessionID.ToString(),_levelNo.ToString(),_playTime.ToString(),_hazardKill.ToString(),_spikeKill.ToString(),_btime.ToString()));
     }
 
-    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike){
+    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string puzzleTime){
         WWWForm form = new WWWForm();
         form.AddField("entry.1262365075",sID);
         form.AddField("entry.1953388170",lNumber);
         form.AddField("entry.879821749",pTime);
         form.AddField("entry.511748472",Hazard);
         form.AddField("entry.1788607872",Spike);
-
+        form.AddField("entry.1210232973",puzzleTime);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL,form)){
             yield return www.SendWebRequest();
