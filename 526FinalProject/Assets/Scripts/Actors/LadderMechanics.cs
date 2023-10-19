@@ -28,6 +28,12 @@ public class LadderMechanics : EntityController
         if (playerInRange && playerRB)
         {
             float verticalInput = Input.GetAxis("Vertical");
+            
+            //makes sure we only apply velocity to possessed entities or the player
+            if (playerRB.CompareTag("Entity") && !playerRB.gameObject.GetComponent<EntityController>().isPossessed)
+            {
+                return;
+            }
             playerRB.velocity = new Vector2(playerRB.velocity.x, verticalInput * climbSpeed);
         }
 

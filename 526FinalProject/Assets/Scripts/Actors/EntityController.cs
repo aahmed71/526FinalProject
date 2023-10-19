@@ -9,8 +9,8 @@ public class EntityController : MonoBehaviour
     [SerializeField] protected float speed = 10.0f;
     [SerializeField] protected KeyCode utilityButton = KeyCode.F;
     [NonSerialized] protected PlayerController playerRef;
-    public bool canBePossessed = true;
-    protected bool isPossessed = false;
+    [NonSerialized] public bool canBePossessed = true;
+    [NonSerialized]public bool isPossessed = false;
     private bool canJump=false;
     //number to control how big the possession marker is
     public float markerScale = 1;
@@ -54,6 +54,7 @@ public class EntityController : MonoBehaviour
     public virtual void OnUnPossess(PlayerController player)
     {
         isPossessed = false;
+        rb.velocity = Vector2.zero;
     }
 
     //function that's called by player if they possess the player, can be overridden
