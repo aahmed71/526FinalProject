@@ -144,10 +144,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -174,8 +174,8 @@ MonoBehaviour:
   jumpForce: 50
   speed: 10
   utilityButton: 102
-  canBePossessed: 1
   markerScale: 5
+  rb: {fileID: 0}
   isVertical: 1
   textController: {fileID: 0}
   textDisplayCount: 0

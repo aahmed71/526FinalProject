@@ -9,7 +9,6 @@ public class LadderMechanics : EntityController
     private float climbSpeed = 10.0f;
     private bool playerInRange = false;
     private Rigidbody2D playerRB;
-    private float originalGravity;
     public bool isVertical = true;
     private Vector2 initialSize;
 
@@ -102,11 +101,8 @@ public class LadderMechanics : EntityController
         if (other.CompareTag("Player") || other.CompareTag("Entity"))
         {
             playerRB = other.GetComponent<Rigidbody2D>();
-            if (playerRB)
-            {
-                originalGravity = playerRB.gravityScale;
-                playerRB.gravityScale = 0;
-            }
+            
+            other.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             playerInRange = true;
 
             //text controller
@@ -136,11 +132,9 @@ public class LadderMechanics : EntityController
     {
         if (other.CompareTag("Player") || other.CompareTag("Entity"))
         {
-            if (playerRB)
-            {
-                playerRB.gravityScale = originalGravity;
-                playerRB = null;
-            }
+            
+            other.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+            playerRB = null;
             playerInRange = false;
         }
     }

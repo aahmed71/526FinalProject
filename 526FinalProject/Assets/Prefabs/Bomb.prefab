@@ -177,8 +177,8 @@ MonoBehaviour:
   jumpForce: 50
   speed: 30
   utilityButton: 102
-  canBePossessed: 1
   markerScale: 1.5
+  rb: {fileID: 0}
   explosionRadius: 5
   _animator: {fileID: 1202920716805779807}
 --- !u!95 &1202920716805779807

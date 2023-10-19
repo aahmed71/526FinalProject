@@ -175,8 +175,8 @@ MonoBehaviour:
   jumpForce: 50
   speed: 35
   utilityButton: 102
-  canBePossessed: 1
   markerScale: 3
+  rb: {fileID: 0}
   fireRange: 5
 --- !u!1 &8196371186283238114
 GameObject:
