@@ -58,7 +58,7 @@ public class HazardBehavior : MonoBehaviour
     void killPlayer()
     {
         
-        player.GetComponent<PlayerController>().Die();
+        player.GetComponent<PlayerController>().Die("hz");
 
 
     }

@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public bool isPaused = false;
+
+    //analytics
+    private bool playerLose = false;
+
+    //end of analytics
     
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private string nextLevelName = null;
@@ -42,8 +47,24 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         gameWinEvent = new UnityEvent();
+       
         //analytics
-        // startTime = Time.time;
+        string currentLevelName = SceneManager.GetActiveScene().name;
+        FindObjectOfType<GoogleAnalytics>().CreateSession();
+        if (currentLevelName == "RiddhiTest")
+        {
+            // Call a function in the analytics script
+            FindObjectOfType<GoogleAnalytics>().LevelNumber(1);
+        }
+        else if(currentLevelName == "Level2")
+        {
+            FindObjectOfType<GoogleAnalytics>().LevelNumber(2);
+        }
+        else{
+            FindObjectOfType<GoogleAnalytics>().LevelNumber(3);
+        }
+     
+        //end of analytics
     }
 
     public void TogglePauseGame()
@@ -101,7 +122,8 @@ public class GameManager : MonoBehaviour
       // Load the Next Scene
       if (nextLevelName != null)
       {
-          SceneManager.LoadScene(nextLevelName);
+        FindObjectOfType<GoogleAnalytics>().Send(0,0);
+        SceneManager.LoadScene(nextLevelName);
       }
   }
 
@@ -109,11 +131,26 @@ public class GameManager : MonoBehaviour
     {
         Win.SetActive(true);
         gameWinEvent.Invoke();
+       
     }
 
-    public void GameLose()
+    public void GameLose(string s)
     {
-        PauseButton.SetActive(false);
-        Lose.SetActive(true);
+
+        if(!playerLose){
+            
+            playerLose = true;
+            PauseButton.SetActive(false);
+            Lose.SetActive(true);
+            //analytics
+            if(s=="sp"){
+                FindObjectOfType<GoogleAnalytics>().Send(0,1);
+            }else{
+                 FindObjectOfType<GoogleAnalytics>().Send(1, 0);
+            }
+            
+        }
+       
+        
     }
 }

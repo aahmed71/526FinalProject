@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5327661738033486541}
   - component: {fileID: 2502031436931957691}
   - component: {fileID: 6029018157016560600}
+  - component: {fileID: -4312807546492352815}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -104,7 +105,6 @@ MonoBehaviour:
   possessButton: 101
   speed: 40
   jumpForce: 1200
-  gameControl: {fileID: 0}
   possessionMarkerPrefab: {fileID: 8425516287799090293, guid: d563dcab98861e144bb8c13bb1666c17, type: 3}
   contactFilter:
     useTriggers: 1
@@ -197,3 +197,16 @@ MonoBehaviour:
   maxHealth: 10
   healthCounter: {fileID: 0}
   deathDelay: 0
+--- !u!114 &-4312807546492352815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809049429427696006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4847c2fb2538d4dbc891f50dd2e47c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdvdPZ1qBTioKrbxavSPT4bf3pNny97N2h6TtgsYOi08x7dyA/formResponse

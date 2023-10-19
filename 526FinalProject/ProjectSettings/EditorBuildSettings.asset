@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RiddhiTest.unity
     guid: fa982d6847f274a7485da69ce76c146e
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 30d17e29d37580945936dcc7cbb09ef0
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: d1f5b3861d07eeb48b7ed0a186c9a478
   m_configObjects: {}

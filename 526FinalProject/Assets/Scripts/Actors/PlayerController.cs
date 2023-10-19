@@ -222,11 +222,12 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void Die()
+    public void Die(string s)
     {
+
         Time.timeScale = 0.0f;
         GameOver();
-        GameManager.Instance.GameLose();
+        GameManager.Instance.GameLose(s);
     }
 
     public void GameOver()

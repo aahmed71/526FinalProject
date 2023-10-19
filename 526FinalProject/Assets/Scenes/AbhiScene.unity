@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 649096347}
   - component: {fileID: 649096346}
   - component: {fileID: 649096352}
+  - component: {fileID: 649096353}
   m_Layer: 2
   m_Name: ghost
   m_TagString: Player
@@ -641,8 +642,21 @@ MonoBehaviour:
   possessButton: 101
   speed: 10
   jumpForce: 600
-  gameControl: {fileID: 0}
   possessionMarkerPrefab: {fileID: 0}
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!212 &649096350
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -722,6 +736,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54a55deb157f4c9a826b923b7d1b79f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &649096353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649096345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4847c2fb2538d4dbc891f50dd2e47c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdvdPZ1qBTioKrbxavSPT4bf3pNny97N2h6TtgsYOi08x7dyA/formResponse
 --- !u!1001 &682288716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1090,9 +1117,10 @@ MonoBehaviour:
   speed: 10
   utilityButton: 102
   canBePossessed: 1
+  markerScale: 1
   isVertical: 1
-  analyticsScript: {fileID: 0}
   textController: {fileID: 0}
+  textDisplayCount: 0
 --- !u!50 &1106665698
 Rigidbody2D:
   serializedVersion: 4
@@ -1333,12 +1361,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e879184cb113cdd48b571565470cb18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseText: {fileID: 0}
-  winText: {fileID: 0}
+  isPaused: 0
   pausePanel: {fileID: 0}
-  uiElement1: {fileID: 0}
-  uiElement2: {fileID: 0}
-  uiElement3: {fileID: 0}
+  nextLevelName: 
+  Pause: {fileID: 0}
+  Win: {fileID: 0}
+  Lose: {fileID: 0}
+  PauseButton: {fileID: 0}
 --- !u!1001 &1424350451
 PrefabInstance:
   m_ObjectHideFlags: 0
