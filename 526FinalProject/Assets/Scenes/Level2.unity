@@ -137,6 +137,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 637180623}
     m_Modifications:
     - target: {fileID: 1016094352732135562, guid: 051f21c52bcf840eeab207affe13fd1a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1921868039}
+    - target: {fileID: 1016094352732135562, guid: 051f21c52bcf840eeab207affe13fd1a, type: 3}
       propertyPath: pathArray.Array.data[0]
       value: 
       objectReference: {fileID: 776160028}
@@ -1978,6 +1982,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8517907718058922263, guid: 22b129c039194477189f593dc8221fd6, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1921868039}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2473,6 +2481,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8517907718058922263, guid: 22b129c039194477189f593dc8221fd6, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1921868039}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2544,6 +2556,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e215a9e67bf1a048ae5569e15e0b420, type: 3}
+--- !u!1 &1921868039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 809049429427696006, guid: 3e215a9e67bf1a048ae5569e15e0b420, type: 3}
+  m_PrefabInstance: {fileID: 1921868038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2138400899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2596,6 +2613,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8517907718058922263, guid: 22b129c039194477189f593dc8221fd6, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1921868039}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
