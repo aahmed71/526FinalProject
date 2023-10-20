@@ -49,6 +49,18 @@ public class CannonEntity : EntityController
     {
         // entity cannot jump
     }
+    
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+        GameManager.Instance.CalculatePosessionCount("Cannon");
+    }
+    
+    public override void OnUnPossess(PlayerController player)
+    {
+        base.OnUnPossess(player);
+        GameManager.Instance.CalculateUnPosessionCount("Cannon");
+    }
 
     
 }
