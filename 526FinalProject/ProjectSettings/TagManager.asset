@@ -15,6 +15,8 @@ TagManager:
   - PuzzleBlock
   - Door
   - Barrier
+  - Key
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

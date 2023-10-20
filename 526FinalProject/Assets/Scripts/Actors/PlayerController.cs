@@ -179,9 +179,11 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("PuzzleBlock possessed at time: " + puzzleTime);
                     if (GameManager.Instance)
                     {
+                        GameManager.Instance.CalculatePosessionCount("PuzzleBlock");
                         GameManager.Instance.BlockPossessTime(puzzleTime);
                     }
                 }
+                
                 Possess(possessTarget.GetComponent<EntityController>());
             }
         }

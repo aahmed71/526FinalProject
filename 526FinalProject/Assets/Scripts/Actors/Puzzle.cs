@@ -63,6 +63,7 @@ public class Puzzle : MonoBehaviour
                         // player.transform.position = other.transform.position + new Vector3(0, 3, 0);
                         float finishTime = Time.time;
                         GameManager.Instance.BlockUnPossessTime(finishTime);
+                        GameManager.Instance.CalculateUnPosessionCount("PuzzleBlock");
                     }
                     other.gameObject.GetComponent<PuzzleBlock>().Place();
                     Debug.Log("One more puzzle piece in!");

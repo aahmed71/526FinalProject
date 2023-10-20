@@ -13,8 +13,7 @@ public class LadderMechanics : EntityController
     private Vector2 initialSize;
 
     //analytics
-    private int ladderTouchCount = 0;
-    // public AnalyticsManager analyticsManager;
+
 
     
     //text controller
@@ -41,6 +40,7 @@ public class LadderMechanics : EntityController
     public override void OnPossess(PlayerController player)
     {
         base.OnPossess(player);
+        GameManager.Instance.CalculatePosessionCount("Ladder");
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = false;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -50,6 +50,7 @@ public class LadderMechanics : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
+        GameManager.Instance.CalculateUnPosessionCount("Ladder");
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
@@ -114,15 +115,6 @@ public class LadderMechanics : EntityController
                 }
             }
            
-         
-            //analytics
-            ladderTouchCount++;
-
-            // Send the touch count to Unity Analytics
-            // if (analyticsManager != null)
-            // {
-            //     analyticsManager.SendLadderTouchEvent(ladderTouchCount);
-            // }
             
 
         }

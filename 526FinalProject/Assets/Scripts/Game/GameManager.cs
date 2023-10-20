@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
     private bool playerLose = false;
     private float pTime;
     private float upTime;
+  
+    Dictionary<string, int> possessionCount = new Dictionary<string, int>();
+    Dictionary<string, int> unPossessionCount = new Dictionary<string, int>();
+
+    private string platform;
+
 
     //end of analytics
     
@@ -30,7 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
     [SerializeField] public GameObject PauseButton;
-    [SerializeField] public SaveScriptableObject SaveData;
+    
 
 
 
@@ -50,13 +56,8 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         gameWinEvent = new UnityEvent();
+        
         //analytics
-        if (SaveData.SessionID == "")
-        {
-            Debug.Log("CREATE NEW SESSION");
-            SaveData.SessionID = "newSession";
-        }
-
         string currentLevelName = SceneManager.GetActiveScene().name;
         FindObjectOfType<GoogleAnalytics>().CreateSession();
         if (currentLevelName == "RiddhiTest")
@@ -71,7 +72,20 @@ public class GameManager : MonoBehaviour
         else{
             FindObjectOfType<GoogleAnalytics>().LevelNumber(3);
         }
-     
+
+        if(Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            Debug.Log("Running on webgl");
+            platform = "WebGL";
+        }
+        else
+        {
+           
+            Debug.Log("Running on a different platform.");
+            Debug.Log(Application.platform.ToString());
+            platform = Application.platform.ToString();
+        }
+
         //end of analytics
     }
 
@@ -104,6 +118,25 @@ public class GameManager : MonoBehaviour
             // Hide the UI elements
             if (Pause!=null) Pause.SetActive(true);
             if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";
+        }
+    }
+
+    public void CalculatePosessionCount(string objname){
+        Debug.Log("In Possession Count");
+        if(possessionCount.ContainsKey(objname)){
+            possessionCount[objname]++;
+        }else{
+             possessionCount[objname] = 1;
+        }
+        
+    }
+
+     public void CalculateUnPosessionCount(string objname){
+        Debug.Log("In UnPossession Count");
+        if(unPossessionCount.ContainsKey(objname)){
+            unPossessionCount[objname]++;
+        }else{
+            unPossessionCount[objname] = 1;
         }
     }
 
@@ -143,7 +176,7 @@ public class GameManager : MonoBehaviour
       // Load the Next Scene
       if (nextLevelName != null)
       {
-        FindObjectOfType<GoogleAnalytics>().Send(0,0);
+        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,unPossessionCount);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -164,11 +197,20 @@ public class GameManager : MonoBehaviour
             playerLose = true;
             PauseButton.SetActive(false);
             Lose.SetActive(true);
+
             //analytics
+            foreach (var kvp in possessionCount)
+            {
+                Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+            }
+            foreach (var kvp in unPossessionCount)
+            {
+                Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+            }
             if(s=="sp"){
-                FindObjectOfType<GoogleAnalytics>().Send(0,1);
+                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,unPossessionCount);
             }else{
-                 FindObjectOfType<GoogleAnalytics>().Send(1, 0);
+                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,unPossessionCount);
             }
             
         }
