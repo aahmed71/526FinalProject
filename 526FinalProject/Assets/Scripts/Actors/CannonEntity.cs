@@ -49,6 +49,12 @@ public class CannonEntity : EntityController
     {
         // entity cannot jump
     }
+    
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+
+    }
 
     
 }

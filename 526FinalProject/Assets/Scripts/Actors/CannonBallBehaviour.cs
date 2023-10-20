@@ -51,4 +51,10 @@ public class CannonBallBehaviour : EntityController
             isFired = false;
         }
     }
+    
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+
+    }
 }
