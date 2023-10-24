@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonBall
       objectReference: {fileID: 0}
+    - target: {fileID: 8939910585007153137, guid: f03e8864207ccec45bf1c3743817d810, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -309,6 +313,10 @@ PrefabInstance:
     - target: {fileID: 2814599096017596628, guid: 000e2886c4f79d1409ab02391f0d1087, type: 3}
       propertyPath: m_Name
       value: Ladder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814599096017596628, guid: 000e2886c4f79d1409ab02391f0d1087, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5383577907136273568, guid: 000e2886c4f79d1409ab02391f0d1087, type: 3}
       propertyPath: m_LocalPosition.x
@@ -821,6 +829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 6495968721819692927, guid: 3a7dbec67a93d47409422fea451e4ec4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1020,8 +1032,8 @@ MonoBehaviour:
   jumpForce: 600
   speed: 10
   utilityButton: 102
-  canBePossessed: 1
   markerScale: 1
+  rb: {fileID: 0}
   keyIndex: 1
 --- !u!61 &1674699036
 BoxCollider2D:
@@ -1188,6 +1200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9087709292151679944, guid: 4ea446a370a6a41b68a86f1a9a7cf76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1331,6 +1347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockEntity
       objectReference: {fileID: 0}
+    - target: {fileID: 1388563547079517176, guid: b150ce8963528b646bff597b019f81e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3434420623413927921, guid: b150ce8963528b646bff597b019f81e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
@@ -1403,6 +1423,10 @@ PrefabInstance:
     - target: {fileID: 6255982532241298342, guid: 3b6e661fda4ab2944964e5e550803d7c, type: 3}
       propertyPath: m_Name
       value: FinalDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255982532241298342, guid: 3b6e661fda4ab2944964e5e550803d7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8291397414235262394, guid: 3b6e661fda4ab2944964e5e550803d7c, type: 3}
       propertyPath: m_LocalPosition.x

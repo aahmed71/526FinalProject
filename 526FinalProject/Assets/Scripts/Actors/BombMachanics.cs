@@ -4,14 +4,13 @@ using System.Collections;
 public class BombMechanics : EntityController
 {
 
-    public float explosionRadius = 5.0f; 
-    private Rigidbody2D playerRB;
-    private float originalGravity;
+    public float explosionRadius = 5.0f;
 
     [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _explosion;
+    [SerializeField] private float explosionSpeed = 0.3f;
     public void Explode()
     {
-        _animator.SetTrigger("StartExplosion");
         //start the bomb explosion
        StartCoroutine(DestroyBombWithDelay());
     }
@@ -19,8 +18,11 @@ public class BombMechanics : EntityController
 
     private IEnumerator DestroyBombWithDelay()
     {
-        
-        yield return new WaitForSeconds(2f);
+        _animator.SetTrigger("StartExplosion");
+        yield return new WaitForSeconds(2.5f);
+
+        StartCoroutine(LerpScale(explosionRadius, explosionSpeed));
+        yield return new WaitForSeconds(explosionSpeed);
         //detects all colliders within the explosion radius
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
@@ -43,6 +45,24 @@ public class BombMechanics : EntityController
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
+    
+    IEnumerator LerpScale(float end, float lerpSpeed)
+    {
+        float timer = 0;
+        while(timer < 1)
+        {
+            float scale = Mathf.Lerp(0.0f, end, timer);
+            _explosion.transform.localScale = new Vector3(scale, scale, 1.0f);
+            
+
+            timer = timer + Time.deltaTime / lerpSpeed;
+            yield return new WaitForEndOfFrame();
+        }
+
+        _explosion.transform.localScale = new Vector3(end, end, 1.0f);
+        
+    }
+
 
     public override void OnPossess(PlayerController player)
     {
