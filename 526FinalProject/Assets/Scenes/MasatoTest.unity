@@ -198,11 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8880904308360371936, guid: c8d80533508cebd4891e326d25f8239d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.2
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8880904308360371936, guid: c8d80533508cebd4891e326d25f8239d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6
+      value: 9.3
       objectReference: {fileID: 0}
     - target: {fileID: 8880904308360371936, guid: c8d80533508cebd4891e326d25f8239d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -846,6 +846,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2025313650284378229, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025313650284378229, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025313650284378229, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025313650284378229, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2872484630951848823, guid: f5c4f2f28ec86234aa2bde4a2c202cc5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.9
@@ -1282,21 +1298,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
-    - target: {fileID: 1179724691803264582, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1179724691803264582, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 7903612345869216636, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.4
+      value: 24.7
       objectReference: {fileID: 0}
     - target: {fileID: 7903612345869216636, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7903612345869216636, guid: ffcb5b894bce33143a0130e34cdf82be, type: 3}
       propertyPath: m_LocalPosition.z
