@@ -11,11 +11,14 @@ public class BombMechanics : EntityController
     [SerializeField] private GameObject _explosion;
     [SerializeField] private GameObject rangeIndicator;
     [SerializeField] private float explosionSpeed = 0.3f;
+    bool isGonnaBlow = false;
     
     public void Explode()
     {
         //start the bomb explosion
-       StartCoroutine(DestroyBombWithDelay());
+        rangeIndicator.SetActive(true);
+        isGonnaBlow = true;
+        StartCoroutine(DestroyBombWithDelay());
     }
 
     private void Start()
@@ -86,7 +89,9 @@ public class BombMechanics : EntityController
         rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = true;
-        rangeIndicator.SetActive(false);
+        
+        if(!isGonnaBlow)
+            rangeIndicator.SetActive(false);
     }
     
     
