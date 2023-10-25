@@ -9,7 +9,9 @@ public class BombMechanics : EntityController
 
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _explosion;
+    [SerializeField] private GameObject rangeIndicator;
     [SerializeField] private float explosionSpeed = 0.3f;
+    
     public void Explode()
     {
         //start the bomb explosion
@@ -18,7 +20,10 @@ public class BombMechanics : EntityController
 
     private void Start()
     {
+        //set things to false
         _explosion.SetActive(false);
+        rangeIndicator.transform.localScale = new Vector3(explosionRadius, explosionRadius, 0.0f);
+        rangeIndicator.SetActive(false);
     }
 
     private IEnumerator DestroyBombWithDelay()
@@ -66,23 +71,25 @@ public class BombMechanics : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Bomb");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = false;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = false;
+        rangeIndicator.SetActive(true);
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
         GameManager.Instance.CalculateUnPosessionCount("Bomb");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         Collider2D coll = GetComponent<Collider2D>();
         coll.isTrigger = true;
-
-
+        rangeIndicator.SetActive(false);
     }
+    
+    
   
 }
 
