@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class LighterMechanics : EntityController
 {
-    private float fireRange = 5f;
+    private float fireRange = 10f;
 
     protected override void Ability()
     {
         
         BombMechanics[] bombs = FindObjectsOfType<BombMechanics>();
 
-
         foreach (BombMechanics bomb in bombs)
         {
             //Check for bomb only within certain distance from the lighter
             float distanceToBomb = Vector3.Distance(transform.position, bomb.transform.position);
-
+            
             if (distanceToBomb <= fireRange)
             {
                 bomb.Explode();
