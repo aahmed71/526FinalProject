@@ -14,6 +14,8 @@ public class EntityController : MonoBehaviour
     private bool canJump=false;
     //number to control how big the possession marker is
     public float markerScale = 1;
+    private int hazardHits = 0;
+    private int maxHazardHits = 3;
 
     //components
     public Rigidbody2D rb;
@@ -87,5 +89,17 @@ public class EntityController : MonoBehaviour
         GetComponent<SpriteRenderer>().color = tempColor;
         playerRef.UnPossess();
         canBePossessed = false;
+    }
+    public virtual void BecomeUnpossessable()
+    {
+        canBePossessed = false;
+    }
+    public virtual void TakeHazardHit()
+    {
+        hazardHits++;
+        if (hazardHits >= maxHazardHits)
+        {
+            BecomeUnpossessable();
+        }
     }
 }
