@@ -32,20 +32,12 @@ public class LighterMechanics : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Lighter");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = false;
-        Collider2D coll = GetComponent<Collider2D>();
-        coll.isTrigger = false;
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
         GameManager.Instance.CalculateUnPosessionCount("Lighter");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
-        Collider2D coll = GetComponent<Collider2D>();
-        coll.isTrigger = true;
     }
 }
 

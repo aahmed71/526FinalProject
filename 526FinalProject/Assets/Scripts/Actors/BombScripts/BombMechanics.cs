@@ -73,10 +73,6 @@ public class BombMechanics : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Bomb");
-        rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = false;
-        Collider2D coll = GetComponent<Collider2D>();
-        coll.isTrigger = false;
         rangeIndicator.SetActive(true);
     }
 
@@ -84,11 +80,6 @@ public class BombMechanics : EntityController
     {
         base.OnUnPossess(player);
         GameManager.Instance.CalculateUnPosessionCount("Bomb");
-        rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
-        Collider2D coll = GetComponent<Collider2D>();
-        coll.isTrigger = true;
-        
         if(!isGonnaBlow)
             rangeIndicator.SetActive(false);
     }
