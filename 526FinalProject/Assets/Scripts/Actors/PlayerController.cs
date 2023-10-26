@@ -15,15 +15,15 @@ public class PlayerController : MonoBehaviour
     private bool jumpInputPrevious = false;
 
     //buttons in case we want to change them
-    [SerializeField] private KeyCode jumpButton;
-    [SerializeField] private KeyCode possessButton;
+    private KeyCode jumpButton = KeyCode.Space;
+    private KeyCode possessButton = KeyCode.E;
 
     //analytics
     private int puzzleBlocksCollected = 0;
 
     //movement
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce = 500.0f;
+    private float speed = 30.0f;
+    private float jumpForce = 4000.0f;
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public EntityController currentEntity = null;
     private bool canJump = true;
@@ -106,8 +106,16 @@ public class PlayerController : MonoBehaviour
     {
         if (canJump)
         {
-            rb.AddForce(new Vector2(0.0f, jumpForce));
+            rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
             canJump = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.transform.position.y < transform.position.y && !canJump)
+        {
+            canJump = true;
         }
     }
 

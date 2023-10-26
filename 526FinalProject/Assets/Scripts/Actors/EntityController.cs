@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EntityController : MonoBehaviour
 {
-    [SerializeField] protected float jumpForce = 50.0f;
-    [SerializeField] protected float speed = 10.0f;
-    [SerializeField] protected KeyCode utilityButton = KeyCode.F;
+    protected float jumpForce = 4000.0f;
+    protected float speed = 30.0f;
+    protected KeyCode utilityButton = KeyCode.F;
     [NonSerialized] protected PlayerController playerRef;
     [NonSerialized] public bool canBePossessed = true;
     [NonSerialized]public bool isPossessed = false;
@@ -25,6 +25,12 @@ public class EntityController : MonoBehaviour
     {
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("EntityController: No RigidBody2D found on the GameObject!");
+        }
+        rb.mass = 100;
+        rb.gravityScale = 10;
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
@@ -47,6 +53,7 @@ public class EntityController : MonoBehaviour
             canJump = true;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         CheckJump(col.transform);
@@ -84,7 +91,7 @@ public class EntityController : MonoBehaviour
     {
         if (canJump)
         {
-            rb.AddForce(new Vector2(0.0f, jumpForce));
+            rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
             canJump = false;
         }
     }
