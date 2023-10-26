@@ -15,7 +15,7 @@ public class EntityController : MonoBehaviour
     //number to control how big the possession marker is
     public float markerScale = 1;
     private int hazardHits = 0;
-    private int maxHazardHits = 3;
+    private int maxHazardHits = 1;
 
     //components
     public Rigidbody2D rb;
