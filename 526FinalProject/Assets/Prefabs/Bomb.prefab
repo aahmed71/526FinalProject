@@ -264,8 +264,7 @@ MonoBehaviour:
   speed: 30
   utilityButton: 102
   markerScale: 1.5
-  rb: {fileID: 0}
-  explosionRadius: 5
+  explosionRadius: 8
   _animator: {fileID: 1202920716805779807}
   _explosion: {fileID: 6294436569764249103}
   rangeIndicator: {fileID: 280259475736180211}
@@ -643,7 +642,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0001
+  m_Radius: 0.5
 --- !u!114 &4865627546011206997
 MonoBehaviour:
   m_ObjectHideFlags: 0

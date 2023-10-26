@@ -16,7 +16,7 @@ public class EntityController : MonoBehaviour
     public float markerScale = 1;
 
     //components
-    public Rigidbody2D rb;
+    protected Rigidbody2D rb;
     void Start()
     {
         //initialize rigidbody
