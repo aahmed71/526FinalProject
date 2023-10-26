@@ -23,6 +23,11 @@ public class EntityController : MonoBehaviour
     protected Rigidbody2D rb;
     void Start()
     {
+        OnStart();
+    }
+
+    protected void OnStart()
+    {
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
