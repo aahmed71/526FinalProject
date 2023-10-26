@@ -40,9 +40,9 @@ public class EntityController : MonoBehaviour
         }
     }
 
-    protected void CheckJump(Transform collider)
+    protected void CheckJump(Transform col)
     {
-        if (collider.transform.position.y < transform.position.y && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 5 * markerScale) && !canJump && !canJump)
         {
             canJump = true;
         }

@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 
     //end of analytics
     
-    [SerializeField] private GameObject pausePanel;
     [SerializeField] private string nextLevelName = null;
 
     
@@ -98,10 +97,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             Debug.Log("Resuming game...");
             isPaused = false;
-            if (pausePanel != null)
-            {
-                pausePanel.SetActive(false); // Hide the pause panel
-            }
             // Show the needed UI elements
             if (Pause!=null) Pause.SetActive(false);
             if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Pause";
@@ -111,10 +106,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             Debug.Log("Pausing game...");
             isPaused = true;
-            if (pausePanel != null)
-            {
-                pausePanel.SetActive(true); // Show the pause panel
-            }
             // Hide the UI elements
             if (Pause!=null) Pause.SetActive(true);
             if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";

@@ -58,14 +58,13 @@ public class BombMechanics : EntityController
         {
             float scale = Mathf.Lerp(0.0f, end, timer);
             _explosion.transform.localScale = new Vector3(scale, scale, 1.0f);
-            _explosion.GetComponent<CircleCollider2D>().radius = scale;
 
             timer = timer + Time.deltaTime / lerpSpeed;
             yield return new WaitForEndOfFrame();
         }
 
         _explosion.transform.localScale = new Vector3(end, end, 1.0f);
-        _explosion.GetComponent<CircleCollider2D>().radius = end;
+        
         
     }
 

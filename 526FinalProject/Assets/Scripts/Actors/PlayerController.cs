@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;
-    [NonSerialized] public Collider2D col;
+    [NonSerialized] public Collider2D _col;
     
     [SerializeField] private GameObject possessionMarkerPrefab;
     private PossessionMarker _possessionMarker;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         //get references
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        col = GetComponent<Collider2D>();
+        _col = GetComponent<Collider2D>();
         if (GameManager.Instance)
         {
             GameManager.Instance.gameWinEvent.AddListener(GameOver);
@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
         entity.OnPossess(this);
         currentEntity = entity;
         sr.enabled = false;
-        col.enabled = false;
+        _col.enabled = false;
     }
 
     public void UnPossess()
@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
         currentEntity.OnUnPossess(this);
         sr.enabled = true;
         currentEntity = null;
-        col.enabled = true;
+        _col.enabled = true;
         
         //set position after possessing
         Vector3 pos = transform.position;
@@ -248,9 +248,9 @@ public class PlayerController : MonoBehaviour
         rb.isKinematic = true;
     }
     
-    private void OnCollisionEnter2D(Collision2D collider)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (collider.transform.position.y < transform.position.y && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
         {
             canJump = true;
         }
