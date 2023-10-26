@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2502031436931957691}
   - component: {fileID: 6029018157016560600}
   - component: {fileID: -4312807546492352815}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -101,10 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd67d01c8a7ae45248dc68e468c1d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpButton: 32
-  possessButton: 101
-  speed: 40
-  jumpForce: 1200
   possessionMarkerPrefab: {fileID: 8425516287799090293, guid: d563dcab98861e144bb8c13bb1666c17, type: 3}
   contactFilter:
     useTriggers: 1
@@ -132,10 +128,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

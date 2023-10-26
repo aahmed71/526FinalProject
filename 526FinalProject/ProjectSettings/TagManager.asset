@@ -17,6 +17,8 @@ TagManager:
   - Barrier
   - Key
   - CheckPoint
+  - health
+  - Level
   layers:
   - Default
   - TransparentFX

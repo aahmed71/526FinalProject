@@ -17,22 +17,22 @@ public class PlayerController : MonoBehaviour
     private int deathCount = 3;
 
     //buttons in case we want to change them
-    [SerializeField] private KeyCode jumpButton;
-    [SerializeField] private KeyCode possessButton;
+    private KeyCode jumpButton = KeyCode.Space;
+    private KeyCode possessButton = KeyCode.E;
 
     //analytics
-    private int puzzleBlocksCollected = 0;
+    //private int puzzleBlocksCollected = 0;
 
     //movement
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce = 500.0f;
+    private float speed = 30.0f;
+    private float jumpForce = 4000.0f;
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public EntityController currentEntity = null;
     private bool canJump = true;
 
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;
-    [NonSerialized] public Collider2D col;
+    [NonSerialized] public Collider2D _col;
     
     [SerializeField] private GameObject possessionMarkerPrefab;
     private PossessionMarker _possessionMarker;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         //get references
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        col = GetComponent<Collider2D>();
+        _col = GetComponent<Collider2D>();
         if (GameManager.Instance)
         {
             GameManager.Instance.gameWinEvent.AddListener(GameOver);
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canJump)
         {
-            rb.AddForce(new Vector2(0.0f, jumpForce));
+            rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
             canJump = false;
         }
     }
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (possessTarget && !currentEntity)
+        if (possessTarget)
         {
             _possessionMarker.Activate(possessTarget.transform.position, possessTarget.gameObject.GetComponent<EntityController>().markerScale * possessTarget.transform.localScale.x);
         }
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
         entity.OnPossess(this);
         currentEntity = entity;
         sr.enabled = false;
-        col.enabled = false;
+        _col.enabled = false;
     }
 
     public void UnPossess()
@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
         currentEntity.OnUnPossess(this);
         sr.enabled = true;
         currentEntity = null;
-        col.enabled = true;
+        _col.enabled = true;
         
         //set position after possessing
         Vector3 pos = transform.position;
@@ -256,9 +256,9 @@ public class PlayerController : MonoBehaviour
         rb.isKinematic = true;
     }
     
-    private void OnCollisionEnter2D(Collision2D collider)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (collider.transform.position.y < transform.position.y && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
         {
             canJump = true;
         }
