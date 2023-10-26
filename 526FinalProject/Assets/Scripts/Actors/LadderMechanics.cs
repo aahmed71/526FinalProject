@@ -14,12 +14,6 @@ public class LadderMechanics : EntityController
 
     //analytics
 
-
-    
-    //text controller
-    public TextController textController;
-    public int textDisplayCount = 0;
-
     public override void Update()
     {
         base.Update();
@@ -105,18 +99,6 @@ public class LadderMechanics : EntityController
             
             other.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             playerInRange = true;
-
-            //text controller
-            if(textDisplayCount<2){
-                if (textController != null)
-                {
-                    textController.StartCoroutine("DisplayText");
-                    textDisplayCount++;
-                }
-            }
-           
-            
-
         }
     }
 
