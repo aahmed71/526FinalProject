@@ -16,6 +16,8 @@ public class EntityController : MonoBehaviour
     public float markerScale = 1;
     private int hazardHits = 0;
     private int maxHazardHits = 1;
+    private SpriteRenderer spriteRenderer;
+
 
     //components
     public Rigidbody2D rb;
@@ -23,6 +25,11 @@ public class EntityController : MonoBehaviour
     {
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("EntityController: No SpriteRenderer found on the GameObject!");
+        }
     }
 
     public virtual void Update()
@@ -93,6 +100,8 @@ public class EntityController : MonoBehaviour
     public virtual void BecomeUnpossessable()
     {
         canBePossessed = false;
+        LightenColor();
+
     }
     public virtual void TakeHazardHit()
     {
@@ -100,6 +109,21 @@ public class EntityController : MonoBehaviour
         if (hazardHits >= maxHazardHits)
         {
             BecomeUnpossessable();
+
         }
     }
-}
+    private void LightenColor()
+    {
+        if (spriteRenderer != null)
+        {
+            Color currentColor = spriteRenderer.color;
+            float lightness = 0.5f; // Adjust as needed
+            spriteRenderer.color = new Color(
+                currentColor.r + lightness,
+                currentColor.g + lightness,
+                currentColor.b + lightness,
+                currentColor.a
+            );
+        }
+    }
+    }
