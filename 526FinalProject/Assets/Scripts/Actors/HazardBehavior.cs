@@ -62,22 +62,44 @@ public class HazardBehavior : MonoBehaviour
 
 
     }
+    /*  void OnCollisionEnter2D(Collision2D collision)
+      {
+          // check if the ghost was recently unpossessed by a hazard and because of it, is currently in an invincible period duration.
+          if(collision.gameObject.CompareTag("Player") && secondChanceFlag==0)
+          {
+              killPlayer();
+          }
+
+          //check if the entity that we are colliding with is the same entity that the player is currently possessing.
+          else if(collision.gameObject.CompareTag("Entity") && player!=null && player.GetComponent<PlayerController>().currentEntity == collision.gameObject.GetComponent<EntityController>())
+          {
+              player.GetComponent<PlayerController>().UnPossess();
+
+              //enable second chance invincibility
+              secondChanceFlag=1;
+          }
+
+      }*/
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // check if the ghost was recently unpossessed by a hazard and because of it, is currently in an invincible period duration.
-        if(collision.gameObject.CompareTag("Player") && secondChanceFlag==0)
+        if (collision.gameObject.CompareTag("Player") && secondChanceFlag == 0)
         {
             killPlayer();
-        }
 
-        //check if the entity that we are colliding with is the same entity that the player is currently possessing.
-        else if(collision.gameObject.CompareTag("Entity") && player!=null && player.GetComponent<PlayerController>().currentEntity == collision.gameObject.GetComponent<EntityController>())
+        }
+        EntityController entity = collision.gameObject.GetComponent<EntityController>();
+        if (entity != null)
         {
-            player.GetComponent<PlayerController>().UnPossess();
 
-            //enable second chance invincibility
-            secondChanceFlag=1;
+            // If the player is currently possessing this entity, unpossess it.
+            if (player.GetComponent<PlayerController>().currentEntity == entity)
+            {
+
+                player.GetComponent<PlayerController>().UnPossess();
+                entity.TakeHazardHit();
+
+            }
         }
+    }
 
     }
-}

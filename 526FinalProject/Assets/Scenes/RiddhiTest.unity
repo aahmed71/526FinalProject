@@ -1228,6 +1228,10 @@ PrefabInstance:
       propertyPath: URL
       value: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdvdPZ1qBTioKrbxavSPT4bf3pNny97N2h6TtgsYOi08x7dyA/formResponse
       objectReference: {fileID: 0}
+    - target: {fileID: 378481176233593826, guid: 3e215a9e67bf1a048ae5569e15e0b420, type: 3}
+      propertyPath: jumpForce
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 809049429427696006, guid: 3e215a9e67bf1a048ae5569e15e0b420, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1294,11 +1298,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327661738033486541, guid: 3e215a9e67bf1a048ae5569e15e0b420, type: 3}
       propertyPath: m_Mass
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5327661738033486541, guid: 3e215a9e67bf1a048ae5569e15e0b420, type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6829,6 +6833,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2081748012}
+  - {fileID: 326074776}
   - {fileID: 832978065}
   - {fileID: 1632026698}
   - {fileID: 2683771353950686182}
@@ -6872,7 +6877,6 @@ SceneRoots:
   - {fileID: 1702835302}
   - {fileID: 1533585731}
   - {fileID: 6940432682433712679}
-  - {fileID: 326074776}
   - {fileID: 57321072}
   - {fileID: 838642713}
   - {fileID: 1045245634}

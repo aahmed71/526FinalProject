@@ -11,6 +11,7 @@ public class LadderMechanics : EntityController
     private Rigidbody2D playerRB;
     public bool isVertical = true;
     private Vector2 initialSize;
+    private float defaultGravityScale = 10.0f;
 
     //analytics
 
@@ -107,7 +108,7 @@ public class LadderMechanics : EntityController
         if (other.CompareTag("Player") || other.CompareTag("Entity"))
         {
             
-            other.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+            other.gameObject.GetComponent<Rigidbody2D>().gravityScale = defaultGravityScale;
             playerRB = null;
             playerInRange = false;
         }

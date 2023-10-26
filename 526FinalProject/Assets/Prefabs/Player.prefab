@@ -104,7 +104,7 @@ MonoBehaviour:
   jumpButton: 32
   possessButton: 101
   speed: 40
-  jumpForce: 1200
+  jumpForce: 4000
   possessionMarkerPrefab: {fileID: 8425516287799090293, guid: d563dcab98861e144bb8c13bb1666c17, type: 3}
   contactFilter:
     useTriggers: 1
@@ -132,10 +132,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
