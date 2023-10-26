@@ -20,7 +20,7 @@ public class EntityController : MonoBehaviour
 
 
     //components
-    public Rigidbody2D rb;
+    protected Rigidbody2D rb;
     void Start()
     {
         //initialize rigidbody
