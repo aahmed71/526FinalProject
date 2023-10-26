@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (possessTarget && !currentEntity)
+        if (possessTarget)
         {
             _possessionMarker.Activate(possessTarget.transform.position, possessTarget.gameObject.GetComponent<EntityController>().markerScale * possessTarget.transform.localScale.x);
         }
