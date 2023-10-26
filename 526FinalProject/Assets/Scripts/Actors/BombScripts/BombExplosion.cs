@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class BombExplosion : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        Collider2D col = collision.collider;
         //explodes certain objects
         if (col.CompareTag("Hazard") || col.CompareTag("Door") || col.CompareTag("Barrier"))
         {

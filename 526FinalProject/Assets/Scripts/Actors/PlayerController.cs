@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private KeyCode possessButton = KeyCode.E;
 
     //analytics
-    private int puzzleBlocksCollected = 0;
+    //private int puzzleBlocksCollected = 0;
 
     //movement
     private float speed = 30.0f;

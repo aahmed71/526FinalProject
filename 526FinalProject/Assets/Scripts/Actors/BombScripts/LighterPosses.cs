@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LighterMechanics : EntityController
 {
-    private bool playerInRange = false;
-    public float fireRange = 5f;
+    private float fireRange = 5f;
 
     protected override void Ability()
     {
