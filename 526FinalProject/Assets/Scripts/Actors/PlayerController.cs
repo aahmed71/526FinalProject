@@ -111,14 +111,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collider)
-    {
-        if (collider.transform.position.y < transform.position.y && !canJump)
-        {
-            canJump = true;
-        }
-    }
-
     private void CheckForEntities()
     {
         //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
