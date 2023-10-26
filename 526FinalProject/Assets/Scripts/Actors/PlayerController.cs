@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     //inputs
     private float horizontalInput;
     private bool jumpInputPrevious = false;
+    //checkpoint code
+    private int deathCount = 3;
 
     //buttons in case we want to change them
     [SerializeField] private KeyCode jumpButton;
@@ -236,10 +238,16 @@ public class PlayerController : MonoBehaviour
 
     public void Die(string s)
     {
+        //checkpoint
+        if(deathCount<1){
+            Time.timeScale = 0.0f;
+            GameOver();
+            GameManager.Instance.GameLose(s);
+        }else{
+            deathCount--;
+            Debug.Log("not yet ded");
+        }
 
-        Time.timeScale = 0.0f;
-        GameOver();
-        GameManager.Instance.GameLose(s);
     }
 
     public void GameOver()
