@@ -23,14 +23,15 @@ public class CannonBallBehaviour : EntityController
         if (!canBePossessed || isFired)
             return;
         
-        //movement
+        base.Move(horizontalInput);
+        /*//movement
         Vector2 movement = new Vector2(horizontalInput, 0.0f);
         //move rigidbody
         rb.AddForce(movement * speed);
 
         float horizv = rb.velocity.x;
         //horizv = Mathf.Clamp(horizv, -maxVelocity, maxVelocity);
-        rb.velocity = new Vector2(horizv, rb.velocity.y);
+        rb.velocity = new Vector2(horizv, rb.velocity.y);*/
     }
 
     public void OnFired(Vector2 forceDir)

@@ -210,9 +210,14 @@ public class PlayerController : MonoBehaviour
         Vector3 pos = transform.position;
         pos.x -= 3 * currentEntity.markerScale;
         pos.y += 3 * currentEntity.markerScale;
-        if (Physics2D.OverlapPoint(pos))
+        if (Physics2D.OverlapCircle(pos, 3))
         {
             pos.x += 6 * currentEntity.markerScale;
+        }
+        if(Physics2D.OverlapCircle(pos, 3))
+        {
+            pos.x = transform.position.x;
+            pos.y += 5;
         }
         transform.position = pos;
         rb.velocity = Vector2.zero;
