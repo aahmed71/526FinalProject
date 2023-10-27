@@ -239,14 +239,18 @@ public class PlayerController : MonoBehaviour
     public void Die(string s)
     {
         //checkpoint
-        if(deathCount<1){
-            Time.timeScale = 0.0f;
-            GameOver();
-            GameManager.Instance.GameLose(s);
-        }else{
-            deathCount--;
-            Debug.Log("not yet ded");
-        }
+        // if(deathCount<1){
+        //     Time.timeScale = 0.0f;
+        //     GameOver();
+        //     GameManager.Instance.GameLose(s);
+        // }else{
+        //     deathCount--;
+        //     Debug.Log("not yet ded");
+        // }
+
+        Time.timeScale = 0.0f;
+        GameOver();
+        GameManager.Instance.GameLose(s);
 
     }
 
@@ -261,6 +265,11 @@ public class PlayerController : MonoBehaviour
         if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
         {
             canJump = true;
+        }
+
+        if (col.transform.CompareTag("CheckPoint"))
+        {
+            Debug.Log("checkpoint found");
         }
     }
 
