@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 4000.0f;
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public EntityController currentEntity = null;
-    private bool canJump = true;
+    [SerializeField] private bool canJump = true;
 
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;
@@ -217,11 +217,11 @@ public class PlayerController : MonoBehaviour
         
         //set position after possessing
         Vector3 pos = transform.position;
-        pos.x -= 1;
-        pos.y += 3;
+        pos.x -= 3;
+        pos.y += 5;
         if (Physics2D.OverlapPoint(pos))
         {
-            pos.x += 2;
+            pos.x += 6;
         }
         transform.position = pos;
         rb.velocity = Vector2.zero;
@@ -257,6 +257,14 @@ public class PlayerController : MonoBehaviour
     }
     
     private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
+        {
+            canJump = true;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
         {
