@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
+        if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15))
         {
             canJump = true;
         }
