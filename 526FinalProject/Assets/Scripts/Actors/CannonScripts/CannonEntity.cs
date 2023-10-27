@@ -15,6 +15,7 @@ public class CannonEntity : EntityController
 
     void Launch()
     {
+        AudioManager.instance.Play("Cannon");
         particles.Play();
         // Create a cannonball prefab instance at the spawn point attached to the cannon launcher rectangle.
         GameObject cannonBall = Instantiate(cannonBallPrefab,firingLocation.position,Quaternion.identity);

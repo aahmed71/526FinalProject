@@ -35,6 +35,7 @@ public class BombMechanics : EntityController
         _animator.SetTrigger("StartExplosion");
         yield return new WaitForSeconds(2.5f);
 
+        AudioManager.instance.Play("Explosion");
         //expand explosion
         _explosion.SetActive(true);
         StartCoroutine(LerpScale(explosionRadius, explosionSpeed));

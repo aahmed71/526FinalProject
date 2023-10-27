@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         //jump
         if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
         {
+            AudioManager.instance.Play("Jump");
             if (currentEntity)
             {
                 currentEntity.Jump();
@@ -202,10 +203,27 @@ public class PlayerController : MonoBehaviour
         currentEntity = entity;
         sr.enabled = false;
         _col.enabled = false;
+        AudioManager.instance.Play("Possess");
     }
 
     public void UnPossess()
     {
+        //set position after possessing
+        Vector3 pos = transform.position;
+        pos.x -= 3 * currentEntity.markerScale;
+        pos.y += 3 * currentEntity.markerScale;
+        if (Physics2D.OverlapCircle(pos, 3))
+        {
+            pos.x += 6 * currentEntity.markerScale;
+        }
+        if(Physics2D.OverlapCircle(pos, 3))
+        {
+            pos.x = transform.position.x;
+            pos.y += 5;
+        }
+        transform.position = pos;
+        rb.velocity = Vector2.zero;
+        
         //player sprite visible
         //collider enabled
         //current entity cleared
@@ -214,17 +232,8 @@ public class PlayerController : MonoBehaviour
         sr.enabled = true;
         currentEntity = null;
         _col.enabled = true;
+        AudioManager.instance.Play("UnPossess");
         
-        //set position after possessing
-        Vector3 pos = transform.position;
-        pos.x -= 1;
-        pos.y += 3;
-        if (Physics2D.OverlapPoint(pos))
-        {
-            pos.x += 2;
-        }
-        transform.position = pos;
-        rb.velocity = Vector2.zero;
     }
 
     public bool IsPossessing()
@@ -248,6 +257,7 @@ public class PlayerController : MonoBehaviour
         //     Debug.Log("not yet ded");
         // }
 
+        AudioManager.instance.Play("Hurt");
         Time.timeScale = 0.0f;
         GameOver();
         GameManager.Instance.GameLose(s);
@@ -270,6 +280,14 @@ public class PlayerController : MonoBehaviour
         if (col.transform.CompareTag("CheckPoint"))
         {
             Debug.Log("checkpoint found");
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15))
+        {
+            canJump = true;
         }
     }
 }
