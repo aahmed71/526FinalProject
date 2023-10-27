@@ -206,6 +206,17 @@ public class PlayerController : MonoBehaviour
 
     public void UnPossess()
     {
+        //set position after possessing
+        Vector3 pos = transform.position;
+        pos.x -= 3 * currentEntity.markerScale;
+        pos.y += 3 * currentEntity.markerScale;
+        if (Physics2D.OverlapPoint(pos))
+        {
+            pos.x += 6 * currentEntity.markerScale;
+        }
+        transform.position = pos;
+        rb.velocity = Vector2.zero;
+        
         //player sprite visible
         //collider enabled
         //current entity cleared
@@ -215,16 +226,6 @@ public class PlayerController : MonoBehaviour
         currentEntity = null;
         _col.enabled = true;
         
-        //set position after possessing
-        Vector3 pos = transform.position;
-        pos.x -= 3;
-        pos.y += 5;
-        if (Physics2D.OverlapPoint(pos))
-        {
-            pos.x += 6;
-        }
-        transform.position = pos;
-        rb.velocity = Vector2.zero;
     }
 
     public bool IsPossessing()
