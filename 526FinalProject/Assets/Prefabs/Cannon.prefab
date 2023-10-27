@@ -337,7 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   markerScale: 3
   cannonBarrel: {fileID: 745892744275376280}
-  firingSpeed: 1000
+  firingSpeed: 10000
   cannonBallPrefab: {fileID: 8939910585007153137, guid: f03e8864207ccec45bf1c3743817d810, type: 3}
   firingLocation: {fileID: 1098053205641793725}
   particles: {fileID: 2126929591332611860}

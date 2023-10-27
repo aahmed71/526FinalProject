@@ -18,6 +18,7 @@ TagManager:
   - Key
   - CheckPoint
   - health
+  - Ladder
   layers:
   - Default
   - TransparentFX

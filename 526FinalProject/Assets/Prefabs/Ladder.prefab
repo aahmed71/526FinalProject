@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markerScale: 5
-  rb: {fileID: 0}
   isVertical: 1
 --- !u!1 &9145884640883807172
 GameObject:
@@ -188,7 +187,7 @@ GameObject:
   - component: {fileID: 3955409822391641704}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

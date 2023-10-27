@@ -96,6 +96,7 @@ public class EntityController : MonoBehaviour
     {
         if (canJump)
         {
+            AudioManager.instance.Play("Jump");
             rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
             canJump = false;
         }

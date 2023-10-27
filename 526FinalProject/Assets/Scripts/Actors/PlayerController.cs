@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
         //jump
         if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
         {
-            AudioManager.instance.Play("Jump");
             if (currentEntity)
             {
                 currentEntity.Jump();
@@ -129,6 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canJump)
         {
+            AudioManager.instance.Play("Jump");
             rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
             canJump = false;
         }
@@ -228,27 +228,32 @@ public class PlayerController : MonoBehaviour
 
     public void UnPossess()
     {
-        //set position after possessing
-        Vector3 pos = transform.position;
-        pos.x -= 3 * currentEntity.markerScale;
-        pos.y += 3 * currentEntity.markerScale;
-        if (Physics2D.OverlapCircle(pos, 3))
+        if (currentEntity)
         {
-            pos.x += 6 * currentEntity.markerScale;
+            //set position after possessing
+            Vector3 pos = transform.position;
+            pos.x -= 3 * currentEntity.markerScale;
+            pos.y += 3 * currentEntity.markerScale;
+            if (Physics2D.OverlapCircle(pos, 3))
+            {
+                pos.x += 6 * currentEntity.markerScale;
+            }
+            if(Physics2D.OverlapCircle(pos, 3))
+            {
+                pos.x = transform.position.x;
+                pos.y += 5;
+            }
+            transform.position = pos;
+            currentEntity.OnUnPossess(this);
         }
-        if(Physics2D.OverlapCircle(pos, 3))
-        {
-            pos.x = transform.position.x;
-            pos.y += 5;
-        }
-        transform.position = pos;
+        
         rb.velocity = Vector2.zero;
         
         //player sprite visible
         //collider enabled
         //current entity cleared
 
-        currentEntity.OnUnPossess(this);
+        
         sr.enabled = true;
         currentEntity = null;
         _col.enabled = true;
@@ -322,7 +327,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump && rb.velocity.y <= 0)
         {
             canJump = true;
         }
@@ -331,14 +336,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15))
+        if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump && rb.velocity.y <= 0)
         {
             canJump = true;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other){
-        Debug.Log("Hi");
         if (other.CompareTag("CheckPoint"))
         {
             // Do something when an enemy enters the trigger.
