@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI; // Add this line to include the UI namespace
+
 // using Unity.Services.Core;
 // using Unity.Services.Core.Environments;
 // using UnityEngine.Analytics;
@@ -24,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
     public bool hasReachedCheckpoint = false;
     private bool hasReachedEndPoint = false;
+    public Image heart1; 
+    public Image heart2; 
+    public Image heart3;
 
     //buttons in case we want to change them
     private KeyCode jumpButton = KeyCode.Space;
@@ -281,6 +287,18 @@ public class PlayerController : MonoBehaviour
         }else{
             deathCount--;
             // Debug.Log("not yet ded");
+            if (deathCount == 2)
+            {
+                heart3.enabled = false; 
+            }
+            else if (deathCount == 1)
+            {
+                heart2.enabled = false; 
+            }
+            else if (deathCount == 0)
+            {
+                heart1.enabled = false; 
+            }
             if(hasReachedCheckpoint){
                 transform.position = checkPoint.position;
             
