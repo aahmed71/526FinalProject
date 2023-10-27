@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         //jump
         if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
         {
+            AudioManager.instance.Play("Jump");
             if (currentEntity)
             {
                 currentEntity.Jump();
@@ -202,6 +203,7 @@ public class PlayerController : MonoBehaviour
         currentEntity = entity;
         sr.enabled = false;
         _col.enabled = false;
+        AudioManager.instance.Play("Possess");
     }
 
     public void UnPossess()
@@ -230,6 +232,7 @@ public class PlayerController : MonoBehaviour
         sr.enabled = true;
         currentEntity = null;
         _col.enabled = true;
+        AudioManager.instance.Play("UnPossess");
         
     }
 
@@ -254,6 +257,7 @@ public class PlayerController : MonoBehaviour
         //     Debug.Log("not yet ded");
         // }
 
+        AudioManager.instance.Play("Hurt");
         Time.timeScale = 0.0f;
         GameOver();
         GameManager.Instance.GameLose(s);
