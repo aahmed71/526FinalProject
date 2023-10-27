@@ -15,6 +15,15 @@ public class PlayerController : MonoBehaviour
     private bool jumpInputPrevious = false;
     //checkpoint code
     private int deathCount = 3;
+    public GameObject startPointObject;
+    public GameObject checkPointObject;
+    public GameObject endPointObject;
+    private Transform startPoint;
+    private Transform endPoint;
+    private Transform checkPoint;
+
+    public bool hasReachedCheckpoint = false;
+    private bool hasReachedEndPoint = false;
 
     //buttons in case we want to change them
     private KeyCode jumpButton = KeyCode.Space;
@@ -52,6 +61,11 @@ public class PlayerController : MonoBehaviour
 
         _possessionMarker = Instantiate(possessionMarkerPrefab).GetComponent<PossessionMarker>();
         _possessionMarker.Deactivate();
+
+        //checkpoint
+        startPoint = startPointObject.transform;
+        endPoint = endPointObject.transform;
+        checkPoint = checkPointObject.transform;
     }
 
     // Update is called once per frame
@@ -244,23 +258,41 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+    //checkpoint
+    public void ReachedCheckpoint()
+    {
+        hasReachedCheckpoint = true;
+    }
+
+    // Call this method when the player reaches the end point.
+    public void ReachedEndPoint()
+    {
+        hasReachedEndPoint = true;
+    }
 
     public void Die(string s)
     {
         //checkpoint
-        // if(deathCount<1){
-        //     Time.timeScale = 0.0f;
-        //     GameOver();
-        //     GameManager.Instance.GameLose(s);
-        // }else{
-        //     deathCount--;
-        //     Debug.Log("not yet ded");
-        // }
-
         AudioManager.instance.Play("Hurt");
-        Time.timeScale = 0.0f;
-        GameOver();
-        GameManager.Instance.GameLose(s);
+        if(deathCount<1){
+            Time.timeScale = 0.0f;
+            GameOver();
+            GameManager.Instance.GameLose(s);
+        }else{
+            deathCount--;
+            // Debug.Log("not yet ded");
+            if(hasReachedCheckpoint){
+                transform.position = checkPoint.position;
+            
+            }else{
+                transform.position = startPoint.position;
+            }
+        }
+
+        
+        // Time.timeScale = 0.0f;
+        // GameOver();
+        // GameManager.Instance.GameLose(s);
 
     }
 
@@ -277,10 +309,6 @@ public class PlayerController : MonoBehaviour
             canJump = true;
         }
 
-        if (col.transform.CompareTag("CheckPoint"))
-        {
-            Debug.Log("checkpoint found");
-        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -288,6 +316,16 @@ public class PlayerController : MonoBehaviour
         if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15))
         {
             canJump = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        Debug.Log("Hi");
+        if (other.CompareTag("CheckPoint"))
+        {
+            // Do something when an enemy enters the trigger.
+            Debug.Log("Enemy entered the trigger!");
+            ReachedCheckpoint();
         }
     }
 }

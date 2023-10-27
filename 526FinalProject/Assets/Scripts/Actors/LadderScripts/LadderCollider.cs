@@ -34,6 +34,17 @@ public class LadderCollider : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             playerInRange = true;
         }
+
+        if (other.CompareTag("CheckPoint"))
+        {
+            Debug.Log("Enemy entered the trigger!");
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.ReachedCheckpoint();
+            }
+            
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

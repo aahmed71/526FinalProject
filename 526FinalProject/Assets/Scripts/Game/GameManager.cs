@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private bool playerLose = false;
     private float pTime;
     private float upTime;
-  
+    private int CheckPoint;
     Dictionary<string, int> possessionCount = new Dictionary<string, int>();
     Dictionary<string, int> unPossessionCount = new Dictionary<string, int>();
 
@@ -59,12 +59,12 @@ public class GameManager : MonoBehaviour
         //analytics
         string currentLevelName = SceneManager.GetActiveScene().name;
         FindObjectOfType<GoogleAnalytics>().CreateSession();
-        if (currentLevelName == "RiddhiTest")
+        if (currentLevelName == "Tutorial Level 1")
         {
             // Call a function in the analytics script
             FindObjectOfType<GoogleAnalytics>().LevelNumber(1);
         }
-        else if(currentLevelName == "Level2")
+        else if(currentLevelName == "Tutorial Level 2")
         {
             FindObjectOfType<GoogleAnalytics>().LevelNumber(2);
         }
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
       // Load the Next Scene
       if (nextLevelName != null)
       {
-        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,unPossessionCount);
+        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,unPossessionCount,1);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -190,18 +190,27 @@ public class GameManager : MonoBehaviour
             Lose.SetActive(true);
 
             //analytics
-            foreach (var kvp in possessionCount)
+            // foreach (var kvp in possessionCount)
+            // {
+            //     Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+            // }
+            // foreach (var kvp in unPossessionCount)
+            // {
+            //     Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+            // }
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
             {
-                Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
-            }
-            foreach (var kvp in unPossessionCount)
-            {
-                Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+                if(playerController.hasReachedCheckpoint){
+                    CheckPoint = 1;
+                }else{
+                    CheckPoint = 0;
+                }
             }
             if(s=="sp"){
-                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,unPossessionCount);
+                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,unPossessionCount,CheckPoint);
             }else{
-                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,unPossessionCount);
+                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,unPossessionCount,CheckPoint);
             }
             
         }

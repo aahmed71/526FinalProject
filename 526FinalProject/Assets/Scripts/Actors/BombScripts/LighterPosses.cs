@@ -44,5 +44,20 @@ public class LighterMechanics : EntityController
         base.OnUnPossess(player);
         GameManager.Instance.CalculateUnPosessionCount("Lighter");
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.CompareTag("CheckPoint"))
+        {
+            Debug.Log("Enemy entered the trigger!");
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.ReachedCheckpoint();
+            }
+            
+        }
+    }
 }
 
