@@ -161,9 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5030a5f5335db6499fd9f091c8e203e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 10000
-  speed: 1200
-  utilityButton: 102
   markerScale: 1
   maxVelocity: 30
   isFired: 0

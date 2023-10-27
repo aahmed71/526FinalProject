@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 4000.0f;
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public EntityController currentEntity = null;
-    [SerializeField] private bool canJump = true;
+    private bool canJump = true;
 
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;

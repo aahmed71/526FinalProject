@@ -335,13 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046c4236a4fba4541a1e9d5c2f459619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 50
-  speed: 60
-  utilityButton: 102
   markerScale: 3
-  rb: {fileID: 0}
   cannonBarrel: {fileID: 745892744275376280}
-  firingSpeed: 10000
+  firingSpeed: 500
   cannonBallPrefab: {fileID: 8939910585007153137, guid: f03e8864207ccec45bf1c3743817d810, type: 3}
   firingLocation: {fileID: 1098053205641793725}
   particles: {fileID: 2126929591332611860}
