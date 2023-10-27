@@ -173,8 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markerScale: 3
-  rb: {fileID: 0}
-  fireRange: 5
+  flameObject: {fileID: 8196371186283238114}
 --- !u!1 &8196371186283238114
 GameObject:
   m_ObjectHideFlags: 0
