@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine;
 using UnityEngine.UI; // Add this line to include the UI namespace
 
 // using Unity.Services.Core;
@@ -231,18 +230,34 @@ public class PlayerController : MonoBehaviour
         if (currentEntity)
         {
             //set position after possessing
-            Vector3 pos = transform.position;
-            pos.x -= 3 * currentEntity.markerScale;
-            pos.y += 3 * currentEntity.markerScale;
-            if (Physics2D.OverlapCircle(pos, 3))
+            Vector3 pos = currentEntity.transform.position;
+            Collider2D entityCollider = currentEntity.GetComponent<Collider2D>();
+            float offsetX = 3 * currentEntity.markerScale;
+            float offsetY = 3 * currentEntity.markerScale;
+            
+            //get bounding box of collider if it has one
+            if (entityCollider)
             {
-                pos.x += 6 * currentEntity.markerScale;
+                Vector3 boundSize = entityCollider.bounds.size;
+                offsetX = boundSize.x / 2 + 3;
+                offsetY = boundSize.y / 2 + 3;
             }
-            if(Physics2D.OverlapCircle(pos, 3))
+
+            //move position to the left side of the entity
+            pos.x -= offsetX;
+
+            //if colliding with something, move position to the right side
+            if (Physics2D.OverlapCircle(pos, 2))
             {
-                pos.x = transform.position.x;
-                pos.y += 5;
+                pos.x += 2 * offsetX;
             }
+            //if it's still colliding, try going directly up
+            if(Physics2D.OverlapCircle(pos, 2))
+            {
+                pos.x -= offsetX;
+                pos.y += offsetY;
+            }
+
             transform.position = pos;
             currentEntity.OnUnPossess(this);
         }
