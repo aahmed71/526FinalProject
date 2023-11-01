@@ -135,45 +135,50 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForEntities()
     {
-        //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
-        Collider2D[] entities = new Collider2D[10];
-        Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
         Collider2D possessTarget = null;
-        foreach (Collider2D entity in entities)
-        {
-            //if we hit something
-            if (entity)
+        if(currentEntity==null){
+            //check if we're overlapping entity, player is on IgnoreRaycast layer so it doesn't get picked up
+            Collider2D[] entities = new Collider2D[10];
+            Physics2D.OverlapCircle((Vector2)transform.position, 8.0f, contactFilter, entities);
+            foreach (Collider2D entity in entities)
             {
-                //check if it has entity tag
-                if (entity.CompareTag("Entity") || entity.CompareTag("PuzzleBlock"))
+                //if we hit something
+                if (entity)
                 {
-                    //checks and gets the closest possessible entity
-                    if (possessTarget)
+                    //check if it has entity tag
+                    if (entity.CompareTag("Entity") || entity.CompareTag("PuzzleBlock"))
                     {
-                        if (Math.Abs(Vector3.Distance(entity.transform.position, transform.position)) <
-                            Math.Abs(Vector3.Distance(possessTarget.transform.position, transform.position)))
+                        //checks and gets the closest possessible entity
+                        if (possessTarget)
+                        {
+                            if (Math.Abs(Vector3.Distance(entity.transform.position, transform.position)) <
+                                Math.Abs(Vector3.Distance(possessTarget.transform.position, transform.position)))
+                            {
+                                possessTarget = entity;
+                            }
+                        }
+                        else
                         {
                             possessTarget = entity;
                         }
                     }
-                    else
-                    {
-                        possessTarget = entity;
-                    }
+
+                    //analytics
+                    // if(entity.CompareTag("PuzzleBlock")){
+                    //         Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
+
+                    //         AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
+                    //         {
+                    //             { "PuzzleBlocksCollected", puzzleBlocksCollected }
+                    //         });
+                    // }
                 }
-
-                //analytics
-                // if(entity.CompareTag("PuzzleBlock")){
-                //         Debug.Log("Puzzle Blocks Collected: " + puzzleBlocksCollected);
-
-                //         AnalyticsEvent.Custom("PuzzleBlocksCollected", new Dictionary<string, object>
-                //         {
-                //             { "PuzzleBlocksCollected", puzzleBlocksCollected }
-                //         });
-                // }
             }
         }
-
+        else
+        {
+            possessTarget = currentEntity.gameObject.GetComponent<Collider2D>();
+        }
         if (possessTarget)
         {
             _possessionMarker.Activate(possessTarget.transform.position, possessTarget.gameObject.GetComponent<EntityController>().markerScale * possessTarget.transform.localScale.x);      
