@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class HazardBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public Transform[] pathArray;
     private int destinationIdx;
     private int totalPoints;
     public float speed = 5.0f;
     private Vector3 directionToDestination;
     public GameObject player;
-
-    // time for which the ghost enjoys invincibility after getting unpossessed by the hazard
     public float invincibilityDuration = 1.5f;
-    // current timer for the invincible period
     private float secondChanceTimer = 0.0f;
-    // if invincible mode is enabled
     private int secondChanceFlag = 0;
 
     void Start()
