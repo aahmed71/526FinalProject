@@ -66,9 +66,6 @@ public class PossessionMarker : MonoBehaviour
 
     public void Deactivate()
     {
-        if(isPossessed){
-            return ;
-        }
         sprite.enabled = false;
         
         
