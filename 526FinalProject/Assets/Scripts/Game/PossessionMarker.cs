@@ -9,6 +9,7 @@ public class PossessionMarker : MonoBehaviour
     [SerializeField] private float endScale;
     [SerializeField] private float scaleSpeed;
     [SerializeField] private SpriteRenderer sprite;
+    public bool isPossessed = false;
 
 
 
@@ -20,6 +21,9 @@ public class PossessionMarker : MonoBehaviour
 
     IEnumerator LerpScale(float start, float end)
     {
+        if(isPossessed){
+            start=end;
+        }
         float timer = 0;
         while(timer < 1)
         {
@@ -33,12 +37,16 @@ public class PossessionMarker : MonoBehaviour
 
         transform.localScale = new Vector3(end, end, 1.0f);
         
-        RestartScale(start, end);
+        RestartScale(start, end);        
     }
 
     void RestartScale(float start, float end)
     {
-        if (start == startScale)
+        if(isPossessed)
+        {
+            StartCoroutine(LerpScale(endScale, endScale));
+        }
+        else if (start == startScale)
         {
             StartCoroutine(LerpScale(endScale, startScale));
         }
@@ -58,7 +66,12 @@ public class PossessionMarker : MonoBehaviour
 
     public void Deactivate()
     {
+        if(isPossessed){
+            return ;
+        }
         sprite.enabled = false;
+        
+        
     }
     public void AdjustScale(float newScale)
     {

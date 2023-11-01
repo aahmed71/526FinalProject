@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
         if (possessTarget)
         {
-            _possessionMarker.Activate(possessTarget.transform.position, possessTarget.gameObject.GetComponent<EntityController>().markerScale * possessTarget.transform.localScale.x);
+            _possessionMarker.Activate(possessTarget.transform.position, possessTarget.gameObject.GetComponent<EntityController>().markerScale * possessTarget.transform.localScale.x);      
         }
         else
         {
@@ -218,6 +218,7 @@ public class PlayerController : MonoBehaviour
         //player sprite invisible
         //collider disabled
         //current entity set
+        _possessionMarker.isPossessed = true;
         entity.OnPossess(this);
         currentEntity = entity;
         sr.enabled = false;
@@ -270,6 +271,7 @@ public class PlayerController : MonoBehaviour
 
         
         sr.enabled = true;
+        _possessionMarker.isPossessed = false;
         currentEntity = null;
         _col.enabled = true;
         AudioManager.instance.Play("UnPossess");
