@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class LevelManagerScript : MonoBehaviour
 {
-    public string dsadsa;
     public void LoadLevel(string levelNumber)
     {
-        SceneManager.LoadScene("Level" + levelNumber);
+        SceneManager.LoadScene("Tutorial Level " + levelNumber);
     }
 }
