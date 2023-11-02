@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class HazardBehavior : MonoBehaviour
     public float invincibilityDuration = 1.5f;
     private float secondChanceTimer = 0.0f;
     private int secondChanceFlag = 0;
+    [SerializeField] private float detectionRadius = 10.0f;
 
     void Start()
     {
@@ -28,27 +30,40 @@ public class HazardBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check if second chance invincibility is enabled, if yes then maintain the timer
-        if(secondChanceFlag==1 && secondChanceTimer<invincibilityDuration)
+        // Calculate the distance between the GameObject and the player
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+
+        // If the player is within the detection radius
+        if (distance <= detectionRadius)
         {
-            secondChanceTimer+=Time.deltaTime;
+            // Move the GameObject towards the player
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
         else
         {
-            secondChanceFlag=0;
-            secondChanceTimer=0.0f;
+            // check if second chance invincibility is enabled, if yes then maintain the timer
+            if(secondChanceFlag==1 && secondChanceTimer<invincibilityDuration)
+            {
+                secondChanceTimer+=Time.deltaTime;
+            }
+            else
+            {
+                secondChanceFlag=0;
+                secondChanceTimer=0.0f;
+            }
+
+            directionToDestination = pathArray[destinationIdx].position-transform.position;
+            if(directionToDestination.magnitude > 1)
+            {
+                directionToDestination.Normalize();
+                transform.position += directionToDestination * speed * Time.deltaTime;
+            }
+            else
+            {
+                destinationIdx = (destinationIdx+1)%totalPoints;
+            }            
         }
 
-        directionToDestination = pathArray[destinationIdx].position-transform.position;
-        if(directionToDestination.magnitude > 1)
-        {
-            directionToDestination.Normalize();
-            transform.position += directionToDestination * speed * Time.deltaTime;
-        }
-        else
-        {
-            destinationIdx = (destinationIdx+1)%totalPoints;
-        }
     }
      
     void killPlayer()
