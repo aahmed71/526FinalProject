@@ -3,30 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Entity
-  - UI
-  - Enemy
-  - Light
-  - Spike
-  - FinishLine
-  - Wall
-  - Hazard
-  - PuzzleBlock
-  - Door
-  - Barrier
-  - Key
-  - CheckPoint
-  - health
-  - Ladder
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Entity
+  - 
   - 
   - 
   - 
