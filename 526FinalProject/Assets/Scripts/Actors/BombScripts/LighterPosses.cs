@@ -64,7 +64,7 @@ public class LighterMechanics : EntityController
     // Unity's OnTriggerEnter2D method, called when another collider enters this object's trigger collider
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("CheckPoint"))
+        if (other.CompareTag("CheckPoint") && isPossessed)
         {
             Debug.Log("Enemy entered the trigger!");
             PlayerController playerController = FindObjectOfType<PlayerController>();

@@ -39,7 +39,7 @@ public class LadderCollider : MonoBehaviour
         {
             Debug.Log("Enemy entered the trigger!");
             PlayerController playerController = FindObjectOfType<PlayerController>();
-            if (playerController != null)
+            if (playerController != null && playerController.IsPossessing())
             {
                 playerController.ReachedCheckpoint();
             }
