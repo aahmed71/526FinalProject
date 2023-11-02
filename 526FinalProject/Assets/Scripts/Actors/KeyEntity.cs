@@ -27,7 +27,7 @@ public class KeyEntity : EntityController
             PlayerController playerController = FindObjectOfType<PlayerController>();
             if (playerController != null)
             {
-                playerController.ReachedCheckpoint();
+                playerController.ReachedCheckpoint(other.transform.position);
             }
             
         }

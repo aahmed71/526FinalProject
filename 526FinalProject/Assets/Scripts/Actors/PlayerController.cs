@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Transform startPoint;
     private Transform endPoint;
     private Transform checkPoint;
+    public GameObject checkpointNotif;
 
     public bool hasReachedCheckpoint = false;
     private bool hasReachedEndPoint = false;
@@ -292,8 +293,14 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     //checkpoint
-    public void ReachedCheckpoint()
+    public void ReachedCheckpoint(Vector3 position)
     {
+        if (!hasReachedCheckpoint)
+        {
+            GameObject notif = Instantiate(checkpointNotif, position, Quaternion.identity);
+            Destroy(notif, 3);
+        }
+        
         hasReachedCheckpoint = true;
     }
 
@@ -369,7 +376,7 @@ public class PlayerController : MonoBehaviour
         {
             // Do something when an enemy enters the trigger.
             Debug.Log("Enemy entered the trigger!");
-            ReachedCheckpoint();
+            ReachedCheckpoint(other.transform.position);
         }
     }
 }

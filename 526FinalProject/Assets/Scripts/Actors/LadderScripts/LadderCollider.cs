@@ -41,7 +41,7 @@ public class LadderCollider : MonoBehaviour
             PlayerController playerController = FindObjectOfType<PlayerController>();
             if (playerController != null && playerController.IsPossessing())
             {
-                playerController.ReachedCheckpoint();
+                playerController.ReachedCheckpoint(other.transform.position);
             }
             
         }
