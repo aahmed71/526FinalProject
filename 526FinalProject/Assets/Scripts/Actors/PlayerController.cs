@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
     private Transform startPoint;
     private Transform endPoint;
     private Transform checkPoint;
+<<<<<<< Updated upstream
     public GameObject checkpointNotif;
+=======
+    public float timeToReachCheckpoint;
+>>>>>>> Stashed changes
 
     public bool hasReachedCheckpoint = false;
     private bool hasReachedEndPoint = false;
@@ -295,6 +299,7 @@ public class PlayerController : MonoBehaviour
     //checkpoint
     public void ReachedCheckpoint(Vector3 position)
     {
+<<<<<<< Updated upstream
         if (!hasReachedCheckpoint)
         {
             GameObject notif = Instantiate(checkpointNotif, position, Quaternion.identity);
@@ -302,6 +307,13 @@ public class PlayerController : MonoBehaviour
         }
         
         hasReachedCheckpoint = true;
+=======
+        if(!hasReachedCheckpoint){
+            hasReachedCheckpoint = true;
+            timeToReachCheckpoint = Time.time;
+        }
+        
+>>>>>>> Stashed changes
     }
 
     // Call this method when the player reaches the end point.

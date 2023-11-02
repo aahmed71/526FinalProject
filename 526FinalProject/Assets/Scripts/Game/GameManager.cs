@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
     private float pTime;
     private float upTime;
     private int CheckPoint;
+    private int checkpointTime;
     Dictionary<string, int> possessionCount = new Dictionary<string, int>();
-    Dictionary<string, int> unPossessionCount = new Dictionary<string, int>();
+    
 
     private string platform;
 
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
     [SerializeField] public GameObject PauseButton;
-    
+    PlayerController playerController = FindObjectOfType<PlayerController>();
 
 
 
@@ -127,15 +128,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-     public void CalculateUnPosessionCount(string objname){
-        Debug.Log("In UnPossession Count");
-        if(unPossessionCount.ContainsKey(objname)){
-            unPossessionCount[objname]++;
-        }else{
-            unPossessionCount[objname] = 1;
-        }
-    }
-
    public void ResetGame()
     {
         Time.timeScale = 1; // Ensure game is resumed before resetting
@@ -153,7 +145,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
 
   public void LoadNextLevel()
   {
@@ -161,7 +157,8 @@ public class GameManager : MonoBehaviour
       // Load the Next Scene
       if (nextLevelName != null)
       {
-        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,unPossessionCount,1);
+        checkpointTime = playerController.timeToReachCheckpoint;
+        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,unPossessionCount,1,checkpointTime);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -183,28 +180,21 @@ public class GameManager : MonoBehaviour
             PauseButton.SetActive(false);
             Lose.SetActive(true);
 
-            //analytics
-            // foreach (var kvp in possessionCount)
-            // {
-            //     Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
-            // }
-            // foreach (var kvp in unPossessionCount)
-            // {
-            //     Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
-            // }
-            PlayerController playerController = FindObjectOfType<PlayerController>();
+            
             if (playerController != null)
             {
                 if(playerController.hasReachedCheckpoint){
                     CheckPoint = 1;
+                    checkpointTime = playerController.timeToReachCheckpoint;
                 }else{
                     CheckPoint = 0;
+                    checkpointTime = 0.0f;
                 }
             }
             if(s=="sp"){
-                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,unPossessionCount,CheckPoint);
+                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,unPossessionCount,CheckPoint,checkpointTime);
             }else{
-                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,unPossessionCount,CheckPoint);
+                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,unPossessionCount,CheckPoint,checkpointTime);
             }
             
         }
