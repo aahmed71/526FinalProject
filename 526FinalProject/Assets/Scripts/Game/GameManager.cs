@@ -221,6 +221,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void BackToLevelSelect()
+    {
+        SceneManager.LoadScene("LevelsSwitcher");
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

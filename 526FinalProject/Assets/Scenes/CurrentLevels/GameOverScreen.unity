@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2558f58973b3a4e4086458b98f8e5fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: RiddhiTest
+  scene: LevelsSwitcher
 --- !u!1 &230875254
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +416,6 @@ GameObject:
   - component: {fileID: 230875258}
   - component: {fileID: 230875257}
   - component: {fileID: 230875256}
-  - component: {fileID: 230875255}
   m_Layer: 5
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -424,18 +423,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &230875255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230875254}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b44f45d74bdef6b46934dbd329b7fb6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &230875256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,13 +825,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  pausePanel: {fileID: 0}
   nextLevelName: 
   Pause: {fileID: 0}
   Win: {fileID: 0}
   Lose: {fileID: 0}
   PauseButton: {fileID: 0}
-  SaveData: {fileID: 0}
 --- !u!212 &1278626050
 SpriteRenderer:
   m_ObjectHideFlags: 0

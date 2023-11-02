@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CurrentLevels/Tutorial Level 5.unity
     guid: a76b4cb68ca2b4841ad4d9d51196afbd
   - enabled: 1
-    path: Assets/Scenes/GameOverScreen.unity
+    path: Assets/Scenes/CurrentLevels/GameOverScreen.unity
     guid: e524abc5a3063b34f89c4a1bc98f7eff
   - enabled: 1
     path: Assets/Scenes/CurrentLevels/LevelsSwitcher.unity
