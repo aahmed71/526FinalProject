@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: e524abc5a3063b34f89c4a1bc98f7eff
+  - enabled: 1
+    path: Assets/Scenes/CurrentLevels/LevelsSwitcher.unity
+    guid: 33ab74aaeaa54b24badc52746c27adfd
   m_configObjects: {}
