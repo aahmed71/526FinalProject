@@ -34,8 +34,10 @@ public class GoogleAnalytics : MonoBehaviour
     private int cannonBallG = 0;
     
     private int keyG = 0;
+    private int diceG = 0;
 
     private int _checkPoint;
+    private float _checkpointTime;
     Dictionary<string,int> _possessionC = new Dictionary<string, int>();
    
     
@@ -71,10 +73,11 @@ public class GoogleAnalytics : MonoBehaviour
     //     Send();
     // }
     
-    public void Send(int h, int s, string platform, Dictionary<string, int> possessionC, Dictionary<string, int> uPossessionC, int checkpoint){
+    public void Send(int h, int s, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime){
         Debug.Log("In Send");
         _hazardKill = h;
         _spikeKill = s;
+        _checkpointTime = checkpointTime - _playTime;
         _playTime = Time.time - _playTime;
         _platform = platform;
         _possessionC = possessionC;
@@ -109,13 +112,17 @@ public class GoogleAnalytics : MonoBehaviour
             cannonBallG = possessionC["CannonBall"];
           
         }
+        if(possessionC.ContainsKey("Dice")){
+            diceG = possessionC["Dice"];
+          
+        }
     
         
         StartCoroutine(Post(_sessionID.ToString(),_levelNo.ToString(),_playTime.ToString(),_hazardKill.ToString(),_spikeKill.ToString(),_platform.ToString(),ladderG.ToString()
-        ,candleG.ToString(),bombG.ToString(),puzzleG.ToString(),keyG.ToString(),cannonG.ToString(),cannonBallG.ToString(),_checkPoint.ToString()));
+        ,candleG.ToString(),bombG.ToString(),puzzleG.ToString(),keyG.ToString(),cannonG.ToString(),cannonBallG.ToString(),diceG.ToString(),_checkPoint.ToString(),_checkpointTime.ToString()));
     }
 
-    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string checkP){
+    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string dG, string checkP, string checkPT){
         WWWForm form = new WWWForm();
         
      
@@ -139,8 +146,9 @@ public class GoogleAnalytics : MonoBehaviour
         form.AddField("entry.1677242169",cG);
  
         form.AddField("entry.1897689406",cBG);
-    
+        form.AddField("entry.1897689406",dG);
         form.AddField("entry.228839282",checkP);
+        form.AddField("entry.228839282",checkPT);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL,form)){
             yield return www.SendWebRequest();

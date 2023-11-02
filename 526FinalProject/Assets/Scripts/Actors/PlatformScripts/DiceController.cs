@@ -40,13 +40,13 @@ public class DiceController : EntityController
     public override void OnPossess(PlayerController player)
     {
         base.OnPossess(player);
-        // GameManager.Instance.CalculatePosessionCount("Lighter");
+        GameManager.Instance.CalculatePosessionCount("Dice");
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        // GameManager.Instance.CalculateUnPosessionCount("Lighter");
+        
     }
 
     protected override void Ability()

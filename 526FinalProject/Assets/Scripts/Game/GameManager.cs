@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private float pTime;
     private float upTime;
     private int CheckPoint;
-    private int checkpointTime;
+    private float checkpointTime;
     Dictionary<string, int> possessionCount = new Dictionary<string, int>();
     
 
@@ -41,8 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
     [SerializeField] public GameObject PauseButton;
-    PlayerController playerController = FindObjectOfType<PlayerController>();
-
+    
 
 
     public static GameManager Instance
@@ -74,8 +73,16 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<GoogleAnalytics>().LevelNumber(2);
         }
-        else{
+        else if(currentLevelName == "Tutorial Level 3")
+        {
             FindObjectOfType<GoogleAnalytics>().LevelNumber(3);
+        }
+        else if(currentLevelName == "Tutorial Level 4")
+        {
+            FindObjectOfType<GoogleAnalytics>().LevelNumber(4);
+        }
+        else{
+            FindObjectOfType<GoogleAnalytics>().LevelNumber(5);
         }
 
         if(Application.platform == RuntimePlatform.WebGLPlayer)
@@ -145,11 +152,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
-<<<<<<< Updated upstream
     
-=======
 
->>>>>>> Stashed changes
 
   public void LoadNextLevel()
   {
@@ -157,8 +161,9 @@ public class GameManager : MonoBehaviour
       // Load the Next Scene
       if (nextLevelName != null)
       {
+        PlayerController playerController = FindObjectOfType<PlayerController>();
         checkpointTime = playerController.timeToReachCheckpoint;
-        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,unPossessionCount,1,checkpointTime);
+        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,1,checkpointTime);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -180,7 +185,8 @@ public class GameManager : MonoBehaviour
             PauseButton.SetActive(false);
             Lose.SetActive(true);
 
-            
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+
             if (playerController != null)
             {
                 if(playerController.hasReachedCheckpoint){
@@ -192,9 +198,9 @@ public class GameManager : MonoBehaviour
                 }
             }
             if(s=="sp"){
-                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,unPossessionCount,CheckPoint,checkpointTime);
+                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,CheckPoint,checkpointTime);
             }else{
-                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,unPossessionCount,CheckPoint,checkpointTime);
+                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,CheckPoint,checkpointTime);
             }
             
         }
