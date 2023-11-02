@@ -12,6 +12,7 @@ public class BombMechanics : EntityController
     [SerializeField] private GameObject rangeIndicator;
     [SerializeField] private float explosionSpeed = 0.3f;
     bool isGonnaBlow = false;
+    private bool willExplode = false;
     
     public void Explode()
     {
@@ -32,6 +33,11 @@ public class BombMechanics : EntityController
 
     private IEnumerator DestroyBombWithDelay()
     {
+        if (willExplode)
+        {
+            yield break;
+        }
+        willExplode = true;
         _animator.SetTrigger("StartExplosion");
         yield return new WaitForSeconds(2.5f);
 

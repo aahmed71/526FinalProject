@@ -12,12 +12,26 @@ public class LighterMechanics : EntityController
     {
         if (flameObject != null)
         {
-            flameObject.SetActive(true); // Activate the flame object
+            if (flameObject.activeSelf)
+            {
+                flameObject.SetActive(false); // Deactivate the flame object
+            }
+            else
+            {
+                flameObject.SetActive(true); // Activate the flame object
+            }
+        }
+    }
+
+    protected override void OnUpdate()
+    {
+        base.OnUpdate();
+        if (flameObject.activeSelf)
+        {
             IgniteNearbyBombs(); // Ignite nearby bombs
         }
     }
 
-    
 
     // Method to check for and ignite nearby bombs
     private void IgniteNearbyBombs()

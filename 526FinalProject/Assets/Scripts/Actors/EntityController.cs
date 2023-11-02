@@ -45,6 +45,11 @@ public class EntityController : MonoBehaviour
 
     public virtual void Update()
     {
+        OnUpdate();
+    }
+
+    protected virtual void OnUpdate()
+    {
         if (isPossessed && Input.GetKeyDown(utilityButton))
         {
             Ability();
