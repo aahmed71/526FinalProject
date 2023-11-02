@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private float upTime;
     private int CheckPoint;
     private float checkpointTime;
+    private int spawnCount;
     Dictionary<string, int> possessionCount = new Dictionary<string, int>();
     
 
@@ -135,6 +136,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void CountBombSpawns(){
+        spawnCount++;
+    }
+
    public void ResetGame()
     {
         Time.timeScale = 1; // Ensure game is resumed before resetting
@@ -163,7 +168,7 @@ public class GameManager : MonoBehaviour
       {
         PlayerController playerController = FindObjectOfType<PlayerController>();
         checkpointTime = playerController.timeToReachCheckpoint;
-        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,1,checkpointTime);
+        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,1,checkpointTime,spawnCount);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -198,9 +203,9 @@ public class GameManager : MonoBehaviour
                 }
             }
             if(s=="sp"){
-                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,CheckPoint,checkpointTime);
+                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
             }else{
-                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,CheckPoint,checkpointTime);
+                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
             }
             
         }

@@ -73,7 +73,7 @@ public class GoogleAnalytics : MonoBehaviour
     //     Send();
     // }
     
-    public void Send(int h, int s, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime){
+    public void Send(int h, int s, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime, int spawnCount){
         Debug.Log("In Send");
         _hazardKill = h;
         _spikeKill = s;

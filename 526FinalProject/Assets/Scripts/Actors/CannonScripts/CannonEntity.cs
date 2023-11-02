@@ -32,6 +32,7 @@ public class CannonEntity : EntityController
     protected override void Ability()
     {
         Launch();
+    
     }
 
     public override void Move(float horizontalInput)
