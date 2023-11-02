@@ -21,12 +21,12 @@ public class EntityController : MonoBehaviour
 
     //components
     protected Rigidbody2D rb;
-    void Start()
+    protected virtual void Start()
     {
         OnStart();
     }
 
-    protected void OnStart()
+    protected virtual void OnStart()
     {
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
