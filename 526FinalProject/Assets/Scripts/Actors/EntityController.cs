@@ -58,7 +58,7 @@ public class EntityController : MonoBehaviour
 
     protected void CheckJump(Transform col)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 5 * markerScale) && !canJump && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 5 * markerScale) && !canJump)
         {
             canJump = true;
         }
@@ -67,6 +67,14 @@ public class EntityController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         CheckJump(col.transform);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (rb.velocity.y <= 0)
+        {
+            CheckJump(collision.transform);
+        }
     }
 
     //function for when the player first initially possesses entity
