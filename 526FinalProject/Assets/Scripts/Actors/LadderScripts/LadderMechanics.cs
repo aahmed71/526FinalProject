@@ -23,7 +23,7 @@ public class LadderMechanics : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        GameManager.Instance.CalculateUnPosessionCount("Ladder");
+       
     }
 
     void SetVertical()

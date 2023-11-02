@@ -12,6 +12,7 @@ public class BombSpawner : MonoBehaviour
         if (bombInstance == null && obstacle != null)
         {
             bombInstance = Instantiate(bombPrefab, transform.position, Quaternion.identity);
+            
         }
     }
 }

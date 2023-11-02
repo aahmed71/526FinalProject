@@ -60,7 +60,7 @@ public class CannonEntity : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        GameManager.Instance.CalculateUnPosessionCount("Cannon");
+       
     }
 
     

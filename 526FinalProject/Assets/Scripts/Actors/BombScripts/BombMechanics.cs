@@ -87,7 +87,6 @@ public class BombMechanics : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        GameManager.Instance.CalculateUnPosessionCount("Bomb");
         if(!isGonnaBlow)
             rangeIndicator.SetActive(false);
     }

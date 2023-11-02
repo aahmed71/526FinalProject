@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
                     if (GameManager.Instance)
                     {
                         GameManager.Instance.CalculatePosessionCount("PuzzleBlock");
-                        GameManager.Instance.BlockPossessTime(puzzleTime);
+                        
                     }
                 }
                 

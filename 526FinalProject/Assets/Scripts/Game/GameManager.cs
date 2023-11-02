@@ -153,18 +153,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
-    public void BlockPossessTime(float posessTime){
-        Debug.Log("In block possess time");
-        pTime = posessTime;
-    }
-
-    public void BlockUnPossessTime(float unpossessTime){
-        Debug.Log("In Block unpossess time");
-        upTime = unpossessTime - pTime;
-        Debug.Log(upTime);
-        FindObjectOfType<GoogleAnalytics>().BlockMechanics(upTime);
-
-    }
+    
 
   public void LoadNextLevel()
   {
