@@ -126,7 +126,7 @@ public class EntityController : MonoBehaviour
         hazardHits++;
         if (hazardHits >= maxHazardHits)
         {
-            BecomeUnpossessable();
+            //BecomeUnpossessable();
 
         }
     }
