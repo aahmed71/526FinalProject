@@ -51,12 +51,11 @@ public class PlayerController : MonoBehaviour
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;
     [NonSerialized] public Collider2D _col;
-    public TextMeshProUGUI popupText; 
-    public Image popupImage;
-    
+
     [SerializeField] private GameObject possessionMarkerPrefab;
     private PossessionMarker _possessionMarker;
     [SerializeField] private ContactFilter2D contactFilter;
+    public GameObject lostLifeNotif;
 
     // Start is called before the first frame update
     void Start()
@@ -77,9 +76,6 @@ public class PlayerController : MonoBehaviour
         startPoint = startPointObject.transform;
         endPoint = endPointObject.transform;
         checkPoint = checkPointObject.transform;
-
-        popupText.enabled = false;
-        popupImage.enabled = false;
     }
 
     // Update is called once per frame
@@ -324,16 +320,12 @@ public class PlayerController : MonoBehaviour
         hasReachedEndPoint = true;
     }
 
-    private void EnablePopupUIElements(bool enable)
+    private void EnablePopupUIElements()
     {
-        popupText.enabled = enable;
-        popupImage.enabled = enable;
-    }
-
-    private IEnumerator DisablePopupUIElements(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        EnablePopupUIElements(false); // Disable the Text and Image
+        Vector3 temp = transform.position;
+        temp.y += 3;
+        GameObject notif = Instantiate(lostLifeNotif, temp, Quaternion.identity);
+        Destroy(notif, 2);
     }
 
 
@@ -346,8 +338,6 @@ public class PlayerController : MonoBehaviour
         }else{
                 deathCountDict[s] = 1;
         }
-        EnablePopupUIElements(true);
-        StartCoroutine(DisablePopupUIElements(1.0f));
         if(deathCount<1){
             
             Time.timeScale = 0.0f;
@@ -374,6 +364,7 @@ public class PlayerController : MonoBehaviour
             }else{
                 transform.position = startPoint.position;
             }
+            EnablePopupUIElements();
         }
 
         
