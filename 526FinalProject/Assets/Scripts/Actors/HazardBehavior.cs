@@ -16,9 +16,11 @@ public class HazardBehavior : MonoBehaviour
     private float secondChanceTimer = 0.0f;
     private int secondChanceFlag = 0;
     [SerializeField] private float detectionRadius = 10.0f;
+    private GameObject chaseModeUI;
 
     void Start()
     {
+        chaseModeUI = transform.GetChild(1).gameObject;
         totalPoints = pathArray.Length;
         destinationIdx = Mathf.Min(1,totalPoints-1);
         if(totalPoints>0)
@@ -36,11 +38,14 @@ public class HazardBehavior : MonoBehaviour
         // If the player is within the detection radius
         if (distance <= detectionRadius)
         {
+            chaseModeUI.SetActive(true);
+
             // Move the GameObject towards the player
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
         else
         {
+            chaseModeUI.SetActive(false);
             // check if second chance invincibility is enabled, if yes then maintain the timer
             if(secondChanceFlag==1 && secondChanceTimer<invincibilityDuration)
             {
