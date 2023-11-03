@@ -717,7 +717,7 @@ MonoBehaviour:
   speed: 5
   player: {fileID: 0}
   invincibilityDuration: 1.5
-  detectionRadius: 10
+  detectionRadius: 30
 --- !u!58 &8231364986730844975
 CircleCollider2D:
   m_ObjectHideFlags: 0
