@@ -27,9 +27,10 @@ public class GameManager : MonoBehaviour
     private int spawnCount;
     Dictionary<string, int> possessionCount = new Dictionary<string, int>();
     Dictionary<string, int> deathDict = new Dictionary<string, int>();
-    
+    public DiceController diceController; 
 
     private string platform;
+    private int platformChangeCount;
 
 
     //end of analytics
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(Application.platform.ToString());
             platform = Application.platform.ToString();
         }
-
+        diceController = GameObject.Find("Dice").GetComponent<DiceController>();
         //end of analytics
     }
 
@@ -170,7 +171,14 @@ public class GameManager : MonoBehaviour
         PlayerController playerController = FindObjectOfType<PlayerController>();
         checkpointTime = playerController.timeToReachCheckpoint;
         deathDict = playerController.deathCountDict;
-        FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,1,checkpointTime,spawnCount);
+        if(diceController!=null){
+            platformChangeCount = diceController.totalAbilityFunctionCalls;
+            Debug.Log("platform count" + platformChangeCount);
+        }else{
+            platformChangeCount = 0;
+        }
+        
+        FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,1,checkpointTime,spawnCount,platformChangeCount);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -194,6 +202,13 @@ public class GameManager : MonoBehaviour
 
             PlayerController playerController = FindObjectOfType<PlayerController>();
             deathDict = playerController.deathCountDict;
+            if(diceController!=null){
+            platformChangeCount = diceController.totalAbilityFunctionCalls;
+            Debug.Log("platform count" + platformChangeCount);
+            }else{
+                platformChangeCount = 0;
+            }
+            Debug.Log("platform count" + platformChangeCount);
 
             if (playerController != null)
             {
@@ -208,7 +223,7 @@ public class GameManager : MonoBehaviour
             }
             
             
-            FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
+            FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,CheckPoint,checkpointTime,spawnCount,platformChangeCount);
           
             
         }

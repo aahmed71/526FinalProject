@@ -20,6 +20,9 @@ public class DiceController : EntityController
     private bool isShrinking = false;
     private Vector3 originalScale;
     private float timeLeftOnShrinking = 0f;
+    private int abilityFunctionCalls = 0; 
+    public int totalAbilityFunctionCalls = 0;
+    
 
     protected override void Start()
     {
@@ -85,11 +88,14 @@ public class DiceController : EntityController
         base.OnUnPossess(player);
         timeLeftOnShrinking = nextSizeReductionTime - Time.time;
         isShrinking = false;
+        totalAbilityFunctionCalls += abilityFunctionCalls;
+       
+        abilityFunctionCalls = 0;
     }
 
     protected override void Ability()
     {
-        currentState = (currentState + 1) % textNumbers.Length;
+            currentState = (currentState + 1) % textNumbers.Length;
 
             
             textDisplay.text = textNumbers[currentState];
@@ -104,5 +110,7 @@ public class DiceController : EntityController
             {
                 platform2.transform.position = platform2Positions[currentState];
             }
+
+            abilityFunctionCalls++;
     }
 }

@@ -40,6 +40,7 @@ public class GoogleAnalytics : MonoBehaviour
     private int _checkPoint;
     private float _checkpointTime;
     private int _spawnCount;
+    private int _platformChange;
     Dictionary<string,int> _possessionC = new Dictionary<string, int>();
     Dictionary<string,int> _deathC = new Dictionary<string, int>();
    
@@ -76,7 +77,7 @@ public class GoogleAnalytics : MonoBehaviour
     //     Send();
     // }
     
-    public void Send(Dictionary<string, int> deathC, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime, int spawnCount){
+    public void Send(Dictionary<string, int> deathC, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime, int spawnCount, int platformChange){
         Debug.Log("In Send");
         _deathC = deathC;
         foreach (string key in _deathC.Keys)
@@ -115,6 +116,8 @@ public class GoogleAnalytics : MonoBehaviour
         _possessionC = possessionC;
         _checkPoint = checkpoint;
         _spawnCount = spawnCount;
+        _platformChange = platformChange;
+        Debug.Log("Platform change in google" + _platformChange);
 
         if(possessionC.ContainsKey("Ladder")){
             ladderG = possessionC["Ladder"];
@@ -151,10 +154,10 @@ public class GoogleAnalytics : MonoBehaviour
     
         
         StartCoroutine(Post(_sessionID.ToString(),_levelNo.ToString(),_playTime.ToString(),_hazardKill.ToString(),_spikeKill.ToString(),_spiderKill.ToString(),_platform.ToString(),ladderG.ToString()
-        ,candleG.ToString(),bombG.ToString(),puzzleG.ToString(),keyG.ToString(),cannonG.ToString(),cannonBallG.ToString(),diceG.ToString(),_checkPoint.ToString(),_checkpointTime.ToString(),_spawnCount.ToString()));
+        ,candleG.ToString(),bombG.ToString(),puzzleG.ToString(),keyG.ToString(),cannonG.ToString(),cannonBallG.ToString(),diceG.ToString(),_checkPoint.ToString(),_checkpointTime.ToString(),_spawnCount.ToString(),_platformChange.ToString()));
     }
 
-    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Spider, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string dG, string checkP, string checkPT, string spawnC){
+    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Spider, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string dG, string checkP, string checkPT, string spawnC, string platformChangeC){
         WWWForm form = new WWWForm();
         Debug.Log("Hazard, Spike, Spider" + Hazard + Spike + Spider);
      
@@ -176,6 +179,7 @@ public class GoogleAnalytics : MonoBehaviour
         form.AddField("entry.740446742",checkP);
         form.AddField("entry.704116263",checkPT);
         form.AddField("entry.1647848990",spawnC);
+        form.AddField("entry.1695227402",platformChangeC);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL,form)){
             yield return www.SendWebRequest();
