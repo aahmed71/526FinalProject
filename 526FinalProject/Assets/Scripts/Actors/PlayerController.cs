@@ -303,10 +303,11 @@ public class PlayerController : MonoBehaviour
             Destroy(notif, 3);
         }
         
-        hasReachedCheckpoint = true;
+     
         if(!hasReachedCheckpoint){
             hasReachedCheckpoint = true;
             timeToReachCheckpoint = Time.time;
+            Debug.Log("checkpoint time in player controller" + timeToReachCheckpoint);
         }
         
     }
@@ -326,6 +327,7 @@ public class PlayerController : MonoBehaviour
         }else{
                 deathCountDict[s] = 1;
         }
+       
         if(deathCount<1){
             
             Time.timeScale = 0.0f;

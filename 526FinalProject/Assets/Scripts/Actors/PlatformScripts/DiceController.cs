@@ -14,6 +14,12 @@ public class DiceController : EntityController
     public Vector3[] platform2Positions; 
 
     private int currentState = 0; 
+    private float sizeReductionTimer = 2.0f;
+    private float sizeReductionAmount = 1.0f; // Adjust the value as needed
+    private float nextSizeReductionTime;
+    private bool isShrinking = false;
+    private Vector3 originalScale;
+    private float timeLeftOnShrinking = 0f;
 
     protected override void Start()
     {
@@ -34,6 +40,25 @@ public class DiceController : EntityController
     public override void Update()
     {
         base.Update();
+        if (isShrinking)
+        {
+            if (Time.time >= nextSizeReductionTime)
+            {
+                ReducePlatformSize(platform1);
+                ReducePlatformSize(platform2);
+                nextSizeReductionTime = Time.time + sizeReductionTimer;
+            }
+        }
+    }
+
+     private void ReducePlatformSize(GameObject platform)
+    {
+        Vector3 currentScale = platform.transform.localScale;
+        if(currentScale.x > 8){
+            currentScale.x -= sizeReductionAmount;
+            platform.transform.localScale = currentScale;
+        }
+       
     }
 
 
@@ -41,12 +66,25 @@ public class DiceController : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Dice");
+        if (isShrinking)
+        {
+            // If shrinking was in progress, resume from where it left off.
+            nextSizeReductionTime = Time.time + timeLeftOnShrinking;
+        }
+        else
+        {
+            // If not shrinking, start a new shrinking process.
+            nextSizeReductionTime = Time.time + sizeReductionTimer;
+            originalScale = platform1.transform.localScale; // Store the original scale.
+            isShrinking = true;
+        }
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        
+        timeLeftOnShrinking = nextSizeReductionTime - Time.time;
+        isShrinking = false;
     }
 
     protected override void Ability()

@@ -49,7 +49,7 @@ public class SpiderController : MonoBehaviour
 
     void killPlayer()
     {
-        player.GetComponent<PlayerController>().Die("spider");
+        player.GetComponent<PlayerController>().Die("Spider");
     }
 
     void OnCollisionEnter2D(Collision2D collision)

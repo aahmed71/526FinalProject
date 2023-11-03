@@ -79,19 +79,37 @@ public class GoogleAnalytics : MonoBehaviour
     public void Send(Dictionary<string, int> deathC, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime, int spawnCount){
         Debug.Log("In Send");
         _deathC = deathC;
+        foreach (string key in _deathC.Keys)
+        {
+            Debug.Log($"Key: {key}");
+        }
+
+        // Iterate through values
+        foreach (int value in _deathC.Values)
+        {
+            Debug.Log($"Value: {value}");
+        }
+            
         if(_deathC.ContainsKey("Devil")){
             _hazardKill = _deathC["Devil"];
+            Debug.Log(_hazardKill);
         }
         if(_deathC.ContainsKey("Spike")){
             _spikeKill = _deathC["Spike"];
+            
+            Debug.Log(_spikeKill);
         }
         if(_deathC.ContainsKey("Spider")){
             _spiderKill = _deathC["Spider"];
+            Debug.Log(_spiderKill);
         }
         
         
         
         _checkpointTime = checkpointTime - _playTime;
+        if(_checkPoint<0){
+            _checkPoint = 0;
+        }
         _playTime = Time.time - _playTime;
         _platform = platform;
         _possessionC = possessionC;
@@ -138,7 +156,7 @@ public class GoogleAnalytics : MonoBehaviour
 
     private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Spider, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string dG, string checkP, string checkPT, string spawnC){
         WWWForm form = new WWWForm();
-        
+        Debug.Log("Hazard, Spike, Spider" + Hazard + Spike + Spider);
      
         form.AddField("entry.1262365075",sID);
         form.AddField("entry.2142609552",Platform);
@@ -154,10 +172,10 @@ public class GoogleAnalytics : MonoBehaviour
         form.AddField("entry.1709454341",dG);
         form.AddField("entry.511748472",Hazard);
         form.AddField("entry.1788607872",Spike);
-        form.AddField("entry.228839282",Spider);
-        form.AddField("entry.228839282",checkP);
-        form.AddField("entry.228839282",checkPT);
-        form.AddField("entry.228839282",spawnC);
+        form.AddField("entry.1910130627",Spider);
+        form.AddField("entry.740446742",checkP);
+        form.AddField("entry.704116263",checkPT);
+        form.AddField("entry.1647848990",spawnC);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL,form)){
             yield return www.SendWebRequest();

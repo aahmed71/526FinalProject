@@ -200,11 +200,13 @@ public class GameManager : MonoBehaviour
                 if(playerController.hasReachedCheckpoint){
                     CheckPoint = 1;
                     checkpointTime = playerController.timeToReachCheckpoint;
+                    Debug.Log("Checkpoint time in game manager" + checkpointTime);
                 }else{
                     CheckPoint = 0;
                     checkpointTime = 0.0f;
                 }
             }
+            
             
             FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
           
