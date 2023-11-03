@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8028520796049921728}
   - component: {fileID: 5118619659571880750}
   - component: {fileID: 4794599282083715683}
-  - component: {fileID: 7499321715454212834}
   - component: {fileID: 8517907718058922263}
+  - component: {fileID: 7961037133020416129}
   m_Layer: 0
   m_Name: newspike
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -114,8 +114,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!60 &7499321715454212834
-PolygonCollider2D:
+--- !u!114 &8517907718058922263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570618849055399946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11bfc305402a84d91bbf70f29fc6ad8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  invincibilityDuration: 1.5
+--- !u!61 &7961037133020416129
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,62 +162,14 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.87, y: 1.7199999, z: 0.87, w: 1.89}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5, y: 5}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.5999999, y: -0.11}
-      - {x: 1.4599999, y: -0.099999994}
-      - {x: 1.37, y: 0.13}
-      - {x: 1.14, y: 0.61}
-      - {x: 1.09, y: 0.61}
-      - {x: 1.0699999, y: 0.59999996}
-      - {x: 0.76, y: -0.12}
-      - {x: 0.66999996, y: 0.02}
-      - {x: 0.42999998, y: 0.53}
-      - {x: 0.37, y: 0.61}
-      - {x: 0.35, y: 0.61}
-      - {x: 0.31, y: 0.56}
-      - {x: 0.06, y: -0.01}
-      - {x: 0.01, y: -0.12}
-      - {x: -0.13, y: 0.11}
-      - {x: -0.32999998, y: 0.53999996}
-      - {x: -0.37, y: 0.61}
-      - {x: -0.42999998, y: 0.61}
-      - {x: -0.53, y: 0.48}
-      - {x: -0.75, y: -0.12}
-      - {x: -0.83, y: -0.03}
-      - {x: -1.02, y: 0.35999998}
-      - {x: -1.14, y: 0.61}
-      - {x: -1.18, y: 0.61}
-      - {x: -1.23, y: 0.53999996}
-      - {x: -1.43, y: 0.08}
-      - {x: -1.5, y: -0.12}
-      - {x: -1.61, y: -0.12}
-      - {x: -1.64, y: -0.14999999}
-      - {x: -1.65, y: -0.74}
-      - {x: -1.62, y: -0.78}
-      - {x: 1.62, y: -0.78}
-      - {x: 1.64, y: -0.76}
-      - {x: 1.64, y: -0.14}
-  m_UseDelaunayMesh: 0
---- !u!114 &8517907718058922263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570618849055399946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11bfc305402a84d91bbf70f29fc6ad8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  invincibilityDuration: 1.5
+  serializedVersion: 2
+  m_Size: {x: 3.3, y: 1}
+  m_EdgeRadius: 0
