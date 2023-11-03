@@ -16,8 +16,9 @@ public class GoogleAnalytics : MonoBehaviour
     private long _sessionID;
     private int _levelNo;
     private float _playTime;
-    private int _hazardKill;
-    private int _spikeKill;
+    private int _hazardKill = 0;
+    private int _spikeKill = 0;
+    private int _spiderKill = 0;
     private int _noLevels = 0;
    
     private string _platform;
@@ -38,7 +39,9 @@ public class GoogleAnalytics : MonoBehaviour
 
     private int _checkPoint;
     private float _checkpointTime;
+    private int _spawnCount;
     Dictionary<string,int> _possessionC = new Dictionary<string, int>();
+    Dictionary<string,int> _deathC = new Dictionary<string, int>();
    
     
     void Start()
@@ -73,16 +76,27 @@ public class GoogleAnalytics : MonoBehaviour
     //     Send();
     // }
     
-    public void Send(int h, int s, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime, int spawnCount){
+    public void Send(Dictionary<string, int> deathC, string platform, Dictionary<string, int> possessionC, int checkpoint, float checkpointTime, int spawnCount){
         Debug.Log("In Send");
-        _hazardKill = h;
-        _spikeKill = s;
+        _deathC = deathC;
+        if(_deathC.ContainsKey("Devil")){
+            _hazardKill = _deathC["Devil"];
+        }
+        if(_deathC.ContainsKey("Spike")){
+            _spikeKill = _deathC["Spike"];
+        }
+        if(_deathC.ContainsKey("Spider")){
+            _spiderKill = _deathC["Spider"];
+        }
+        
+        
+        
         _checkpointTime = checkpointTime - _playTime;
         _playTime = Time.time - _playTime;
         _platform = platform;
         _possessionC = possessionC;
-      
         _checkPoint = checkpoint;
+        _spawnCount = spawnCount;
 
         if(possessionC.ContainsKey("Ladder")){
             ladderG = possessionC["Ladder"];
@@ -118,37 +132,32 @@ public class GoogleAnalytics : MonoBehaviour
         }
     
         
-        StartCoroutine(Post(_sessionID.ToString(),_levelNo.ToString(),_playTime.ToString(),_hazardKill.ToString(),_spikeKill.ToString(),_platform.ToString(),ladderG.ToString()
-        ,candleG.ToString(),bombG.ToString(),puzzleG.ToString(),keyG.ToString(),cannonG.ToString(),cannonBallG.ToString(),diceG.ToString(),_checkPoint.ToString(),_checkpointTime.ToString()));
+        StartCoroutine(Post(_sessionID.ToString(),_levelNo.ToString(),_playTime.ToString(),_hazardKill.ToString(),_spikeKill.ToString(),_spiderKill.ToString(),_platform.ToString(),ladderG.ToString()
+        ,candleG.ToString(),bombG.ToString(),puzzleG.ToString(),keyG.ToString(),cannonG.ToString(),cannonBallG.ToString(),diceG.ToString(),_checkPoint.ToString(),_checkpointTime.ToString(),_spawnCount.ToString()));
     }
 
-    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string dG, string checkP, string checkPT){
+    private IEnumerator Post(string sID, string lNumber, string pTime, string Hazard, string Spike, string Spider, string Platform, string lG, string liG, string bG, string pG, string kG, string cG, string cBG, string dG, string checkP, string checkPT, string spawnC){
         WWWForm form = new WWWForm();
         
      
         form.AddField("entry.1262365075",sID);
+        form.AddField("entry.2142609552",Platform);
         form.AddField("entry.1953388170",lNumber);
         form.AddField("entry.879821749",pTime);
+        form.AddField("entry.1759591894",lG);
+        form.AddField("entry.736654854",liG);
+        form.AddField("entry.1109122228",bG);
+        form.AddField("entry.1638205776",pG);
+        form.AddField("entry.1609590089",kG);
+        form.AddField("entry.1677242169",cG);
+        form.AddField("entry.1897689406",cBG);
+        form.AddField("entry.1709454341",dG);
         form.AddField("entry.511748472",Hazard);
         form.AddField("entry.1788607872",Spike);
-     
-        form.AddField("entry.2142609552",Platform);
-        form.AddField("entry.1759591894",lG);
-    
-        form.AddField("entry.736654854",liG);
-      
-        form.AddField("entry.1109122228",bG);
-  
-        form.AddField("entry.1638205776",pG);
-    
-        form.AddField("entry.1609590089",kG);
-        
-        form.AddField("entry.1677242169",cG);
- 
-        form.AddField("entry.1897689406",cBG);
-        form.AddField("entry.1897689406",dG);
+        form.AddField("entry.228839282",Spider);
         form.AddField("entry.228839282",checkP);
         form.AddField("entry.228839282",checkPT);
+        form.AddField("entry.228839282",spawnC);
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL,form)){
             yield return www.SendWebRequest();

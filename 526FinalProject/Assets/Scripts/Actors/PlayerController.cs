@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     private Transform checkPoint;
     public GameObject checkpointNotif;
     public float timeToReachCheckpoint;
-
+    public Dictionary<string, int> deathCountDict = new Dictionary<string, int>();
+  
     public bool hasReachedCheckpoint = false;
     private bool hasReachedEndPoint = false;
     public Image heart1; 
@@ -320,10 +321,16 @@ public class PlayerController : MonoBehaviour
     {
         //checkpoint
         AudioManager.instance.Play("Hurt");
+        if(deathCountDict.ContainsKey(s)){
+                deathCountDict[s]++;
+        }else{
+                deathCountDict[s] = 1;
+        }
         if(deathCount<1){
+            
             Time.timeScale = 0.0f;
             GameOver();
-            GameManager.Instance.GameLose(s);
+            GameManager.Instance.GameLose();
         }else{
             deathCount--;
             // Debug.Log("not yet ded");

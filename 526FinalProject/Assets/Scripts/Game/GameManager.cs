@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private float checkpointTime;
     private int spawnCount;
     Dictionary<string, int> possessionCount = new Dictionary<string, int>();
+    Dictionary<string, int> deathDict = new Dictionary<string, int>();
     
 
     private string platform;
@@ -168,7 +169,8 @@ public class GameManager : MonoBehaviour
       {
         PlayerController playerController = FindObjectOfType<PlayerController>();
         checkpointTime = playerController.timeToReachCheckpoint;
-        FindObjectOfType<GoogleAnalytics>().Send(0,0,platform,possessionCount,1,checkpointTime,spawnCount);
+        deathDict = playerController.deathCountDict;
+        FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,1,checkpointTime,spawnCount);
         SceneManager.LoadScene(nextLevelName);
       }
   }
@@ -181,7 +183,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void GameLose(string s)
+    public void GameLose()
     {
 
         if(!playerLose){
@@ -191,6 +193,7 @@ public class GameManager : MonoBehaviour
             Lose.SetActive(true);
 
             PlayerController playerController = FindObjectOfType<PlayerController>();
+            deathDict = playerController.deathCountDict;
 
             if (playerController != null)
             {
@@ -202,11 +205,9 @@ public class GameManager : MonoBehaviour
                     checkpointTime = 0.0f;
                 }
             }
-            if(s=="sp"){
-                FindObjectOfType<GoogleAnalytics>().Send(0,1,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
-            }else{
-                FindObjectOfType<GoogleAnalytics>().Send(1, 0,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
-            }
+            
+            FindObjectOfType<GoogleAnalytics>().Send(deathDict,platform,possessionCount,CheckPoint,checkpointTime,spawnCount);
+          
             
         }
     }
