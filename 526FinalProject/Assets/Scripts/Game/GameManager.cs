@@ -100,7 +100,12 @@ public class GameManager : MonoBehaviour
             Debug.Log(Application.platform.ToString());
             platform = Application.platform.ToString();
         }
-        diceController = GameObject.Find("Dice").GetComponent<DiceController>();
+
+        if (GameObject.Find("Dice"))
+        {
+            diceController = GameObject.Find("Dice").GetComponent<DiceController>();
+        }
+        
         //end of analytics
     }
 
