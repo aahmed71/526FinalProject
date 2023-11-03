@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Add this line to include the UI namespace
+using TMPro;
 
 // using Unity.Services.Core;
 // using Unity.Services.Core.Environments;
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour
     //renderer and collider
     [NonSerialized] public SpriteRenderer sr;
     [NonSerialized] public Collider2D _col;
+    public TextMeshProUGUI popupText; 
+    public Image popupImage;
     
     [SerializeField] private GameObject possessionMarkerPrefab;
     private PossessionMarker _possessionMarker;
@@ -74,6 +77,9 @@ public class PlayerController : MonoBehaviour
         startPoint = startPointObject.transform;
         endPoint = endPointObject.transform;
         checkPoint = checkPointObject.transform;
+
+        popupText.enabled = false;
+        popupImage.enabled = false;
     }
 
     // Update is called once per frame
@@ -318,6 +324,19 @@ public class PlayerController : MonoBehaviour
         hasReachedEndPoint = true;
     }
 
+    private void EnablePopupUIElements(bool enable)
+    {
+        popupText.enabled = enable;
+        popupImage.enabled = enable;
+    }
+
+    private IEnumerator DisablePopupUIElements(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        EnablePopupUIElements(false); // Disable the Text and Image
+    }
+
+
     public void Die(string s)
     {
         //checkpoint
@@ -327,7 +346,8 @@ public class PlayerController : MonoBehaviour
         }else{
                 deathCountDict[s] = 1;
         }
-       
+        EnablePopupUIElements(true);
+        StartCoroutine(DisablePopupUIElements(1.0f));
         if(deathCount<1){
             
             Time.timeScale = 0.0f;
