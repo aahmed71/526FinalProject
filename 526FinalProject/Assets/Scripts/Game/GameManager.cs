@@ -236,22 +236,7 @@ public class GameManager : MonoBehaviour
 
     public void BackToLevelSelect()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("LevelsSwitcher");
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene(level1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SceneManager.LoadScene(level2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SceneManager.LoadScene(level3);
-        }
     }
 }
