@@ -170,6 +170,7 @@ public class GameManager : MonoBehaviour
   public void LoadNextLevel()
   {
       Win.SetActive(false);
+      Time.timeScale=1;
       // Load the Next Scene
       if (nextLevelName != null)
       {
@@ -191,6 +192,7 @@ public class GameManager : MonoBehaviour
     public void GameWin()
     {
         Win.SetActive(true);
+        Time.timeScale=0;
         gameWinEvent.Invoke();
        
     }
