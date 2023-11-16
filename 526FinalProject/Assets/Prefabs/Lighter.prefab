@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5474434906319398731}
   - component: {fileID: 1269403166128253940}
   - component: {fileID: 4243182555576547557}
+  - component: {fileID: 2855256673306992574}
   m_Layer: 6
   m_Name: Lighter
   m_TagString: Entity
@@ -118,7 +119,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.26220685}
   m_SpriteTilingProperty:
@@ -174,6 +175,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   markerScale: 3
   flameObject: {fileID: 8196371186283238114}
+--- !u!251 &2855256673306992574
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557190778655260866}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &8196371186283238114
 GameObject:
   m_ObjectHideFlags: 0
