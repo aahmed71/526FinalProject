@@ -37,19 +37,16 @@ public class CannonEntity : EntityController
 
     public override void Move(float horizontalInput)
     {
-        //Instead of moving the entity, for the cannon it rotates the barrel
-        float rotationAmount = -1 * horizontalInput * speed * Time.deltaTime;
-        
-        if (!(cannonBarrel.transform.rotation.z <= -0.2f && rotationAmount < 0.0f ||
-              cannonBarrel.transform.rotation.z >= 0.7f && rotationAmount > 0.0f))
-        {
-            cannonBarrel.transform.Rotate(0, 0, rotationAmount);
-        }
+        // Cannon cannot move along the x axis
+
+        // However, cannon should angle based on W & S keys
+        Angle(-1*Input.GetAxis("Vertical"));
     }
 
     public override void Jump()
     {
-        // entity cannot jump
+        // Cannon cannot jump (along the y axis)
+
     }
     
     public override void OnPossess(PlayerController player)
@@ -62,6 +59,17 @@ public class CannonEntity : EntityController
     {
         base.OnUnPossess(player);
        
+    }
+
+    private void Angle(float verticalInput)
+    {
+        float rotationAmount = -1 * verticalInput * speed * Time.deltaTime;
+        
+        if (!(cannonBarrel.transform.rotation.z <= -0.2f && rotationAmount < 0.0f ||
+              cannonBarrel.transform.rotation.z >= 0.7f && rotationAmount > 0.0f))
+        {
+            cannonBarrel.transform.Rotate(0, 0, rotationAmount);
+        }
     }
 
     
