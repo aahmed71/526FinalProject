@@ -227,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350512283455227511, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2584310258654405475, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525986053707095541, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4285224628710805207, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5739087363777477237, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6408661010648162916, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -337,6 +337,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6776429180526847290, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1337.761
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776429180526847290, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6821428261343457071, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -344,6 +352,36 @@ PrefabInstance:
     - target: {fileID: 6821428261343457071, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876980530206937785, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+      propertyPath: m_text
+      value: 'A - Move left
+
+        D - Move right
+
+        Space - Jump
+
+        W
+        - Move up the ladder / Angle Up cannon
+
+        S - Move down the ladder
+        / Angle Down Cannon
+
+        F - Ability when possessed
+
+        E - Possess/Unpossess'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876980530206937785, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+      propertyPath: m_fontSize
+      value: 54.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876980530206937785, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876980530206937785, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
