@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
             isPaused = false;
             // Show the needed UI elements
             if (Pause!=null) Pause.SetActive(false);
-            if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Pause";
+            // if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Pause";
         }
         else
         {
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
             isPaused = true;
             // Hide the UI elements
             if (Pause!=null) Pause.SetActive(true);
-            if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";
+            // if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";
         }
     }
 
