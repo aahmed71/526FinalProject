@@ -12,9 +12,6 @@ public class HazardBehavior : MonoBehaviour
     public float speed = 5.0f;
     private Vector3 directionToDestination;
     public GameObject player;
-    public float invincibilityDuration = 1.5f;
-    private float secondChanceTimer = 0.0f;
-    private int secondChanceFlag = 0;
     [SerializeField] private float detectionRadius = 10.0f;
     private GameObject chaseModeUI;
 
@@ -46,16 +43,6 @@ public class HazardBehavior : MonoBehaviour
         else
         {
             chaseModeUI.SetActive(false);
-            // check if second chance invincibility is enabled, if yes then maintain the timer
-            if(secondChanceFlag==1 && secondChanceTimer<invincibilityDuration)
-            {
-                secondChanceTimer+=Time.deltaTime;
-            }
-            else
-            {
-                secondChanceFlag=0;
-                secondChanceTimer=0.0f;
-            }
 
             directionToDestination = pathArray[destinationIdx].position-transform.position;
             if(directionToDestination.magnitude > 1)
@@ -78,27 +65,9 @@ public class HazardBehavior : MonoBehaviour
 
 
     }
-    /*  void OnCollisionEnter2D(Collision2D collision)
-      {
-          // check if the ghost was recently unpossessed by a hazard and because of it, is currently in an invincible period duration.
-          if(collision.gameObject.CompareTag("Player") && secondChanceFlag==0)
-          {
-              killPlayer();
-          }
-
-          //check if the entity that we are colliding with is the same entity that the player is currently possessing.
-          else if(collision.gameObject.CompareTag("Entity") && player!=null && player.GetComponent<PlayerController>().currentEntity == collision.gameObject.GetComponent<EntityController>())
-          {
-              player.GetComponent<PlayerController>().UnPossess();
-
-              //enable second chance invincibility
-              secondChanceFlag=1;
-          }
-
-      }*/
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && secondChanceFlag == 0)
+        if (collision.gameObject.CompareTag("Player"))
         {
             killPlayer();
 
@@ -113,7 +82,7 @@ public class HazardBehavior : MonoBehaviour
 
                 player.GetComponent<PlayerController>().UnPossess();
                 entity.TakeHazardHit();
-
+                killPlayer();
             }
         }
     }

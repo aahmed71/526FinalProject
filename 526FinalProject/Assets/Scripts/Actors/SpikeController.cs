@@ -6,14 +6,8 @@ public class SpikeController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
- 
+    
 
-    // time for which the ghost enjoys invincibility after getting unpossessed by the hazard
-    public float invincibilityDuration = 1.5f;
-    // current timer for the invincible period
-    private float secondChanceTimer = 0.0f;
-    // if invincible mode is enabled
-    private int secondChanceFlag = 0;
     void Start()
     {
         
@@ -22,21 +16,12 @@ public class SpikeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(secondChanceFlag==1 && secondChanceTimer<invincibilityDuration)
-        {
-            secondChanceTimer+=Time.deltaTime;
-        }
-        else
-        {
-            secondChanceFlag=0;
-            secondChanceTimer=0.0f;
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         // check if the ghost was recently unpossessed by a hazard and because of it, is currently in an invincible period duration.
-        if(collision.gameObject.CompareTag("Player") && secondChanceFlag==0)
+        if(collision.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerController>().Die("Spike");
         }
@@ -45,11 +30,8 @@ public class SpikeController : MonoBehaviour
         else if(collision.gameObject.CompareTag("Entity") && player!=null && player.GetComponent<PlayerController>().currentEntity == collision.gameObject.GetComponent<EntityController>())
         {
             player.GetComponent<PlayerController>().UnPossess();
-
-            //enable second chance invincibility
-            secondChanceFlag=1;
-
             collision.gameObject.GetComponent<EntityController>().TakeHazardHit();
+            GameObject.Find("Player").GetComponent<PlayerController>().Die("Spike");
         }
 
       
