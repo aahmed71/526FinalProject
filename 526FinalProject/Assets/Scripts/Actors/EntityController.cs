@@ -17,6 +17,7 @@ public class EntityController : MonoBehaviour
     private int hazardHits = 0;
     private int maxHazardHits = 1;
     private SpriteRenderer spriteRenderer;
+    private Vector3 gameStartPosition;
 
 
     //components
@@ -28,6 +29,8 @@ public class EntityController : MonoBehaviour
 
     protected virtual void OnStart()
     {
+        gameStartPosition = transform.localPosition;
+        
         //initialize rigidbody
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
@@ -131,6 +134,7 @@ public class EntityController : MonoBehaviour
     }
     public virtual void TakeHazardHit()
     {
+        transform.position = gameStartPosition;
         hazardHits++;
         if (hazardHits >= maxHazardHits)
         {

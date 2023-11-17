@@ -48,6 +48,8 @@ public class SpikeController : MonoBehaviour
 
             //enable second chance invincibility
             secondChanceFlag=1;
+
+            collision.gameObject.GetComponent<EntityController>().TakeHazardHit();
         }
 
       
