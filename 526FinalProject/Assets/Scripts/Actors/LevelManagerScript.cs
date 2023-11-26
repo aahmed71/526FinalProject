@@ -9,4 +9,8 @@ public class LevelManagerScript : MonoBehaviour
     {
         SceneManager.LoadScene("Tutorial Level " + levelNumber);
     }
+
+    public void LoadNewScene(string sceneName){
+        SceneManager.LoadScene(sceneName);
+    }
 }

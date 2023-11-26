@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial Level 1 (Depricated).unity
     guid: efa68ed59db93494cbeec01af228d0ab
   - enabled: 1
+    path: Assets/Scenes/CurrentLevels/Main Menu.unity
+    guid: c8c693278babd44438280a68f36b14e5
+  - enabled: 1
     path: Assets/Scenes/CurrentLevels/LevelsSwitcher.unity
     guid: 33ab74aaeaa54b24badc52746c27adfd
   - enabled: 1
