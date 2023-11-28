@@ -13,11 +13,6 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public bool isPaused = false;
-    
-    //Debug Commands
-    private string level1 = "Tutorial Level 1";
-    private string level2 = "Tutorial Level 2";
-    private string level3 = "Tutorial Level 3";
 
     //analytics
     private bool playerLose = false;
@@ -47,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject PauseButton;
     [SerializeField] public Sprite resumeButtonSprite;
      [SerializeField] public Sprite pauseButtonSprite;
+    public ControlDisplay controlDisplay;
     
 
 

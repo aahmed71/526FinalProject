@@ -85,6 +85,7 @@ public class EntityController : MonoBehaviour
     {
         playerRef = player;
         isPossessed = true;
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Unpossess");
     }
 
     //function for when the player is unpossesses entity
@@ -92,6 +93,7 @@ public class EntityController : MonoBehaviour
     {
         isPossessed = false;
         rb.velocity = Vector2.zero;
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Possess");
     }
 
     //function that's called by player if they possess the player, can be overridden

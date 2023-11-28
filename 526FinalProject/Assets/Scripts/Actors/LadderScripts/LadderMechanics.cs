@@ -18,12 +18,14 @@ public class LadderMechanics : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Ladder");
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Ability, "Rotate");
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, true);
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-       
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, false);
     }
 
     void SetVertical()

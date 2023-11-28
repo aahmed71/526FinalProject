@@ -62,7 +62,6 @@ public class CannonBallBehaviour : EntityController
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-      
     }
 
     private void OnTriggerEnter2D(Collider2D other)

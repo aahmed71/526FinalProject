@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
         startPoint = startPointObject.transform;
         endPoint = endPointObject.transform;
         checkPoint = checkPointObject.transform;
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Possess");
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Possession, true);
     }
 
     // Update is called once per frame

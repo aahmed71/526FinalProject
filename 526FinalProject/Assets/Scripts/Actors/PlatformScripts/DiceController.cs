@@ -81,6 +81,8 @@ public class DiceController : EntityController
             originalScale = platform1.transform.localScale; // Store the original scale.
             isShrinking = true;
         }
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Ability, "Move Platforms");
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, true);
     }
 
     public override void OnUnPossess(PlayerController player)
@@ -91,6 +93,7 @@ public class DiceController : EntityController
         totalAbilityFunctionCalls += abilityFunctionCalls;
        
         abilityFunctionCalls = 0;
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, false);
     }
 
     protected override void Ability()
