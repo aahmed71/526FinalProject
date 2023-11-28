@@ -604,6 +604,10 @@ PrefabInstance:
       propertyPath: nextLevelName
       value: Level3
       objectReference: {fileID: 0}
+    - target: {fileID: 1068869652906646030, guid: be8c96367a1ce174cb8981135481e442, type: 3}
+      propertyPath: controlDisplay
+      value: 
+      objectReference: {fileID: 8818834774271982745}
     - target: {fileID: 8629583024021243224, guid: be8c96367a1ce174cb8981135481e442, type: 3}
       propertyPath: m_Name
       value: GameManager
