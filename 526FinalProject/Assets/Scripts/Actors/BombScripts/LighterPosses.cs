@@ -52,13 +52,15 @@ public class LighterMechanics : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Lighter");
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Ability, "Toggle Flame");
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, true);
     }
 
     // Called when the lighter is unpossessed by a player
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-        
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, false);
     }
 
     // Unity's OnTriggerEnter2D method, called when another collider enters this object's trigger collider

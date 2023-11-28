@@ -20,9 +20,7 @@ public class ControlDisplay : MonoBehaviour
     };
     void Start()
     {
-        PossessionControl.SetActive(false);
-        AbilityControl.SetActive(false);
-        AltMovementControl.SetActive(false);
+
     }
 
     public void SetText(ControlType type, string text)

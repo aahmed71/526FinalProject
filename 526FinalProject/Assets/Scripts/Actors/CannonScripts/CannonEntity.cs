@@ -53,12 +53,17 @@ public class CannonEntity : EntityController
     {
         base.OnPossess(player);
         GameManager.Instance.CalculatePosessionCount("Cannon");
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Ability, "Fire");
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, true);
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.AltMovement, "Aim");
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.AltMovement, true);
     }
     
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
-       
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Ability, false);
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.AltMovement, false);
     }
 
     private void Angle(float verticalInput)
