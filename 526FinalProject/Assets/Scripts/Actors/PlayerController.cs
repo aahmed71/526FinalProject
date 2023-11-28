@@ -338,7 +338,7 @@ public class PlayerController : MonoBehaviour
         }else{
                 deathCountDict[s] = 1;
         }
-        if(deathCount<1){
+        if(deathCount<2){
             
             Time.timeScale = 0.0f;
             GameOver();

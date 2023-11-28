@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 
 
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Win;
     [SerializeField] public GameObject Lose;
     [SerializeField] public GameObject PauseButton;
+    [SerializeField] public Sprite resumeButtonSprite;
+     [SerializeField] public Sprite pauseButtonSprite;
     
 
 
@@ -120,7 +123,14 @@ public class GameManager : MonoBehaviour
             isPaused = false;
             // Show the needed UI elements
             if (Pause!=null) Pause.SetActive(false);
-            // if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Pause";
+            if (PauseButton != null)
+            {
+                Image pauseButtonImage = PauseButton.GetComponent<Image>();
+                
+                pauseButtonImage.sprite = pauseButtonSprite;
+                
+            }
+            
         }
         else
         {
@@ -130,6 +140,13 @@ public class GameManager : MonoBehaviour
             // Hide the UI elements
             if (Pause!=null) Pause.SetActive(true);
             // if (PauseButton != null) PauseButton.GetComponentInChildren<TMP_Text>().text = "Resume";
+            if (PauseButton != null)
+            {
+                Image pauseButtonImage = PauseButton.GetComponent<Image>();
+             
+                pauseButtonImage.sprite = resumeButtonSprite;
+                
+            }
         }
     }
 
