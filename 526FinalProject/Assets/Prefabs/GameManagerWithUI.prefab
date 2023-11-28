@@ -604,6 +604,10 @@ PrefabInstance:
       propertyPath: nextLevelName
       value: Level3
       objectReference: {fileID: 0}
+    - target: {fileID: 1068869652906646030, guid: be8c96367a1ce174cb8981135481e442, type: 3}
+      propertyPath: controlDisplay
+      value: 
+      objectReference: {fileID: 8818834774271982745}
     - target: {fileID: 8629583024021243224, guid: be8c96367a1ce174cb8981135481e442, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1433,3 +1437,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1563722314516916354, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
   m_PrefabInstance: {fileID: 8884729059745232990}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8818834774271982745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 85055476901053639, guid: 7e7778cc27446154fb76a4a6cd1f78b0, type: 3}
+  m_PrefabInstance: {fileID: 8884729059745232990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e243c7beb933ee4ea0df7021f1ab411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
