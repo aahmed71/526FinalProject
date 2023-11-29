@@ -27,7 +27,7 @@ public class BombMechanics : EntityController
         OnStart();
         //set things to false
         _explosion.SetActive(false);
-        rangeIndicator.transform.localScale = new Vector3(explosionRadius, explosionRadius, 0.0f);
+        rangeIndicator.transform.localScale = new Vector3(explosionRadius, explosionRadius, 1.0f);
         rangeIndicator.SetActive(false);
     }
 
