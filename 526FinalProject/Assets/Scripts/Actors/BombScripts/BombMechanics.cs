@@ -48,7 +48,7 @@ public class BombMechanics : EntityController
         yield return new WaitForSeconds(explosionSpeed);
 
         //unpossess player if possessed
-        if (playerRef)
+        if (playerRef && isPossessed)
         {
             playerRef.UnPossess();
         }

@@ -616,6 +616,10 @@ PrefabInstance:
       propertyPath: resumeButtonSprite
       value: 
       objectReference: {fileID: 21300000, guid: c5460e4190e3f4409926b4d1c8f6b4b4, type: 3}
+    - target: {fileID: 1068869652906646030, guid: be8c96367a1ce174cb8981135481e442, type: 3}
+      propertyPath: controlDisplay
+      value: 
+      objectReference: {fileID: 8818834774271982745}
     - target: {fileID: 8629583024021243224, guid: be8c96367a1ce174cb8981135481e442, type: 3}
       propertyPath: m_Name
       value: GameManager
