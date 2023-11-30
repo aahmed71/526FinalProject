@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5411261190703653435}
   m_Layer: 0
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bb7ce8fb1fd41cd83b5e9e097a2309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {x: -28, y: 5.6}
-  endPoint: {x: -28, y: -7.5}
+  moveRange: 5
   moveSpeed: 7
   player: {fileID: 0}
-  invincibilityDuration: 1.5
+  bodySpawnPoint: {x: 0, y: 0}
+  body: {fileID: 7888461708051680129, guid: fd4855d4e3376474ab9a41c5f7fbf50b, type: 3}
 --- !u!58 &5411261190703653435
 CircleCollider2D:
   m_ObjectHideFlags: 0

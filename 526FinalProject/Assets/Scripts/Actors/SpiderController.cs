@@ -6,7 +6,9 @@ public class SpiderController : MonoBehaviour
 {
     public float moveRange = 5.0f;
     public float moveSpeed = 2.0f;  
-    public GameObject player;            
+    public GameObject player;
+    public Vector2 bodySpawnPoint;
+    public GameObject body;
     private Vector2 currentTarget;
 
     private Vector2 startPoint;
@@ -64,5 +66,10 @@ public class SpiderController : MonoBehaviour
                 killPlayer();
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(body, bodySpawnPoint, Quaternion.identity);
     }
 }
