@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
         endPoint = endPointObject.transform;
         checkPoint = checkPointObject.transform;
         GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Possess");
-        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Possession, true);
     }
 
     // Update is called once per frame
@@ -108,7 +107,6 @@ public class PlayerController : MonoBehaviour
         {
             jumpInputPrevious = false;
         }
-
     }
 
     private void FixedUpdate()
@@ -188,10 +186,14 @@ public class PlayerController : MonoBehaviour
         }
         if (possessTarget)
         {
+            //updates control display if entity is in range
+            GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Possession, true);
             _possessionMarker.Activate(possessTarget.transform.position, possessTarget.gameObject.GetComponent<EntityController>().markerScale * possessTarget.transform.localScale.x);
         }
         else
         {
+            //if no entities are in range, cannot possess anything
+            GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Possession, false);
             _possessionMarker.Deactivate();
         }
 
@@ -287,7 +289,7 @@ public class PlayerController : MonoBehaviour
         currentEntity = null;
         _col.enabled = true;
         AudioManager.instance.Play("UnPossess");
-        
+        GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Possess");
     }
 
     public bool IsPossessing()
