@@ -68,7 +68,7 @@ public class SpiderController : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void SpiderDeath()
     {
         Instantiate(body, bodySpawnPoint, Quaternion.identity);
     }
