@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class SpiderController : MonoBehaviour
 {
-    
-    public Vector2 startPoint = new Vector2(-28, 5.6f); 
-    public Vector2 endPoint = new Vector2(-28, -7.5f);  
+    public float moveRange = 5.0f;
     public float moveSpeed = 2.0f;  
-    public GameObject player;            
+    public GameObject player;
+    public Vector2 bodySpawnPoint;
+    public GameObject body;
     private Vector2 currentTarget;
+
+    private Vector2 startPoint;
+    private Vector2 endPoint;
     void Start()
     {
+        startPoint = new Vector2(transform.position.x, transform.position.y);
+        endPoint = startPoint;
+        endPoint.y -= moveRange;
         currentTarget = endPoint;
     }
 
@@ -60,5 +66,10 @@ public class SpiderController : MonoBehaviour
                 killPlayer();
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(body, bodySpawnPoint, Quaternion.identity);
     }
 }
