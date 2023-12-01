@@ -57,9 +57,8 @@ public class EntityController : MonoBehaviour
 
     protected void CheckJump(Transform col)
     {
-        RaycastHit2D[] results = new RaycastHit2D[2];
+        RaycastHit2D[] results = new RaycastHit2D[3];
         int num = Physics2D.Raycast(transform.position, Vector2.down, new ContactFilter2D().NoFilter(), results, groundCheck);
-        
         if (!canJump && num > 1 && !canJump)
         {
             canJump = true;
