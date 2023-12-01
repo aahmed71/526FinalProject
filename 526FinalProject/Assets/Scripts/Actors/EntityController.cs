@@ -138,7 +138,12 @@ public class EntityController : MonoBehaviour
     
     public virtual void TakeHazardHit()
     {
-        transform.position = gameStartPosition;
+        if(playerRef.hasReachedCheckpoint){
+            transform.position = playerRef.checkPoint.position;
+        }
+        else{
+            transform.position = gameStartPosition;
+        }
         hazardHits++;
         if (hazardHits >= maxHazardHits)
         {

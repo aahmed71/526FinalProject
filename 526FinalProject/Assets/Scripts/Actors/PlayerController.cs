@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject endPointObject;
     private Transform startPoint;
     private Transform endPoint;
-    private Transform checkPoint;
+    public Transform checkPoint;
     public GameObject checkpointNotif;
     public float timeToReachCheckpoint;
     public Dictionary<string, int> deathCountDict = new Dictionary<string, int>();
