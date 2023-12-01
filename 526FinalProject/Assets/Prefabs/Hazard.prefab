@@ -917,7 +917,7 @@ MonoBehaviour:
   canJump: 0
   markerScale: 5
   maxVertVel: 50
-  groundCheck: 3.5
+  groundCheck: 1.75
   pathArray:
   - {fileID: 0}
   - {fileID: 0}

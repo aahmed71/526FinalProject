@@ -162,10 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5030a5f5335db6499fd9f091c8e203e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canJump: 0
   markerScale: 1
   maxVertVel: 50
-  groundCheck: 1
+  groundCheck: 1.5
   maxVelocity: 30
   isFired: 0
 --- !u!251 &7369616059856381587

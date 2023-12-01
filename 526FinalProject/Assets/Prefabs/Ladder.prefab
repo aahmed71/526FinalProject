@@ -176,7 +176,7 @@ MonoBehaviour:
   canJump: 0
   markerScale: 5
   maxVertVel: 50
-  groundCheck: 4
+  groundCheck: 2
   isVertical: 1
 --- !u!251 &7370611981751631811
 PlatformEffector2D:
