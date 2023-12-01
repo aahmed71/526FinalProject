@@ -95,6 +95,11 @@ public class PlayerController : MonoBehaviour
         }
         
         //jump
+        // devil can keep jumping 
+        // if (Input.GetKeyDown(jumpButton) && currentEntity && currentEntity.CompareTag("DeadHazard"))
+        // {
+        //     currentEntity.Jump();
+        // }
         if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
         {
             if (currentEntity)
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 if (entity)
                 {
                     //check if it has entity tag
-                    if (entity.CompareTag("Entity") || entity.CompareTag("PuzzleBlock"))
+                    if (entity.CompareTag("Entity") || entity.CompareTag("PuzzleBlock") || entity.CompareTag("DeadHazard"))
                     {
                         //checks and gets the closest possessible entity
                         if (possessTarget)

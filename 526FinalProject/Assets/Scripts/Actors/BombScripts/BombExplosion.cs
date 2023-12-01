@@ -8,9 +8,14 @@ public class BombExplosion : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //explodes certain objects
-        if (col.CompareTag("Hazard") || col.CompareTag("Door") || col.CompareTag("Barrier"))
+        if (col.CompareTag("Door") || col.CompareTag("Barrier"))
         {
             Destroy(col.gameObject);
+        }
+        else if (col.CompareTag("Hazard"))
+        {
+            
+            col.gameObject.GetComponent<HazardBehavior>().Death();
         }
     }
 }

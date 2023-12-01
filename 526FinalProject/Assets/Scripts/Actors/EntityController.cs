@@ -18,10 +18,11 @@ public class EntityController : MonoBehaviour
     private int maxHazardHits = 1;
     private SpriteRenderer spriteRenderer;
     private Vector3 gameStartPosition;
-
+    [SerializeField] protected float maxVertVel = 50f;
 
     //components
     protected Rigidbody2D rb;
+    
     protected virtual void Start()
     {
         OnStart();
@@ -115,8 +116,16 @@ public class EntityController : MonoBehaviour
         if (canJump)
         {
             AudioManager.instance.Play("Jump");
+            // prevent player from applying excess force when flying around in dead hazard
+            // Apply jump force
             rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
-            canJump = false;
+
+            float vertVel =  Mathf.Min(rb.velocity.y, maxVertVel);
+            rb.velocity = new Vector2(rb.velocity.x, vertVel);
+            if (!gameObject.CompareTag("DeadHazard"))
+            {
+                canJump = false;
+            }
         }
     }
 

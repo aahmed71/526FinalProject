@@ -12,6 +12,8 @@ TagManager:
   - Ladder
   - CheckPoint
   - Flame
+  - Wall
+  - DeadHazard
   layers:
   - Default
   - TransparentFX

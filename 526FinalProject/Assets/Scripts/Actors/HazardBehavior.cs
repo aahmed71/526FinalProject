@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HazardBehavior : MonoBehaviour
+public class HazardBehavior : EntityController
 {
     
     public Transform[] pathArray;
@@ -14,9 +14,14 @@ public class HazardBehavior : MonoBehaviour
     public GameObject player;
     [SerializeField] private float detectionRadius = 10.0f;
     private GameObject chaseModeUI;
-
+    private bool dead = false;
+    
+    // parameters for dead hazard possesion
+    [SerializeField] private float mass = 100.0f;
+    [SerializeField] private float gravScale = 10f;
     void Start()
     {
+        OnStart();
         chaseModeUI = transform.GetChild(1).gameObject;
         totalPoints = pathArray.Length;
         destinationIdx = Mathf.Min(1,totalPoints-1);
@@ -24,6 +29,7 @@ public class HazardBehavior : MonoBehaviour
         {
             transform.position = pathArray[0].position;
         }
+        
     }
 
     // Update is called once per frame
@@ -32,6 +38,11 @@ public class HazardBehavior : MonoBehaviour
         // Calculate the distance between the GameObject and the player
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
+        // hazard is dead
+        if (dead)
+        {
+            return;
+        }
         // If the player is within the detection radius
         if (distance <= detectionRadius)
         {
@@ -43,7 +54,7 @@ public class HazardBehavior : MonoBehaviour
         else
         {
             chaseModeUI.SetActive(false);
-
+            
             directionToDestination = pathArray[destinationIdx].position-transform.position;
             if(directionToDestination.magnitude > 1)
             {
@@ -67,6 +78,11 @@ public class HazardBehavior : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // hazard is dead
+        if (dead)
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag("Player"))
         {
             killPlayer();
@@ -87,4 +103,15 @@ public class HazardBehavior : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        dead = true;
+        // Change hazard into entity
+        chaseModeUI.SetActive(false);
+        gameObject.tag = "DeadHazard";
+        gameObject.layer = 6;
+        rb.isKinematic = false;
+        rb.mass = mass;
+        rb.gravityScale = gravScale;
     }
+}
