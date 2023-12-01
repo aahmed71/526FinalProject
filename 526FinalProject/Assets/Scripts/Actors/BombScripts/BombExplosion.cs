@@ -10,17 +10,25 @@ public class BombExplosion : MonoBehaviour
         //explodes certain objects
         if (col.CompareTag("Door") || col.CompareTag("Barrier"))
         {
-            SpiderController spider = col.gameObject.GetComponent<SpiderController>();
-            if (spider)
-            {
-                spider.SpiderDeath();
-            }
             Destroy(col.gameObject);
         }
         else if (col.CompareTag("Hazard"))
         {
-            
-            col.gameObject.GetComponent<HazardBehavior>().Death();
+            HazardBehavior hazard = col.gameObject.GetComponent<HazardBehavior>();
+            if (hazard)
+            {
+                hazard.Death();
+            }
+            else
+            {
+                SpiderController spider = col.gameObject.GetComponent<SpiderController>();
+                if (spider)
+                {
+                    spider.SpiderDeath();
+                    Destroy(col.gameObject);
+                }
+            }
+
         }
     }
 }

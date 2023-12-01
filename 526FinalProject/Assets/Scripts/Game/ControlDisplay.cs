@@ -8,15 +8,18 @@ public class ControlDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI PossessionText;
     [SerializeField] private TextMeshProUGUI AbilityText;
     [SerializeField] private TextMeshProUGUI AltMovementText;
+    [SerializeField] private TextMeshProUGUI FlyText;
     [SerializeField] private GameObject PossessionControl;
     [SerializeField] private GameObject AbilityControl;
     [SerializeField] private GameObject AltMovementControl;
+    [SerializeField] private GameObject FlyControl;
 
     public enum ControlType
     {
         Possession,
         Ability,
-        AltMovement
+        AltMovement,
+        Fly
     };
     void Start()
     {
@@ -40,6 +43,11 @@ public class ControlDisplay : MonoBehaviour
             case ControlType.AltMovement:
                 {
                     AltMovementText.text = text;
+                    break;
+                }
+            case ControlType.Fly:
+                {
+                    FlyText.text = text;
                     break;
                 }
             default:
@@ -68,6 +76,11 @@ public class ControlDisplay : MonoBehaviour
                     AltMovementControl.SetActive(visible);
                     break;
                 }
+            case ControlType.Fly:
+            {
+                FlyControl.SetActive(visible);
+                break;
+            }
             default:
                 {
                     return;

@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private bool jumpInputPrevious = false;
     //checkpoint code
+
     private int deathCount = 3;
     public GameObject startPointObject;
     public GameObject checkPointObject;
     public GameObject endPointObject;
     private Transform startPoint;
     private Transform endPoint;
-    private Transform checkPoint;
+    public Transform checkPoint;
     public GameObject checkpointNotif;
     public float timeToReachCheckpoint;
     public Dictionary<string, int> deathCountDict = new Dictionary<string, int>();
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ContactFilter2D contactFilter;
     public GameObject lostLifeNotif;
 
+    // possesion timer for dead hazard
+    [SerializeField] protected float possessTime = 10.0f;
+    public float possessTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +81,8 @@ public class PlayerController : MonoBehaviour
         endPoint = endPointObject.transform;
         checkPoint = checkPointObject.transform;
         GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Possess");
+
+        possessTimer = possessTime;
     }
 
     // Update is called once per frame
@@ -84,7 +90,20 @@ public class PlayerController : MonoBehaviour
     {
         //movement inputs
         horizontalInput = Input.GetAxis("Horizontal");
-
+        
+        // unpossess devil if timer has run out
+        if ( currentEntity && currentEntity.CompareTag("DeadHazard"))
+        {
+            possessTimer -= Time.deltaTime;
+            if (possessTimer < 0)
+            {
+                GameObject temp = currentEntity.gameObject;
+                UnPossess();
+                Destroy(temp);
+                possessTimer = possessTime;
+            }
+        }
+        
         //entity possession check
         CheckForEntities();
         //move position to entity if we're possessing one
@@ -93,12 +112,6 @@ public class PlayerController : MonoBehaviour
             transform.position = currentEntity.transform.position;
         }
         
-        //jump
-        // devil can keep jumping 
-        // if (Input.GetKeyDown(jumpButton) && currentEntity && currentEntity.CompareTag("DeadHazard"))
-        // {
-        //     currentEntity.Jump();
-        // }
         if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
         {
             if (currentEntity)
@@ -347,13 +360,13 @@ public class PlayerController : MonoBehaviour
         }else{
                 deathCountDict[s] = 1;
         }
-        if(deathCount<1){
+        deathCount--;
+        if (deathCount<1){
             
             Time.timeScale = 0.0f;
             GameOver();
             GameManager.Instance.GameLose();
         }else{
-            deathCount--;
             // Debug.Log("not yet ded");
             if (deathCount == 2)
             {
@@ -391,7 +404,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 5.5f) && !canJump)
         {
             canJump = true;
         }
@@ -400,7 +413,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump && rb.velocity.y <= 0)
+        RaycastHit2D[] results = new RaycastHit2D[2];
+        int num = Physics2D.Raycast(transform.position, Vector2.down, new ContactFilter2D().NoFilter(), results, 5.5f);
+
+        if (!canJump && num > 1 && !canJump && rb.velocity.y <= 0)
         {
             canJump = true;
         }

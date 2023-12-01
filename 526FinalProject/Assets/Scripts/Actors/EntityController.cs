@@ -16,9 +16,9 @@ public class EntityController : MonoBehaviour
     public float markerScale = 1;
     private int hazardHits = 0;
     private int maxHazardHits = 1;
-    private SpriteRenderer spriteRenderer;
     private Vector3 gameStartPosition;
     [SerializeField] protected float maxVertVel = 50f;
+    public float groundCheck = 5;
 
     //components
     protected Rigidbody2D rb;
@@ -40,11 +40,6 @@ public class EntityController : MonoBehaviour
         }
         rb.mass = 100;
         rb.gravityScale = 10;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogError("EntityController: No SpriteRenderer found on the GameObject!");
-        }
     }
 
     public virtual void Update()
@@ -62,7 +57,9 @@ public class EntityController : MonoBehaviour
 
     protected void CheckJump(Transform col)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 5 * markerScale) && !canJump)
+        RaycastHit2D[] results = new RaycastHit2D[3];
+        int num = Physics2D.Raycast(transform.position, Vector2.down, new ContactFilter2D().NoFilter(), results, groundCheck);
+        if (!canJump && num > 1 && !canJump)
         {
             canJump = true;
         }
@@ -75,7 +72,7 @@ public class EntityController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (rb.velocity.y <= 0)
+        if (rb.velocity.y is < 1 and > -1)
         {
             CheckJump(collision.transform);
         }
@@ -137,15 +134,15 @@ public class EntityController : MonoBehaviour
         playerRef.UnPossess();
         canBePossessed = false;
     }
-    public virtual void BecomeUnpossessable()
-    {
-        canBePossessed = false;
-        LightenColor();
-
-    }
+    
     public virtual void TakeHazardHit()
     {
-        transform.position = gameStartPosition;
+        if(playerRef.hasReachedCheckpoint){
+            transform.position = playerRef.checkPoint.position;
+        }
+        else{
+            transform.position = gameStartPosition;
+        }
         hazardHits++;
         if (hazardHits >= maxHazardHits)
         {
@@ -153,18 +150,4 @@ public class EntityController : MonoBehaviour
 
         }
     }
-    private void LightenColor()
-    {
-        if (spriteRenderer != null)
-        {
-            Color currentColor = spriteRenderer.color;
-            float lightness = 0.5f; // Adjust as needed
-            spriteRenderer.color = new Color(
-                currentColor.r + lightness,
-                currentColor.g + lightness,
-                currentColor.b + lightness,
-                currentColor.a
-            );
-        }
-    }
-    }
+}

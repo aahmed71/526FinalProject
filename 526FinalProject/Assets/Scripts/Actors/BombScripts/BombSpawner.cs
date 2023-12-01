@@ -9,7 +9,7 @@ public class BombSpawner : MonoBehaviour
     [SerializeField] private GameObject obstacle;
     void Update()
     {
-        if (bombInstance == null && obstacle != null)
+        if (bombInstance == null && (obstacle != null && !obstacle.CompareTag("DeadHazard")))
         {
             bombInstance = Instantiate(bombPrefab, transform.position, Quaternion.identity);
             GameManager.Instance.CountBombSpawns();

@@ -262,6 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markerScale: 1.5
+  maxVertVel: 50
+  groundCheck: 4
   explosionRadius: 8
   _animator: {fileID: 1202920716805779807}
   _explosion: {fileID: 6294436569764249103}

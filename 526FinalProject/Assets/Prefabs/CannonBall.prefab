@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markerScale: 1
+  maxVertVel: 50
+  groundCheck: 1.5
   maxVelocity: 30
   isFired: 0
 --- !u!251 &7369616059856381587
