@@ -7,14 +7,23 @@ public class videoanimation : MonoBehaviour
 {
     // Start is called before the first frame update
     private VideoPlayer videoPlayer;
+    public string file_path;
 
     void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();
         
+        
         if (videoPlayer != null)
         {
+
+
             // Subscribe to the loopPointReached event
+            string videoPath = Application.streamingAssetsPath + "/"+file_path;
+         
+            videoPlayer.url = videoPath;
+
+
             videoPlayer.loopPointReached += OnVideoLoopPointReached;
 
             // Start playing the video
