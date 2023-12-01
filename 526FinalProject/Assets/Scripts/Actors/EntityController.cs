@@ -11,13 +11,14 @@ public class EntityController : MonoBehaviour
     [NonSerialized] protected PlayerController playerRef;
     [NonSerialized] public bool canBePossessed = true;
     [NonSerialized]public bool isPossessed = false;
-    private bool canJump=false;
+    public bool canJump=false;
     //number to control how big the possession marker is
     public float markerScale = 1;
     private int hazardHits = 0;
     private int maxHazardHits = 1;
     private Vector3 gameStartPosition;
     [SerializeField] protected float maxVertVel = 50f;
+    public float groundCheck = 5;
 
     //components
     protected Rigidbody2D rb;
@@ -56,7 +57,10 @@ public class EntityController : MonoBehaviour
 
     protected void CheckJump(Transform col)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 5 * markerScale) && !canJump)
+        RaycastHit2D[] results = new RaycastHit2D[2];
+        int num = Physics2D.Raycast(transform.position, Vector2.down, new ContactFilter2D().NoFilter(), results, 5.5f);
+        
+        if (!canJump && num > 1 && !canJump)
         {
             canJump = true;
         }
@@ -69,7 +73,7 @@ public class EntityController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (rb.velocity.y <= 0)
+        if (rb.velocity.y is < 1 and > -1)
         {
             CheckJump(collision.transform);
         }

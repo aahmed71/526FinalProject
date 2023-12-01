@@ -127,6 +127,8 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   lostLifeNotif: {fileID: 1725655326667500714, guid: 9cbfcbb262bc0ee41ba33d5975802c43, type: 3}
+  possessTime: 10
+  possessTimer: 0
 --- !u!50 &5327661738033486541
 Rigidbody2D:
   serializedVersion: 4

@@ -261,7 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903e6fe02299b9f48a1b422590402432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 0
   markerScale: 1.5
+  maxVertVel: 50
+  groundCheck: 0.5
   explosionRadius: 8
   _animator: {fileID: 1202920716805779807}
   _explosion: {fileID: 6294436569764249103}

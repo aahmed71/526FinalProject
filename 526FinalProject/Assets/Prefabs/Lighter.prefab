@@ -173,7 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c9b578c7eeb5d449d34915cfd1bf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 0
   markerScale: 10
+  maxVertVel: 50
+  groundCheck: 11
   flameObject: {fileID: 8196371186283238114}
 --- !u!251 &2855256673306992574
 PlatformEffector2D:

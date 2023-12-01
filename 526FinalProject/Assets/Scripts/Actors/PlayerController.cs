@@ -403,7 +403,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 5.5f) && !canJump)
         {
             canJump = true;
         }
@@ -412,7 +412,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!canJump && Physics2D.Raycast(transform.position, Vector2.down, 15) && !canJump && rb.velocity.y <= 0)
+        RaycastHit2D[] results = new RaycastHit2D[2];
+        int num = Physics2D.Raycast(transform.position, Vector2.down, new ContactFilter2D().NoFilter(), results, 5.5f);
+
+        if (!canJump && num > 1 && !canJump && rb.velocity.y <= 0)
         {
             canJump = true;
         }

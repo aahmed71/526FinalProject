@@ -914,8 +914,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac83d4f9ee736294a84ecbdc67ccf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 0
   markerScale: 5
   maxVertVel: 50
+  groundCheck: 3.5
   pathArray:
   - {fileID: 0}
   - {fileID: 0}
