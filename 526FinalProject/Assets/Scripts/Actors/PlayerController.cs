@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private bool jumpInputPrevious = false;
     //checkpoint code
+
     private int deathCount = 3;
     public GameObject startPointObject;
     public GameObject checkPointObject;
@@ -359,13 +360,13 @@ public class PlayerController : MonoBehaviour
         }else{
                 deathCountDict[s] = 1;
         }
-        if(deathCount<1){
+        deathCount--;
+        if (deathCount<1){
             
             Time.timeScale = 0.0f;
             GameOver();
             GameManager.Instance.GameLose();
         }else{
-            deathCount--;
             // Debug.Log("not yet ded");
             if (deathCount == 2)
             {
