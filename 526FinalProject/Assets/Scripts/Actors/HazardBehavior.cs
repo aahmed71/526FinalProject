@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class HazardBehavior : EntityController
 {
@@ -9,12 +10,14 @@ public class HazardBehavior : EntityController
     public Transform[] pathArray;
     private int destinationIdx;
     private int totalPoints;
-    public float speed = 5.0f;
+    public float devilSpeed = 5.0f;
     private Vector3 directionToDestination;
     public GameObject player;
     [SerializeField] private float detectionRadius = 10.0f;
     private GameObject chaseModeUI;
     private bool dead = false;
+    public Sprite deadsprite;
+    public SpriteRenderer spriteRenderer;
     
     // parameters for dead hazard possesion
     [SerializeField] private float mass = 100.0f;
@@ -49,7 +52,7 @@ public class HazardBehavior : EntityController
             chaseModeUI.SetActive(true);
 
             // Move the GameObject towards the player
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, devilSpeed * Time.deltaTime);
         }
         else
         {
@@ -59,7 +62,7 @@ public class HazardBehavior : EntityController
             if(directionToDestination.magnitude > 1)
             {
                 directionToDestination.Normalize();
-                transform.position += directionToDestination * speed * Time.deltaTime;
+                transform.position += directionToDestination * devilSpeed * Time.deltaTime;
             }
             else
             {
@@ -112,5 +115,20 @@ public class HazardBehavior : EntityController
         rb.isKinematic = false;
         rb.mass = mass;
         rb.gravityScale = gravScale;
+        spriteRenderer.sprite = deadsprite;
+        GetComponent<Light2D>().enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("CheckPoint"))
+        {
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null && playerController.IsPossessing())
+            {
+                playerController.ReachedCheckpoint(col.transform.position);
+            }
+            
+        }
     }
 }

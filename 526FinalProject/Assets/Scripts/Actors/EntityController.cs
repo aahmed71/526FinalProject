@@ -16,7 +16,6 @@ public class EntityController : MonoBehaviour
     public float markerScale = 1;
     private int hazardHits = 0;
     private int maxHazardHits = 1;
-    private SpriteRenderer spriteRenderer;
     private Vector3 gameStartPosition;
     [SerializeField] protected float maxVertVel = 50f;
 
@@ -40,11 +39,6 @@ public class EntityController : MonoBehaviour
         }
         rb.mass = 100;
         rb.gravityScale = 10;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogError("EntityController: No SpriteRenderer found on the GameObject!");
-        }
     }
 
     public virtual void Update()
@@ -137,12 +131,7 @@ public class EntityController : MonoBehaviour
         playerRef.UnPossess();
         canBePossessed = false;
     }
-    public virtual void BecomeUnpossessable()
-    {
-        canBePossessed = false;
-        LightenColor();
-
-    }
+    
     public virtual void TakeHazardHit()
     {
         transform.position = gameStartPosition;
@@ -153,18 +142,4 @@ public class EntityController : MonoBehaviour
 
         }
     }
-    private void LightenColor()
-    {
-        if (spriteRenderer != null)
-        {
-            Color currentColor = spriteRenderer.color;
-            float lightness = 0.5f; // Adjust as needed
-            spriteRenderer.color = new Color(
-                currentColor.r + lightness,
-                currentColor.g + lightness,
-                currentColor.b + lightness,
-                currentColor.a
-            );
-        }
-    }
-    }
+}

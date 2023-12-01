@@ -639,6 +639,8 @@ GameObject:
   - component: {fileID: 1016094352732135562}
   - component: {fileID: 7610012138965320884}
   - component: {fileID: 3353677831050675018}
+  - component: {fileID: 4907932216826377225}
+  - component: {fileID: 8750966235494331955}
   m_Layer: 0
   m_Name: Hazard
   m_TagString: Hazard
@@ -675,15 +677,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac83d4f9ee736294a84ecbdc67ccf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerScale: 1
+  markerScale: 5
   maxVertVel: 50
   pathArray:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 5
+  devilSpeed: 5
   player: {fileID: 0}
   detectionRadius: 20
+  deadsprite: {fileID: 21300000, guid: 8ad1ddad41ca8e143b1ea4f9c9c625ec, type: 3}
+  spriteRenderer: {fileID: 7018552269398014116}
   mass: 100
   gravScale: 10
 --- !u!50 &7610012138965320884
@@ -743,7 +747,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -758,7 +762,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
-  m_Radius: 0.5
 --- !u!114 &4907932216826377225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,6 +812,25 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!251 &8750966235494331955
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029703306807170084}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &8147672721898286869
 GameObject:
   m_ObjectHideFlags: 0
