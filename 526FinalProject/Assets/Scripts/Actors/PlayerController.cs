@@ -57,6 +57,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ContactFilter2D contactFilter;
     public GameObject lostLifeNotif;
 
+    // possesion timer for dead hazard
+    [SerializeField] protected float possessTime = 10.0f;
+    private float possessTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +80,8 @@ public class PlayerController : MonoBehaviour
         endPoint = endPointObject.transform;
         checkPoint = checkPointObject.transform;
         GameManager.Instance.controlDisplay.SetText(ControlDisplay.ControlType.Possession, "Possess");
+
+        possessTimer = possessTime;
     }
 
     // Update is called once per frame
@@ -84,7 +89,20 @@ public class PlayerController : MonoBehaviour
     {
         //movement inputs
         horizontalInput = Input.GetAxis("Horizontal");
-
+        
+        // unpossess devil if timer has run out
+        if ( currentEntity && currentEntity.CompareTag("DeadHazard"))
+        {
+            possessTimer -= Time.deltaTime;
+            if (possessTimer < 0)
+            {
+                GameObject temp = currentEntity.gameObject;
+                UnPossess();
+                Destroy(temp);
+                possessTimer = possessTime;
+            }
+        }
+        
         //entity possession check
         CheckForEntities();
         //move position to entity if we're possessing one
@@ -93,12 +111,6 @@ public class PlayerController : MonoBehaviour
             transform.position = currentEntity.transform.position;
         }
         
-        //jump
-        // devil can keep jumping 
-        // if (Input.GetKeyDown(jumpButton) && currentEntity && currentEntity.CompareTag("DeadHazard"))
-        // {
-        //     currentEntity.Jump();
-        // }
         if (Input.GetKeyDown(jumpButton) && !jumpInputPrevious)
         {
             if (currentEntity)

@@ -95,7 +95,6 @@ public class HazardBehavior : EntityController
             // If the player is currently possessing this entity, unpossess it.
             if (player.GetComponent<PlayerController>().currentEntity == entity)
             {
-
                 player.GetComponent<PlayerController>().UnPossess();
                 entity.TakeHazardHit();
                 killPlayer();
