@@ -131,4 +131,16 @@ public class HazardBehavior : EntityController
             
         }
     }
+
+    public override void OnPossess(PlayerController player)
+    {
+        base.OnPossess(player);
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Fly, true);
+    }
+
+    public override void OnUnPossess(PlayerController player)
+    {
+        base.OnUnPossess(player);
+        GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Fly, false);
+    }
 }
