@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -18,10 +19,13 @@ public class HazardBehavior : EntityController
     private bool dead = false;
     public Sprite deadsprite;
     public SpriteRenderer spriteRenderer;
-    
+    public TextMeshProUGUI timerText;
+
     // parameters for dead hazard possesion
     [SerializeField] private float mass = 100.0f;
     [SerializeField] private float gravScale = 10f;
+
+    private PlayerController _playerController;
     void Start()
     {
         OnStart();
@@ -32,7 +36,7 @@ public class HazardBehavior : EntityController
         {
             transform.position = pathArray[0].position;
         }
-        
+        timerText.enabled = false;
     }
 
     // Update is called once per frame
@@ -44,6 +48,12 @@ public class HazardBehavior : EntityController
         // hazard is dead
         if (dead)
         {
+            if (isPossessed)
+            {
+                int time = Mathf.RoundToInt(_playerController.possessTimer);
+                timerText.text = time.ToString();
+            }
+            
             return;
         }
         // If the player is within the detection radius
@@ -135,12 +145,15 @@ public class HazardBehavior : EntityController
     public override void OnPossess(PlayerController player)
     {
         base.OnPossess(player);
+        _playerController = player.GetComponent<PlayerController>();
         GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Fly, true);
+        timerText.enabled = true;
     }
 
     public override void OnUnPossess(PlayerController player)
     {
         base.OnUnPossess(player);
         GameManager.Instance.controlDisplay.SetVisibility(ControlDisplay.ControlType.Fly, false);
+        timerText.enabled = false;
     }
 }

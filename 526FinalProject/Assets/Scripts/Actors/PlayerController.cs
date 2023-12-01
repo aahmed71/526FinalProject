@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     // possesion timer for dead hazard
     [SerializeField] protected float possessTime = 10.0f;
-    private float possessTimer;
+    public float possessTimer;
     // Start is called before the first frame update
     void Start()
     {
